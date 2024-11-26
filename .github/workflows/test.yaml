@@ -1,6 +1,7 @@
 ﻿name: .NET Build and Test
 
 on:
+  workflow_dispatch:
   push:
   pull_request:
 
