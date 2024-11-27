@@ -3,6 +3,9 @@
 on:
   workflow_dispatch:
   push:
+    ignore-branches:
+      - main
+      - release/*
   pull_request:
 
 jobs:

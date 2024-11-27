@@ -1,0 +1,46 @@
+﻿name: .NET Build, Test, and Publish
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+    paths:
+      - '**.csproj'
+      - '**.cs'
+        
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+          
+      - name: Setup nbgv
+        uses: nbgv/setup-nbgv@v1
+        
+      - name: Get Current Version to env
+        id: get_version
+        run: echo "::set-output name=version::$(nbgv get-version -p)"
+        
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Run tests
+        run: dotnet test --no-build -c Release --verbosity normal
+
+      - name: Generate Nuget Package
+        run: dotnet pack --no-build -c Release --output ./artifacts
+        
+      - name: Publish Nuget Package
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json  
