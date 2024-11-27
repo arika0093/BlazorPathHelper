@@ -67,6 +67,6 @@ public class BlazorPathTestWithArgs
         PathHelper.SampleWithSuperMultiple("test", 2)
             .Should().Be("/something/test/2/");
     }
-    
-    
+
+
 }

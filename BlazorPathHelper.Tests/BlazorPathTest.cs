@@ -39,8 +39,8 @@ public class BlazorPathTest
         PathHelper.SampleSub3().Should().Be(DefinitionBase.SampleSub3);
         PathHelper.SampleSub4().Should().Be(DefinitionBase.SampleSub4);
     }
-    
-    
+
+
     [Fact]
     public void MenuStructureTest()
     {
@@ -86,7 +86,7 @@ public class BlazorPathTest
         menuStructure[2].Children[0].Children.Should().BeEmpty();
         menuStructure[3].Path.Should().Be(DefinitionBase.Sample3Top);
         menuStructure[3].Children.Should().BeEmpty();
-        
+
     }
-    
+
 }
