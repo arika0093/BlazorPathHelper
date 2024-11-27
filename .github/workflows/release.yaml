@@ -8,6 +8,7 @@ on:
     paths:
       - '**.csproj'
       - '**.cs'
+      - '**.yaml'
         
 jobs:
   release:
@@ -16,20 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          depth: 0
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '8.0.x'
+          cache: true
           
-      - name: Setup nbgv
-        uses: nbgv/setup-nbgv@v1
-        
-      - name: Get Current Version to env
-        id: get_version
-        run: echo "::set-output name=version::$(nbgv get-version -p)"
-        
       - name: Restore dependencies
         run: dotnet restore
 
@@ -43,4 +38,6 @@ jobs:
         run: dotnet pack --no-build -c Release --output ./artifacts
         
       - name: Publish Nuget Package
-        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json  
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json  

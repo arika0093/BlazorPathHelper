@@ -3,7 +3,11 @@
 on:
   workflow_dispatch:
   push:
-    ignore-branches:
+    paths:
+      - '**.csproj'
+      - '**.cs'
+      - '**.yaml'
+    branches-ignore:
       - main
       - release/*
   pull_request:
@@ -14,11 +18,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '8.0.x'
+          cache: true
 
       - name: Restore dependencies
         run: dotnet restore
