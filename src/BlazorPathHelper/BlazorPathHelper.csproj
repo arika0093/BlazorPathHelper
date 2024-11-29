@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <NoWarn>$(NoWarn);NU5128</NoWarn>
+        <PackageId>BlazorPathHelper</PackageId>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeContentInPack>true</IncludeContentInPack>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj" />
+      <ProjectReference Include="..\BlazorPathHelper.Generator\BlazorPathHelper.Generator.csproj" />
+    </ItemGroup>
+
+</Project>

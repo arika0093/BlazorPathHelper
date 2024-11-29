@@ -8,6 +8,8 @@ namespace BlazorPathHelper;
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 public class BlazorPathAttribute : Attribute
 {
+    public string? Namespace { get; set; } = null;
+    public string? ClassName { get; set; } = null;
 }
 
 /// <summary>
@@ -20,12 +22,15 @@ public class BlazorPathItemAttribute : Attribute
     public bool IsRoot { get; set; } = false;
     public string? Name { get; set; } = null;
     public string? Icon { get; set; } = null;
-    public string? Group { get; set; } = "";
+    public string? Group { get; set; } = null;
 }
 
 
 public class BlazorPathMenuItem
 {
+    public int Index { get; set; }
+    public string GroupKey { get; set; } = default!;
+    public int GroupIndex { get; set; }
     public string Name { get; set; } = default!;
     public string Path { get; set; } = default!;
     public string? Icon { get; set; }

@@ -6,10 +6,7 @@
         <Nullable>enable</Nullable>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <RootNamespace>BlazorPathHelper</RootNamespace>
-        <PackageId>BlazorPathHelper</PackageId>
-        <PackageProjectUrl>https://github.com/arika0093/BlazorPathHelper</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/arika0093/BlazorPathHelper</RepositoryUrl>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageId>BlazorPathHelper.Generator</PackageId>
         <!--Nuget-->
         <IsRoslynComponent>true</IsRoslynComponent>
         <AnalyzerLanguage>cs</AnalyzerLanguage>
@@ -17,12 +14,16 @@
         <DevelopmentDependency>true</DevelopmentDependency>
         <IncludeSymbols>false</IncludeSymbols>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-<!--        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-        <None Include="BlazorPathHelper.props" Pack="true" PackagePath="build" Visible="false" />
+        <ProjectReference Include="..\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj" GeneratePathProperty="true" PrivateAssets="all"  />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="$(OutputPath)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <None Include="BlazorPathHelper.Generator.props" Pack="true" PackagePath="build" Visible="false" />
     </ItemGroup>
     
     <ItemGroup>

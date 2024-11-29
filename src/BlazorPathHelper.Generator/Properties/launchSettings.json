@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Debug:Try": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../tests/BlazorPathHelper.Try/BlazorPathHelper.Try.csproj"
+    },
+    "Debug:Tests": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
+    }
+  }
+}

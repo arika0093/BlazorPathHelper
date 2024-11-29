@@ -18,7 +18,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BlazorPathHelper\BlazorPathHelper.csproj" >
+        <ProjectReference Include="..\..\src\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj"  >
+            <OutputItemType>Analyzer</OutputItemType>
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+        </ProjectReference>
+        <ProjectReference Include="..\..\src\BlazorPathHelper.Generator\BlazorPathHelper.Generator.csproj" >
             <OutputItemType>Analyzer</OutputItemType>
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>

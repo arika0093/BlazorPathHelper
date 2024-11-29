@@ -42,7 +42,7 @@
       },
       "Nerdbank.GitVersioning": {
         "type": "Direct",
-        "requested": "[3.6.146, )",
+        "requested": "[3.*, )",
         "resolved": "3.6.146",
         "contentHash": "W1eQ8hD9Y/cZ2+ilgxECl003xr1hybpN3fMxoTlMqg++BixETBMWzS4y9s08oHJKXgKtudsoxhITNOEf1OR66w=="
       },
@@ -220,6 +220,9 @@
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.5.3"
         }
+      },
+      "blazorpathhelper.core": {
+        "type": "Project"
       }
     }
   }
