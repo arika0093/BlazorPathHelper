@@ -29,17 +29,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="localize.resx">
+      <EmbeddedResource Update="Localize.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>localize.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="localize.Designer.cs">
+      <Compile Update="Localize.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>localize.resx</DependentUpon>
+        <DependentUpon>Localize.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 

@@ -44,45 +44,26 @@ public partial class WebPaths
     // メニュー項目を動的に作成するのに便利な配列
     public static readonly BlazorMenuItem[] MenuItems = [
         new BlazorPathMenuItem(){
-            Index = 0,       // メニュー全体のNo。@key属性に使用すると便利
-            GroupKey = "",   // グループのキー。同じグループキーのメニューはグループ化される
-            GroupIndex = 0,  // グループ内のNo
-            GroupLevel = 0,  // グループの階層
             Name = "Index",  // メニュー名。標準では変数名
             Path = "/",      // ページのパス
-            Icon = "",       // アイコン指定。主にclass名を指定して、MenuItemコンポーネントで表示する
             Children = []    // 子メニュー
+            // その他メニューを生成するのに便利なプロパティを自動生成
         },
         new BlazorPathMenuItem(){
-            Index = 1,
-            GroupKey = "",
-            GroupIndex = 1,
-            GroupLevel = 0,
             Name = "Sample",
             Path = "/sample", 
-            Icon = "",
             // URLを解析して、よしなに子メニューを生成する
             Children = [
                 new BlazorPathMenuItem(){
-                    Index = 2,
-                    GroupKey = "/sample", 
-                    GroupIndex = 0,
-                    GroupLevel = 1, 
                     Name = "SampleChild",
                     Path = "/sample/child", 
-                    Icon = "", 
                     Children = []
                 }
             ]
         },
         new BlazorPathMenuItem(){
-            Index = 3,
-            GroupKey = "",
-            GroupIndex = 2,
-            GroupLevel = 0,
             Name = "Counter",
             Path = "/counter",
-            Icon = "",
             // パラメータを持つページはメニューに表示されない
             Children = []
         }
@@ -165,26 +146,30 @@ public partial class WebPaths
 [BlazorPath]
 public partial class WebPaths
 {
-    // ルートページはメニューに表示しない
+    // メニューに表示しないようにする場合は、Visible = false を指定
     [BlazorPathItem(Visible = false)]
     public const string Index = "/";
 
     // ページ名とアイコンを指定する
-    [BlazorPathItem(Name = "サンプルA", Icon = "fas fa-cog")]
+    [BlazorPathItem("サンプルA", Icon = "fas fa-cog")]
     public const string Sample = "/sample";
-    [BlazorPathItem(Name = "サンプルA-1", Icon = "fas fa-star")]
+    [BlazorPathItem("サンプルA-1", Icon = "fas fa-star")]
     public const string SampleChild = "/sample/child";
 
-    // URL的に繋がりがないが子要素として認識させたい場合は、Groupを指定
-    [BlazorPathItem(Name = "サンプルA-2", Group = Sample)]
-    public const string SampleChild2 = "/sample2";
+    // 説明文を追加する場合は、第二引数で指定可能
+    [BlazorPathItem("サンプルA-2", "A-2ページの説明文")]
+    public const string SampleComplex = "/sample/child2";
 
-    // どことも繋がっていない奥深くの階層を最上位メニューに表示したい場合は、RootForceを指定
-    [BlazorPathItem(Name = "入れ子ページ", RootForce = true)]
+    // URL的に繋がりがないが子要素として認識させたい場合は、Groupを指定
+    [BlazorPathItem("サンプルA-3", Group = Sample)]
+    public const string SampleChild2 = "/sample-3";
+
+    // どことも繋がっていない奥深くの階層を最上位メニューに表示したい場合は、Group = "/" を指定
+    [BlazorPathItem("入れ子ページ", Group = Index)]
     public const string SuperInnerItem = "/hoge/fuga/piyo";
 
     // 上記のように指定しておけば、その子ページもメニューに表示される
-    [BlazorPathItem(Name = "入れ子ページの子")]
+    [BlazorPathItem("入れ子ページの子")]
     public const string SuperInnerItemChild = "/hoge/fuga/piyo/child";
 }
 ```
@@ -196,26 +181,24 @@ public partial class WebPaths
 {
     public static readonly BlazorPathMenuItem[] MenuItem = [
         new BlazorPathMenuItem() {
-            Index = 0, GroupKey = "", GroupIndex = 1, GroupLevel = 0,
             Name = "サンプルA", Path = "/sample", Icon = "fas fa-cog",
             Children = [
                 new BlazorPathMenuItem() {
-                    Index = 1, GroupKey = "/sample", GroupIndex = 0, GroupLevel = 1,
-                    Name = "サンプルA-1", Path = "/sample/child", Icon = "fas fa-star", Children = []
+                    Name = "サンプルA-1", Path = "/sample/child", Icon = "fas fa-star", 
                 },
                 new BlazorPathMenuItem() {
-                    Index = 2, GroupKey = "/sample", GroupIndex = 1, GroupLevel = 1,
-                    Name = "サンプルA-2", Path = "/sample2", Icon = "", Children = []
+                    Name = "サンプルA-2", Path = "/sample/child2",Description = "A-2ページの説明文"
+                },
+                new BlazorPathMenuItem() {
+                    Name = "サンプルA-3", Path = "/sample-3"
                 }
             ]
         },
         new BlazorPathMenuItem() {
-            Index = 3, GroupKey = "/hoge/fuga", GroupIndex = 2, GroupLevel = 0,
-            Name = "入れ子ページ", Path = "/hoge/fuga/piyo", Icon = "",
+            Name = "入れ子ページ", Path = "/hoge/fuga/piyo", 
             Children = [
                 new BlazorPathMenuItem() {
-                    Index = 4, GroupKey = "/hoge/fuga/piyo", GroupIndex = 0, GroupLevel = 1,
-                    Name = "入れ子ページの子", Path = "/hoge/fuga/piyo/child", Icon = "", Children = []
+                    Name = "入れ子ページの子", Path = "/hoge/fuga/piyo/child"
                 }
             ]
         }
@@ -225,14 +208,28 @@ public partial class WebPaths
 
 ### 多言語対応
 
-`[BlazorPathItem]` 属性の `Name`を指定する際、以下のように記述することでリソースファイルから動的取得が可能です。
+`[BlazorPathItem]` を指定する際、以下のように記述します。
 
 ```csharp
 [BlazorPath]
 public partial class WebPaths
 {
-    [BlazorPathItem(Name = "@Localize:SampleA")]
+    [BlazorPathItem(nameof(Localize.SampleA))]
     public const string Sample = "/sample";
+}
+```
+
+呼び出す際のコードは以下のようになります。
+
+```razor
+@inject IStringLocalizer<Localize> Localizer
+
+@* nameof(...)の形で名称を指定した場合HasLocalizeNameがTrueとなるので、それを使う *@
+@(MenuItem.HasLocalizeName ? Localizer[MenuItem.Name] : MenuItem.Name)
+
+@code {
+    [Parameter, EditorRequired]
+    public BlazorPathMenuItem MenuItem { get; set; } = default!;
 }
 ```
 

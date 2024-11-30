@@ -12,8 +12,6 @@ namespace BlazorPathHelper;
 [Generator]
 public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
 {
-    private const string ExportClassName = "PathHelper";
-
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var sourceRoot = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -160,10 +158,9 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
 
     private class PathAttributeTreeParser
     {
-        public int Index { get; set; }
-        public string GroupPath { get; set; }
-        public PathAttributeParser Parser { get; set; }
-        public PathAttributeTreeParser[] ChildItems { get; set; }
+        public int Index { get; }
+        public PathAttributeParser Parser { get; }
+        public PathAttributeTreeParser[] ChildItems { get; }
 
         public PathAttributeTreeParser(PathAttributeParser[] parsers, PathAttributeParser rootItem)
         {
@@ -174,7 +171,6 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                 .Where(p => p.GroupPath == trimmedPath && !p.IsRootMenuItem)
                 .Select(p => new PathAttributeTreeParser(parsers, p));
             this.Index = Array.IndexOf(parsers, rootItem);
-            this.GroupPath = trimmedPath;
             this.Parser = rootItem;
             this.ChildItems = subMenu.ToArray();
         }
@@ -190,8 +186,11 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                         GroupLevel = {{groupLevel}},
                         Name = "{{Parser.DisplayName}}",
                         Path = "{{Parser.PathRawValue}}",
-                        Icon = "{{Parser.MenuIcon}}",
-                        Children = [{{string.Join(",\n", ChildItems.Select((c,i) => c.ExportCode(i, groupLevel+1)))}}]
+                        {{(Parser.DisplayDescription == "" ? $"Description = \"{Parser.DisplayDescription}\",\n" : "")}}
+                        {{(Parser.MenuIcon == "" ? $"Icon = \"{Parser.MenuIcon}\",\n" : "")}}
+                        {{(Parser.HasLocalizeName ? "HasLocalizeName = true,\n" : "")}}
+                        {{(Parser.HasLocalizeDesc ? "HasLocalizeDescription = true,\n" : "")}}
+                        {{(ChildItems.Length > 0 ? $"Children = [{string.Join(",\n", ChildItems.Select((c,i) => c.ExportCode(i, groupLevel+1)))}]" : "")}}
                      }
                      """;
             // trim linebreak and spaces
@@ -218,29 +217,31 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                 var csharpDefinition = GeneratePathBuilderArg(variable, typeString, isNullable);
                 csharpDefinitions.Add(csharpDefinition);
             }
+
+            PathItemAttr = pathItemAttr;
             VariableName = variableName;
             PathRawValue = pathRawValue;
             Args = csharpDefinitions;
-
-            // 表示名は指定があればそれを使う。なければ変数名を使う。
-            DisplayName = pathItemAttr?.Name ?? variableName;
-            GroupPath = pathItemAttr?.Group ?? BuildDefaultGroupMenuPath(pathRawValue);
-            MenuIcon = pathItemAttr?.Icon;
-            // 表示するかどうかは引数がないかどうかで判断する。
-            IsDisplayMenu = pathItemAttr?.Visible ?? !IsRequireArgs;
-            // ルートメニューかどうかは指定があればそれを使う。
-            IsRootMenuItem = pathItemAttr?.RootForce == true || (GroupPath == "");
         }
+        
+        private BlazorPathItemAttribute? PathItemAttr { get; }
 
-        internal string PathRawValue { get; private set; }
-        private string VariableName { get; set; }
-        private List<PathBuilderArg> Args { get; set; }
+        internal string PathRawValue { get; }
+        private string VariableName { get; }
+        private List<PathBuilderArg> Args { get; }
 
-        internal string? DisplayName { get; private set; }
-        internal string GroupPath { get; private set; }
-        internal string? MenuIcon { get; private set; }
-        internal bool IsDisplayMenu { get; private set; }
-        internal bool IsRootMenuItem { get; private set; }
+        internal string? DisplayName => PathItemAttr?.Name ?? VariableName;
+        internal string? DisplayDescription => PathItemAttr?.Description;
+        // 表示名は指定があればそれを使う。なければ変数名を使う。
+        internal string GroupPath => PathItemAttr?.Group?.TrimEnd('/')
+                                     ?? BuildDefaultGroupMenuPath(PathRawValue);
+        internal string? MenuIcon  => PathItemAttr?.Icon;
+        // 表示するかどうかは引数がないかどうかで判断する。
+        internal bool IsDisplayMenu => PathItemAttr?.Visible ?? !IsRequireArgs;
+        internal bool IsRootMenuItem => GroupPath == "";
+        
+        internal bool HasLocalizeName => PathItemAttr?.NamePath?.Contains("nameof") ?? false;
+        internal bool HasLocalizeDesc => PathItemAttr?.DescriptionPath?.Contains("nameof") ?? false;
 
         private bool IsRequireArgs => Args.Count > 0;
 
@@ -278,11 +279,9 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             {
                 return path.Substring(0, path.IndexOf('{'));
             }
-            else
-            {
-                var split = path.Split('/');
-                return string.Join("/", split.Take(split.Length - 1));
-            }
+
+            var split = path.Split('/');
+            return string.Join("/", split.Take(split.Length - 1));
         }
     }
 
