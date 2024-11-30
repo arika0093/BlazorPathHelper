@@ -32,11 +32,10 @@
 [Documentation](https://linktodocumentation)
 
 ## TODO
-- [x] CI設定
+- [x] CI/CD設定
 - [x] nuget公開
-- [x] CD設定
 - [ ] ReadMeを整備
-- [ ] ドキュメントサイト追加
 - [ ] ドキュメント整備
+- [ ] ドキュメントサイト追加
 - [ ] 各フレームワークでの例を追加
 - [ ] コード綺麗にする

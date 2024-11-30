@@ -1,0 +1,34 @@
+﻿@* ReSharper disable InconsistentNaming *@
+@attribute [Route(Paths.Sample1)]
+@attribute [Route(Paths.Sample1C1)]
+@attribute [Route(Paths.Sample1C2)]
+@attribute [Route(Paths.Sample1C2C1)]
+@attribute [Route(Paths.Sample2)]
+@attribute [Route(Paths.Sample2C1)]
+@attribute [Route(Paths.Sample3)]
+@attribute [Route(Paths.Sample3Arg)]
+
+<PageTitle>Sample</PageTitle>
+
+<h1>Sample</h1>
+
+<h3>Current Url: @NavigationManager.Uri</h3>
+
+<h5>Value Parameter: @(value?.ToString() ?? "null")</h5>
+
+@inject NavigationManager NavigationManager
+@code {
+    [Parameter]
+    public int? value { get; set; }
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+}

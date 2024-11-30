@@ -126,12 +126,9 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
          
          {{accessbility}} partial class {{exportClassName}}
          {
-             public static class MenuItem
-             {
-                 public static BlazorPathMenuItem[] {{variableName}} = [
-                     {{string.Join(",\n            ", treeStructures.Select((t,i) => t.ExportCode(i)))}}
-                 ];
-             }
+             public static BlazorPathMenuItem[] MenuItem = [
+                 {{string.Join(",\n        ", treeStructures.Select((t,i) => t.ExportCode(i,0)))}}
+             ];
          }
          """;
         context.AddSource($"BlazorPathHelper_Menu_{fullType}.g.cs", totalCode);
@@ -182,7 +179,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             this.ChildItems = subMenu.ToArray();
         }
 
-        public string ExportCode(int groupIndex)
+        public string ExportCode(int groupIndex, int groupLevel)
         {
             // TODO: インデントをきっちり出力
             var code = $$"""
@@ -190,10 +187,11 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                         Index = {{Index}},
                         GroupKey = "{{GroupPath}}",
                         GroupIndex = {{groupIndex}},
+                        GroupLevel = {{groupLevel}},
                         Name = "{{Parser.DisplayName}}",
                         Path = "{{Parser.PathRawValue}}",
                         Icon = "{{Parser.MenuIcon}}",
-                        Children = [{{string.Join(",\n", ChildItems.Select((c,i) => c.ExportCode(i)))}}]
+                        Children = [{{string.Join(",\n", ChildItems.Select((c,i) => c.ExportCode(i, groupLevel+1)))}}]
                      }
                      """;
             // trim linebreak and spaces
@@ -231,7 +229,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             // 表示するかどうかは引数がないかどうかで判断する。
             IsDisplayMenu = pathItemAttr?.Visible ?? !IsRequireArgs;
             // ルートメニューかどうかは指定があればそれを使う。
-            IsRootMenuItem = pathItemAttr?.IsRoot ?? (GroupPath == "");
+            IsRootMenuItem = pathItemAttr?.RootForce == true || (GroupPath == "");
         }
 
         internal string PathRawValue { get; private set; }

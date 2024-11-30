@@ -1,0 +1,21 @@
+﻿@using BlazorPathHelper
+
+<div class="nav-item ps-3 py-1" @key="@MenuItem.Index">
+    <NavLink class="nav-link" href="@MenuItem.Path"
+             Match="@(MenuItem.Path != "/" ? NavLinkMatch.Prefix : NavLinkMatch.All)">
+        <span class="me-2 fs-5 @MenuItem.Icon" aria-hidden="true"></span>
+        @MenuItem.Name
+        
+    </NavLink>
+    @foreach(var childMenuItem in MenuItem.Children)
+    {
+        <nav class="flex-column">
+            <NavMenuItem MenuItem="childMenuItem"/>
+        </nav>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public BlazorPathMenuItem MenuItem { get; set; } = default!;
+}

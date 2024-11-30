@@ -19,7 +19,7 @@ public class BlazorPathAttribute : Attribute
 public class BlazorPathItemAttribute : Attribute
 {
     public bool Visible { get; set; } = true;
-    public bool IsRoot { get; set; } = false;
+    public bool RootForce { get; set; } = false;
     public string? Name { get; set; } = null;
     public string? Icon { get; set; } = null;
     public string? Group { get; set; } = null;
@@ -30,6 +30,7 @@ public class BlazorPathMenuItem
 {
     public int Index { get; set; }
     public string GroupKey { get; set; } = default!;
+    public int GroupLevel { get; set; }
     public int GroupIndex { get; set; }
     public string Name { get; set; } = default!;
     public string Path { get; set; } = default!;

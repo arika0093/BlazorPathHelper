@@ -1,5 +1,7 @@
-﻿// ReSharper disable MemberCanBePrivate.Global
-namespace BlazorPathHelper.Try;
+﻿using BlazorPathHelper;
+// ReSharper disable MemberCanBePrivate.Global
+
+namespace Example.Plain;
 
 [BlazorPath]
 public partial class Paths

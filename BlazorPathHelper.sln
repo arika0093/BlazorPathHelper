@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPathHelper.Tests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPathHelper.Try", "tests\BlazorPathHelper.Try\BlazorPathHelper.Try.csproj", "{53C89633-34DA-46E1-8AA1-975949E8755D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Plain", "examples\Example.Plain\Example.Plain.csproj", "{A46B3D5F-4226-4670-BB57-7D1BD462EC1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{53C89633-34DA-46E1-8AA1-975949E8755D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53C89633-34DA-46E1-8AA1-975949E8755D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53C89633-34DA-46E1-8AA1-975949E8755D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A46B3D5F-4226-4670-BB57-7D1BD462EC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A46B3D5F-4226-4670-BB57-7D1BD462EC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A46B3D5F-4226-4670-BB57-7D1BD462EC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A46B3D5F-4226-4670-BB57-7D1BD462EC1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

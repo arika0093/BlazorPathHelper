@@ -1,11 +1,13 @@
-﻿using System;
+﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+using System;
 using Xunit;
 using FluentAssertions;
 
 namespace BlazorPathHelper.Tests;
 
-[BlazorPath] 
-public partial class DefinitionWithArgs
+[BlazorPath]
+internal partial class DefinitionWithArgs
 {
     // string
     public const string SampleWithString = $"/string/{{val}}";

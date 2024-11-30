@@ -1,10 +1,12 @@
-﻿using FluentAssertions;
+﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+using FluentAssertions;
 using Xunit;
 
 namespace BlazorPathHelper.Tests;
 
 [BlazorPath]
-public partial class DefinitionBase
+internal partial class DefinitionBase
 {
     public const string TopPage = "/";
     // sample 
@@ -26,7 +28,7 @@ public partial class DefinitionBase
     public const string Sample2Sub1 = $"{Sample2Top}/sub1";
     public const string Sample3Top = "/sample3";
     // ... and specify root item
-    [BlazorPathItem(IsRoot = true)]
+    [BlazorPathItem(RootForce = true)]
     public const string Sample4ForceRoot = "/sample4/hoge";
     public const string Sample4Child = $"{Sample4ForceRoot}/fuga";
 }
@@ -51,7 +53,7 @@ public class BlazorPathTest
     [Fact]
     public void MenuStructureTest()
     {
-        var menuStructure = DefinitionBase.MenuItem.DefinitionBase;
+        var menuStructure = DefinitionBase.MenuItem;
         // menuStructure should be 
         // [
         //   Path = "/", Children = [],
@@ -111,7 +113,7 @@ public class BlazorPathTest
     [Fact]
     public void MenuStructureIndexTest()
     {
-        var menuStructure = DefinitionBase.MenuItem.DefinitionBase;
+        var menuStructure = DefinitionBase.MenuItem;
         // menuStructure should be 
         // [
         //   Index = 0, GroupIndex = 0, Children = [],
