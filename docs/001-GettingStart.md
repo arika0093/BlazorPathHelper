@@ -131,7 +131,7 @@ public partial class WebPaths
 ```razor
 @* NavMenu.razor *@
 <nav>
-    @foreach(var menuItem in Paths.MenuItem)
+    @foreach(var menuItem in WebPaths.MenuItem)
     {
         <NavMenuItem MenuItem="menuItem"/>
     }
@@ -235,3 +235,4 @@ public partial class WebPaths
 
 
 ### 実装例
+TODO

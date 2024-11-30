@@ -87,7 +87,7 @@ public partial class WebPaths
 }
 ```
 
-詳細な利用方法は [ドキュメント](/docs/001-GettingStart.md) を参照してください。
+詳細な利用方法は [ドキュメント](/docs/001-GettingStart.md)(WIP) を参照してください。
 
 ## TODO
 - [x] CI/CD設定
