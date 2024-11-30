@@ -111,6 +111,16 @@ public class BlazorPathTest
     }
 
     [Fact]
+    public void MenuItemTest()
+    {
+        var sampleSub2 = DefinitionBase.MenuItem[1].Children[1];
+        sampleSub2.Index.Should().Be(1);
+        sampleSub2.GroupIndex.Should().Be(1);
+        sampleSub2.GroupLevel.Should().Be(1);
+        
+    }
+
+    [Fact]
     public void MenuStructureIndexTest()
     {
         var menuStructure = DefinitionBase.MenuItem;

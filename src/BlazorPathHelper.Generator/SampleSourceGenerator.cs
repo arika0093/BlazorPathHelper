@@ -103,7 +103,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
         string accessbility, string namespaceName, string exportClassName)
     {
         var buildersToMenu = builders.Where(b => b.IsDisplayMenu).ToArray();
-        var rootItems = builders.Where(b => b.IsRootMenuItem);
+        var rootItems = buildersToMenu.Where(b => b.IsRootMenuItem);
         var treeStructures = rootItems.Select(rootItem
             => new PathAttributeTreeParser(buildersToMenu, rootItem));
 
@@ -126,7 +126,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
          
          {{accessbility}} partial class {{exportClassName}}
          {
-             public static BlazorPathMenuItem[] MenuItem = [
+             public static readonly BlazorPathMenuItem[] MenuItem = [
                  {{string.Join(",\n        ", treeStructures.Select((t,i) => t.ExportCode(i,0)))}}
              ];
          }
@@ -185,7 +185,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             var code = $$"""
                      new BlazorPathMenuItem(){ 
                         Index = {{Index}},
-                        GroupKey = "{{GroupPath}}",
+                        GroupKey = "{{Parser.GroupPath}}",
                         GroupIndex = {{groupIndex}},
                         GroupLevel = {{groupLevel}},
                         Name = "{{Parser.DisplayName}}",

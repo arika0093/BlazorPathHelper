@@ -9,7 +9,7 @@
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column pe-3">
-        @foreach(var menuItem in Paths.MenuItem)
+        @foreach(var menuItem in WebPaths.MenuItem)
         {
             <NavMenuItem MenuItem="menuItem"/>
         }

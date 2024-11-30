@@ -4,7 +4,7 @@
 namespace Example.Plain;
 
 [BlazorPath]
-public partial class Paths
+public partial class WebPaths
 {
     [BlazorPathItem(Name="Home", Icon="bi-house-door-fill")]
     public const string Home = "/";

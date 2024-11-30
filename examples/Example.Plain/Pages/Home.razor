@@ -1,4 +1,4 @@
-﻿@attribute [Route(Paths.Home)]
+﻿@attribute [Route(WebPaths.Home)]
 
 <PageTitle>Home</PageTitle>
 
@@ -14,7 +14,7 @@ Welcome to your new app.
     private void NavigateSample()
     {
         var randomInt = Random.Shared.Next(1, 100);
-        NavigationManager.NavigateTo(Paths.Helper.Sample3Arg(randomInt));
+        NavigationManager.NavigateTo(WebPaths.Helper.Sample3Arg(randomInt));
     }
 
 }
