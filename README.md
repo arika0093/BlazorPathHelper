@@ -3,7 +3,7 @@
 
 [![NuGet Version](https://img.shields.io/nuget/v/BlazorPathHelper?style=for-the-badge)](https://www.nuget.org/packages/BlazorPathHelper/) ![GitHub License](https://img.shields.io/github/license/arika0093/BlazorPathHelper?style=for-the-badge)
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/arika0093/BlazorPathHelper/test.yaml?branch=main&label=Test&style=flat-square) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/arika0093/BlazorPathHelper/release.yaml?branch=main&label=Release&style=flat-square) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/arika0093/BlazorPathHelper/main?style=flat-square)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/arika0093/BlazorPathHelper/release.yaml?branch=main&label=Release&style=flat-square) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/arika0093/BlazorPathHelper/main?style=flat-square)
 
 `BlazorPathHelper` is a library that assists in managing URL paths within Blazor projects.
 
@@ -279,7 +279,7 @@ Then, use it as follows.
 
 @if(MenuItem.Children.Length > 0)
 {
-  <FluentNavGroup Title="@MenuItem.Name" Icon="@((Icon)MenuItem.Icon)">    
+  <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
     {
       <NavMenuItem MenuItem="childMenuItem"/>
@@ -288,8 +288,7 @@ Then, use it as follows.
 }
 else
 {
-  <FluentNavLink Href="@MenuItem.Path"
-    Icon="@((Icon)MenuItem.Icon)" IconColor="Color.Accent">
+  <FluentNavLink Href="@MenuItem.Path" Icon="@((Icon)MenuItem.Icon)" IconColor="Color.Accent">
       @MenuItem.Name
   </FluentNavLink>
 }
@@ -335,14 +334,14 @@ using BlazorPathHelper;
 [BlazorPath]
 public partial class WebPaths
 {
-    [BlazorPathItem("Home", Icon = "home")]
-    public const string Home = "/";
-    [BlazorPathItem("Sample1", Icon = "folder")]
-    public const string Sample1 = "/sample1";
-    [BlazorPathItem("Sample2", Icon = "folder")]
-    public const string Sample2 = "/sample2";
-    [BlazorPathItem("Sample3", Icon = "file")]
-    public const string Sample3 = "/sample3";
+  [BlazorPathItem("Home", Icon = "home")]
+  public const string Home = "/";
+  [BlazorPathItem("Sample1", Icon = "folder")]
+  public const string Sample1 = "/sample1";
+  [BlazorPathItem("Sample2", Icon = "folder")]
+  public const string Sample2 = "/sample2";
+  [BlazorPathItem("Sample3", Icon = "file")]
+  public const string Sample3 = "/sample3";
 }
 ```
 

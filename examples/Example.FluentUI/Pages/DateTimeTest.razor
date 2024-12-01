@@ -1,0 +1,42 @@
+﻿@using Microsoft.FluentUI.AspNetCore.Components.Extensions
+
+@attribute [Route(WebPaths.UrlBuildDt)]
+@attribute [Route(WebPaths.UrlBuildDtBase)]
+
+<h3>DateTimeTest</h3>
+
+<p>Current Path: @Nav.Uri</p>
+
+<p>Current DateTime Value: @dt.Value.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'")</p>
+
+<FluentButton OnClick="ClickPrev">Prev</FluentButton>
+<FluentButton OnClick="ClickNext">Next</FluentButton>
+
+@inject NavigationManager Nav
+@code {
+    [Parameter] public DateTime? dt { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        dt ??= DateTime.Now;
+    }
+
+    private void ClickPrev()
+    {
+        ArgumentNullException.ThrowIfNull(dt);
+        Nav.NavigateTo(
+            WebPaths.Helper.UrlBuildDt(dt.Value - TimeSpan.FromDays(1)),
+            forceLoad: true
+        );
+    }
+
+    private void ClickNext(MouseEventArgs obj)
+    {
+        ArgumentNullException.ThrowIfNull(dt);
+        Nav.NavigateTo(
+            WebPaths.Helper.UrlBuildDt(dt.Value + TimeSpan.FromHours(2)),
+            forceLoad: true
+        );
+    }
+}
