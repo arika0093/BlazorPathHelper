@@ -3,6 +3,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <PackageDescription>BlazorPathHelper is a library that assists in managing URL paths within Blazor projects.</PackageDescription>
     <PackageProjectUrl>https://github.com/arika0093/BlazorPathHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/arika0093/BlazorPathHelper</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
