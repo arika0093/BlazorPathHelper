@@ -58,7 +58,7 @@ public partial class WebPaths
   }
   
   // An array useful for dynamically creating menu items
-  public static readonly BlazorMenuItem[] MenuItems = [
+  public static readonly BlazorMenuItem[] MenuItem = [
     new BlazorPathMenuItem(){
       Name = "Home", // Menu name. Defaults to the variable name
       Path = "/",    // Page path
@@ -117,7 +117,7 @@ Create `NavMenu.razor` and `NavMenuItem.razor`.
 ```razor
 @* NavMenu.razor *@
 <nav>
-  @foreach (var menuItem in WebPaths.MenuItems)
+  @foreach (var menuItem in WebPaths.MenuItem)
   {
     <NavMenuItem MenuItem="menuItem"/>
   }

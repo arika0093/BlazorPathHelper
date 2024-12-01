@@ -57,7 +57,7 @@ public partial class WebPaths
   }
   
   // メニュー項目を動的に作成するのに便利な配列
-  public static readonly BlazorMenuItem[] MenuItems = [
+  public static readonly BlazorMenuItem[] MenuItem = [
     new BlazorPathMenuItem(){
       Name = "Home", // メニュー名。標準では変数名
       Path = "/",    // ページのパス
@@ -116,7 +116,7 @@ Nav.NavigateTo(
 ```razor
 @* NavMenu.razor *@
 <nav>
-  @foreach (var menuItem in WebPaths.MenuItems)
+  @foreach (var menuItem in WebPaths.MenuItem)
   {
     <NavMenuItem MenuItem="menuItem"/>
   }
