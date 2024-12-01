@@ -1,8 +1,9 @@
-﻿// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable MemberCanBePrivate.Global
-using System;
+﻿using System;
 using Xunit;
 using FluentAssertions;
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
 
 namespace BlazorPathHelper.Tests;
 

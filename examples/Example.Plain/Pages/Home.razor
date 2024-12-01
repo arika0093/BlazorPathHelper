@@ -5,16 +5,3 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
-
-<button @onclick="NavigateSample">Navigate Sample</button>
-
-@inject NavigationManager NavigationManager
-@code {
-
-    private void NavigateSample()
-    {
-        var randomInt = Random.Shared.Next(1, 100);
-        NavigationManager.NavigateTo(WebPaths.Helper.Sample3Arg(randomInt));
-    }
-
-}
