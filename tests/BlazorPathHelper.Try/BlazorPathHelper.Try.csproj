@@ -18,19 +18,4 @@
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
     </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Update="Localize.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>localize.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Localize.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Localize.resx</DependentUpon>
-        </Compile>
-    </ItemGroup>
 </Project>

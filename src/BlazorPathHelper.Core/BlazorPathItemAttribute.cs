@@ -8,14 +8,10 @@ namespace BlazorPathHelper;
 /// </summary>
 /// <param name="name">Display name</param>
 /// <param name="description">Display description</param>
-/// <param name="namePath">Full path to the display name (auto-generated)</param>
-/// <param name="descriptionPath">Full path to the display description (auto-generated)</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 public class BlazorPathItemAttribute(
     string? name = null,
-    string? description = null,
-    [CallerArgumentExpression(nameof(name))] string? namePath = null,
-    [CallerArgumentExpression(nameof(description))] string? descriptionPath = null
+    string? description = null
 ) : Attribute
 {
     /// <summary>
@@ -49,14 +45,9 @@ public class BlazorPathItemAttribute(
     public string? Group { get; set; }
     
     /// <summary>
-    /// Full path to the display name (auto-generated)
+    /// Custom query type. default: null
     /// </summary>
-    public string? NamePath { get; } = namePath;
-    
-    /// <summary>
-    /// Full path to the display description (auto-generated)
-    /// </summary>
-    public string? DescriptionPath { get; } = descriptionPath;
+    public Type? QueryType { get; set; }
 }
 
 /// <summary>
@@ -65,13 +56,9 @@ public class BlazorPathItemAttribute(
 /// <typeparam name="TIcon">Customize Icon Type</typeparam>
 /// <param name="name">Display name</param>
 /// <param name="description">Display description</param>
-/// <param name="namePath">Full path to the display name (auto-generated)</param>
-/// <param name="descriptionPath">Full path to the display description (auto-generated)</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 public class BlazorPathItemAttribute<TIcon>(
     string? name = null,
-    string? description = null,
-    [CallerArgumentExpression(nameof(name))] string? namePath = null,
-    [CallerArgumentExpression(nameof(description))] string? descriptionPath = null
-) : BlazorPathItemAttribute(name,description, namePath, descriptionPath)
+    string? description = null
+) : BlazorPathItemAttribute(name,description)
     where TIcon : new();
