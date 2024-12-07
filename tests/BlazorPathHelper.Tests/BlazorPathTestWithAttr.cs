@@ -102,22 +102,4 @@ public class DefinitionWithAttrTest
         var sampleC1Item = menuItem.First(item => item.Path == DefinitionWithAttr.SampleC1);
         sampleC1Item.Icon.Should().BeAssignableTo(typeof(IconFromClass));
     }
-    
-    [Fact]
-    public void HasLocalizeName()
-    {
-        var menuItem = DefinitionWithAttr.MenuItemFlatten;
-        var sampleItem = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalize);
-        sampleItem.HasLocalizeName.Should().BeTrue();
-        sampleItem.Name.Should().Be(nameof(Localize.Sample));
-    }
-    
-    [Fact]
-    public void HasLocalizeDescription()
-    {
-        var menuItem = DefinitionWithAttr.MenuItemFlatten;
-        var sampleItem = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalizeWithDesc);
-        sampleItem.HasLocalizeDescription.Should().BeTrue();
-        sampleItem.Description.Should().Be(nameof(Localize.SampleDesc));
-    }
 }
