@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BlazorPathHelper.Models;
 using Microsoft.CodeAnalysis;
 #pragma warning disable CS1591
 
@@ -10,6 +11,7 @@ namespace BlazorPathHelper;
 [Generator]
 public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
 {
+    // Initialize is called at startup to configure the generator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var sourceRoot = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -19,10 +21,16 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(sourceRoot, EmitPathRoot);
     }
+    
+    
+    
 
     private static void EmitPathRoot(SourceProductionContext context, GeneratorAttributeSyntaxContext source)
     {
         var symbol = (INamedTypeSymbol)source.TargetSymbol;
+        var rsts = ParseRecord.GenerateRecordsFromPathAttr(symbol);
+
+
         var rootAttribute = symbol.GetAttributes()
             .First(a => a.AttributeClass?.Name == nameof(BlazorPathAttribute));
         var rootAttr = MapToType<BlazorPathAttribute>(rootAttribute);
@@ -43,6 +51,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                     ? MapToType<BlazorPathItemAttribute>(pathItemAttrData)
                     : null;
 
+                var rst = ParseRecord.GenerateRecordFromPathAttr(symbol, field);
                 var queryTypeSpecified = pathItemAttrData?.NamedArguments.FirstOrDefault(n => n.Key == "QueryType").Value;
 
                 // if it has generics type, set customIcon to the type name
