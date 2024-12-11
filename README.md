@@ -1,6 +1,4 @@
 # BlazorPathHelper
-[English](./README.md) | [日本語](./README.ja.md)
-
 [![NuGet Version](https://img.shields.io/nuget/v/BlazorPathHelper?style=for-the-badge)](https://www.nuget.org/packages/BlazorPathHelper/) ![GitHub License](https://img.shields.io/github/license/arika0093/BlazorPathHelper?style=for-the-badge)
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/arika0093/BlazorPathHelper/release.yaml?branch=main&label=Release&style=flat-square) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/arika0093/BlazorPathHelper/main?style=flat-square)
@@ -348,7 +346,7 @@ public partial class WebPaths
 of course, it can be used with the standard AntBlazor.
 
 ```razor
-@* NavMenuItem.razor *@
+@* StandardMenuItem.razor *@
 @using BlazorPathHelper
 
 @if(MenuItem.HasChildren)
