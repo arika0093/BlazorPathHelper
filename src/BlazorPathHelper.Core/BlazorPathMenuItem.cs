@@ -41,7 +41,9 @@ public record BlazorPathMenuItem
     public string Description { get; init; } = "";
 
     /// <summary>
-    /// Icon value.
+    /// Icon value. Accepts various types such as string paths,
+    /// icon components, or any object that can be rendered as an icon by the UI framework.
+    /// Consumers should handle null values appropriately.
     /// </summary>
     public object? Icon { get; init; }
 
@@ -53,7 +55,7 @@ public record BlazorPathMenuItem
     /// <summary>
     /// Is the root group.
     /// </summary>
-    public bool IsRootGroup => GroupKey == "";
+    public bool IsTopLevelItem => GroupKey == "";
 
     /// <summary>
     /// Has children.

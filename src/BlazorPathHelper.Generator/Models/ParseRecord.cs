@@ -104,8 +104,6 @@ internal record ParseRecord
     /// </summary>
     public bool IsRoot => GroupPath == "";
 
-    
-
     // are there any arguments?    
     public bool IsRequireArgs => Arguments.Count > 0;
 

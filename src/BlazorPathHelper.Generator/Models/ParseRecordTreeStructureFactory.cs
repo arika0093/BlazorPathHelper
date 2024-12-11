@@ -4,7 +4,9 @@ using System.Linq;
 namespace BlazorPathHelper.Models;
 
 /// <summary>
-/// factory for creating ParseRecordTreeStructure.
+/// Factory class responsible for creating hierarchical tree structures from parse records.
+/// These structures are used to represent the relationship between different path components
+/// in the Blazor application's routing system.
 /// </summary>
 internal static class ParseRecordTreeStructureFactory
 {
