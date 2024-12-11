@@ -118,7 +118,7 @@ Nav.NavigateTo(
 <nav>
   @foreach (var menuItem in WebPaths.MenuItem)
   {
-    <NavMenuItem MenuItem="menuItem"/>
+    <NavMenuItem @key=@menuItem.Key MenuItem="menuItem"/>
   }
 </nav>
 ```
@@ -128,8 +128,8 @@ Nav.NavigateTo(
 @using BlazorPathHelper
 
 @* メニュー項目を再帰的に表示するコンポーネント *@
-@* key属性にはMenuItem.Indexが利用可能 *@
-<div @key="@MenuItem.Index">
+@* key属性にはMenuItem.Keyが利用可能 *@
+<div>
   <NavLink href="@MenuItem.Path" Match="@NavLinkMatch.All">
     <span class="@MenuItem.Icon" aria-hidden="true"></span>
     @MenuItem.Name
@@ -138,7 +138,7 @@ Nav.NavigateTo(
   @* 子メニュー *@
   @foreach(var childMenuItem in MenuItem.Children)
   {
-    <NavMenuItem MenuItem="childMenuItem"/>
+    <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
   }
 </div>
 
@@ -224,7 +224,7 @@ public partial class WebPaths
 @* NavMenuItem.razor *@
 @using BlazorPathHelper
 
-<div class="nav-item ps-3 py-1" @key="@MenuItem.Index">
+<div class="nav-item ps-3 py-1">
   <NavLink class="nav-link" href="@MenuItem.Path"
     Match="@(MenuItem.Path != "/" ? NavLinkMatch.Prefix : NavLinkMatch.All)">
     <span class="me-2 fs-5 @MenuItem.Icon" aria-hidden="true"></span>
@@ -233,7 +233,7 @@ public partial class WebPaths
   @foreach(var childMenuItem in MenuItem.Children)
   {
     <nav class="flex-column">
-      <NavMenuItem MenuItem="childMenuItem"/>
+      <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
     </nav>
   }
 </div>
@@ -282,7 +282,7 @@ public partial class WebPaths
   <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
     {
-      <NavMenuItem MenuItem="childMenuItem"/>
+      <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
     }
   </FluentNavGroup>
 }

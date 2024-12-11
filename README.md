@@ -119,7 +119,7 @@ Create `NavMenu.razor` and `NavMenuItem.razor`.
 <nav>
   @foreach (var menuItem in WebPaths.MenuItem)
   {
-    <NavMenuItem MenuItem="menuItem"/>
+    <NavMenuItem @key=@menuItem.Key MenuItem="menuItem"/>
   }
 </nav>
 ```
@@ -130,7 +130,7 @@ Create `NavMenu.razor` and `NavMenuItem.razor`.
 
 @* A component that recursively displays menu items *@
 @* The key attribute can use MenuItem.Index *@
-<div @key="@MenuItem.Index">
+<div>
   <NavLink href="@MenuItem.Path" Match="@NavLinkMatch.All">
     <span class="@MenuItem.Icon" aria-hidden="true"></span>
     @MenuItem.Name
@@ -139,7 +139,7 @@ Create `NavMenu.razor` and `NavMenuItem.razor`.
   @* Submenus *@
   @foreach(var childMenuItem in MenuItem.Children)
   {
-    <NavMenuItem MenuItem="childMenuItem"/>
+    <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
   }
 </div>
 
@@ -224,7 +224,7 @@ public partial class WebPaths
 @* NavMenuItem.razor *@
 @using BlazorPathHelper
 
-<div class="nav-item ps-3 py-1" @key="@MenuItem.Index">
+<div class="nav-item ps-3 py-1">
   <NavLink class="nav-link" href="@MenuItem.Path"
     Match="@(MenuItem.Path != "/" ? NavLinkMatch.Prefix : NavLinkMatch.All)">
     <span class="me-2 fs-5 @MenuItem.Icon" aria-hidden="true"></span>
@@ -233,7 +233,7 @@ public partial class WebPaths
   @foreach(var childMenuItem in MenuItem.Children)
   {
     <nav class="flex-column">
-      <NavMenuItem MenuItem="childMenuItem"/>
+      <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
     </nav>
   }
 </div>
@@ -282,7 +282,7 @@ Then, use it as follows.
   <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
     {
-      <NavMenuItem MenuItem="childMenuItem"/>
+      <NavMenuItem @key=@childMenuItem.Key MenuItem="childMenuItem"/>
     }
   </FluentNavGroup>
 }
