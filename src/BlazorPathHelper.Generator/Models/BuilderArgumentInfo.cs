@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace BlazorPathHelper.Models;
 
+/// <summary>
+/// Factory for creating BuilderArgumentInfo.
+/// </summary>
 internal static class BuilderArgumentInfoFactory
 {
     // https://regex101.com/r/HcMv3Z/1
@@ -24,11 +27,25 @@ internal static class BuilderArgumentInfoFactory
             var definition = new BuilderArgumentInfo()
             {
                 VariableName = variable,
-                Type = typeString,
+                Type = ConvertType(typeString),
                 IsNullable = isNullable
             };
             yield return definition;
         }
+    }
+    
+    private static string ConvertType(string type)
+    {
+        // ReSharper disable once StringLiteralTypo
+        return type switch
+        {
+            "datetime" => nameof(DateTime),
+            "guid" => nameof(Guid),
+            "nonfile" => "string",
+            "" => "string",
+            null => "string",
+            _ => type
+        };
     }
 }
 
@@ -47,6 +64,6 @@ internal record BuilderArgumentInfo
     public string ArgDefinition => $"{Type}{NullChar} {VariableName}{(IsNullable ? " = null" : "")}";
     private string NullChar => IsNullable ? "?" : "";
     public string VariableString => (Type == nameof(DateTime))
-        ? $"{VariableName}.ToString(\"yyyy-MM-ddTHH:mm:ss\")"
+        ? $"{VariableName}.ToUniversalTime().ToString(\"yyyy-MM-ddTHH:mm:ssZ\")"
         : VariableName;
 }

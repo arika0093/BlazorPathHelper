@@ -7,11 +7,9 @@ namespace BlazorPathHelper;
 /// Attribute to customize the generated menu items
 /// </summary>
 /// <param name="name">Display name</param>
-/// <param name="description">Display description</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 public class BlazorPathItemAttribute(
-    string? name = null,
-    string? description = null
+    string? name = null
 ) : Attribute
 {
     /// <summary>
@@ -27,17 +25,12 @@ public class BlazorPathItemAttribute(
     /// <summary>
     /// Menu item display description. default: null
     /// </summary>
-    public string? Description { get; set; } = description;
+    public string? Description { get; set; }
     
     /// <summary>
     /// Menu item Icon-Property. default: null
     /// </summary>
-    public string? Icon { get; set; }
-
-    /// <summary>
-    /// Menu item Icon-Property. default: null
-    /// </summary>
-    public string? CustomIcon { get; internal set; }
+    public object? Icon { get; set; }
 
     /// <summary>
     /// Menu item group. default: defined URL parent path (e.g. /a/b -> /a)
@@ -55,10 +48,8 @@ public class BlazorPathItemAttribute(
 /// </summary>
 /// <typeparam name="TIcon">Customize Icon Type</typeparam>
 /// <param name="name">Display name</param>
-/// <param name="description">Display description</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 public class BlazorPathItemAttribute<TIcon>(
-    string? name = null,
-    string? description = null
-) : BlazorPathItemAttribute(name,description)
+    string? name = null
+) : BlazorPathItemAttribute(name)
     where TIcon : new();

@@ -25,7 +25,7 @@ internal partial class DefinitionWithAttr
     public const string SampleChild = "/sample/child";
 
     // Add descriptions using the second argument
-    [BlazorPathItem("SampleA-2", "Description of the A-2 page")]
+    [BlazorPathItem("SampleA-2", Description = "Description of the A-2 page")]
     public const string SampleWithDesc = "/sample/child2";
 
     // To group unrelated paths as child elements, specify Group
@@ -47,7 +47,7 @@ internal partial class DefinitionWithAttr
     // For multilingual support, use nameof to specify resource keys and IStringLocalizer in components
     [BlazorPathItem(nameof(Localize.Sample))]
     public const string SampleLocalize = "/sample-l10n";
-    [BlazorPathItem(nameof(Localize.Sample), nameof(Localize.SampleDesc))]
+    [BlazorPathItem(nameof(Localize.Sample), Description = nameof(Localize.SampleDesc))]
     public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
 
@@ -67,7 +67,15 @@ public class DefinitionWithAttrTest
         var sampleItem = menuItem.First(item => item.Path == DefinitionWithAttr.Sample);
         sampleItem.Icon.Should().Be("fas fa-cog");
     }
-    
+
+    [Fact]
+    public void HasName()
+    {
+        var menuItem = DefinitionWithAttr.MenuItemFlatten;
+        var sampleA1Item = menuItem.First(item => item.Path == DefinitionWithAttr.SampleChild);
+        sampleA1Item.Name.Should().Be("SampleA-1");
+    }
+
     [Fact]
     public void HasDescription()
     {

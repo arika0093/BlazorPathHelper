@@ -43,7 +43,7 @@ public record BlazorPathMenuItem
     /// <summary>
     /// Icon value.
     /// </summary>
-    public object Icon { get; init; } = default!;
+    public object? Icon { get; init; } = null;
     
     /// <summary>
     /// Child items.
@@ -51,20 +51,8 @@ public record BlazorPathMenuItem
     public BlazorPathMenuItem[] Children { get; init; } = [];
     
     /// <summary>
-    /// Has localized name. If true, the name is used for localization.
-    /// </summary>
-    public bool HasLocalizeName { get; init; } = false;
-    
-    /// <summary>
-    /// Has localized description. If true, the description is used for localization.
-    /// </summary>
-    public bool HasLocalizeDescription { get; init; } = false;
-    
-    /// <summary>
     /// Is the root group.
     /// </summary>
     public bool IsRootGroup => Children.Length == 0;
-    
-    
 }
 

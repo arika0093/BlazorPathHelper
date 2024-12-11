@@ -49,8 +49,8 @@ public class BlazorPathTestWithArgs
             .Should().Be("/string-null/");
         DefinitionWithArgs.Helper.SampleWithBool(true)
             .Should().Be("/bool/True");
-        DefinitionWithArgs.Helper.SampleWithDate(new DateTime(2021, 1, 1))
-            .Should().Be("/datetime/2021-01-01T00:00:00");
+        DefinitionWithArgs.Helper.SampleWithDate(new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc))
+            .Should().Be("/datetime/2021-01-01T00:00:00Z");
         DefinitionWithArgs.Helper.SampleWithDecimal(1.1m)
             .Should().Be("/decimal/1.1");
         DefinitionWithArgs.Helper.SampleWithDouble(1.1)
