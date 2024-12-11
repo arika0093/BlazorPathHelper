@@ -165,8 +165,8 @@ public partial class WebPaths
   [BlazorPathItem("SampleA-1", Icon = "fas fa-star")]
   public const string SampleChild = "/sample/child";
 
-  // 説明文を追加する場合は、第二引数で指定可能
-  [BlazorPathItem("SampleA-2", "Description of the A-2 page")]
+  // 説明文を追加する場合は、Description引数で指定可能
+  [BlazorPathItem("SampleA-2", Description = "Description of the A-2 page")]
   public const string SampleWithDesc = "/sample/child2";
 
   // URL的に繋がりがないが子要素として認識させたい場合は、Groupを指定
@@ -279,7 +279,7 @@ public partial class WebPaths
 
 @if(MenuItem.Children.Length > 0)
 {
-  <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon)MenuItem.Icon)">    
+  <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
     {
       <NavMenuItem MenuItem="childMenuItem"/>
@@ -288,7 +288,7 @@ public partial class WebPaths
 }
 else
 {
-  <FluentNavLink Href="@MenuItem.Path" Icon="@((Icon)MenuItem.Icon)" IconColor="Color.Accent">
+  <FluentNavLink Href="@MenuItem.Path" Icon="@((Icon?)MenuItem.Icon)" IconColor="Color.Accent">
       @MenuItem.Name
   </FluentNavLink>
 }
@@ -318,7 +318,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
     Path = item.Path,
     Name = item.Name,
     Key = item.Index.ToString(),
-    Icon = item.Icon.ToString(),
+    Icon = item.Icon?.ToString(),
     Children = item.Children.Length > 0
       ? ConverterMenuDataItem(item.Children) : null
   }).ToArray();
