@@ -13,19 +13,19 @@ namespace Example.AntBlazor.Layouts
 
         [Inject] private ReuseTabsService TabService { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             _menuData = ConverterMenuDataItem(WebPaths.MenuItem);
         }
         
-        private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
+        private static MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
         {
             return items.Select(item => new MenuDataItem
             {
                 Path = item.Path,
                 Name = item.Name,
                 Key = item.Index.ToString(),
-                Icon = item.Icon.ToString(),
+                Icon = item.Icon?.ToString(),
                 Children = item.Children.Length > 0
                     ? ConverterMenuDataItem(item.Children) : null
             }).ToArray();

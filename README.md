@@ -166,8 +166,8 @@ public partial class WebPaths
   [BlazorPathItem("SampleA-1", Icon = "fas fa-star")]
   public const string SampleChild = "/sample/child";
 
-  // To add a description, specify it as the second argument
-  [BlazorPathItem("SampleA-2", "Description of the A-2 page")]
+  // To add a description, specify it as the Description
+  [BlazorPathItem("SampleA-2", Description = "Description of the A-2 page")]
   public const string SampleWithDesc = "/sample/child2";
 
   // To recognize as a child element without URL connection, specify Group
@@ -288,7 +288,7 @@ Then, use it as follows.
 }
 else
 {
-  <FluentNavLink Href="@MenuItem.Path" Icon="@((Icon)MenuItem.Icon)" IconColor="Color.Accent">
+  <FluentNavLink Href="@MenuItem.Path" Icon="@((Icon?)MenuItem.Icon)" IconColor="Color.Accent">
       @MenuItem.Name
   </FluentNavLink>
 }
@@ -318,7 +318,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
     Path = item.Path,
     Name = item.Name,
     Key = item.Index.ToString(),
-    Icon = item.Icon.ToString(),
+    Icon = item.Icon?.ToString(),
     Children = item.Children.Length > 0
       ? ConverterMenuDataItem(item.Children) : null
   }).ToArray();
