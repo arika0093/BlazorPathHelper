@@ -23,8 +23,8 @@ internal static class ParseRecordTreeStructureFactory
     /// <summary>
     /// create record tree structure.
     /// </summary>
-    /// <param name="allRecords"></param>
-    /// <param name="rootRecord"></param>
+    /// <param name="allRecords">List of all available records</param>
+    /// <param name="rootRecord">The root record to create tree from</param>
     /// <returns></returns>
     private static ParseRecordTreeStructure CreateTreeRecord(List<ParseRecord> allRecords, ParseRecord rootRecord)
     {
@@ -32,6 +32,8 @@ internal static class ParseRecordTreeStructureFactory
         var childItems = allRecords
             .Where(r => !r.IsRoot)
             .Where(r => r.GroupPath == rootRecord.PathRawValue.TrimEnd('/'))
+            // prevent infinite loop
+            .Where(r => r.PathRawValue != rootRecord.PathRawValue)
             .Select(r => CreateTreeRecord(allRecords, r))
             .ToArray();
         return new ()

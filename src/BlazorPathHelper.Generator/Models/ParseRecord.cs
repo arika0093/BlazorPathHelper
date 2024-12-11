@@ -30,7 +30,7 @@ internal record ParseRecord
 
     /// <summary>
     /// class name of export class.
-    /// </summary>aa
+    /// </summary>
     public required string ExportClassName { get; init; }
 
     /// <summary>

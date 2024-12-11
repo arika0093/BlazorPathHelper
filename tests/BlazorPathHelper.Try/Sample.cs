@@ -14,9 +14,4 @@ public partial class WebPaths
     public const string Sample3 = "/sample3";
     public const string BuildPathTest = "/sample/{value:int}";
     public const string BuildPathTest2 = "/sample/{value:int}/test";
-
-    void test()
-    {
-        WebPaths.Helper.BuildPathTest(1);
-    }
 }

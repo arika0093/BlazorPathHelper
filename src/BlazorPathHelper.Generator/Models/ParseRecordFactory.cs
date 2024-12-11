@@ -35,8 +35,15 @@ internal static class ParseRecordFactory
     {
         // get member value of BlazorPathAttribute
         var rootAttrDict = rootSymbol.GetAttributes()
-            .First(a => a.AttributeClass?.Name == nameof(BlazorPathAttribute))
-            .ToDictionary();
+            .FirstOrDefault(a => a.AttributeClass?.Name == nameof(BlazorPathAttribute))
+            ?.ToDictionary();
+        // This sequence is only called for classes with the BlazorPathAttribute attribute,
+        // so it should be guaranteed to have the attribute.
+        if (rootAttrDict == null)
+        {
+            throw new InvalidOperationException("BlazorPathAttribute is not found.");
+        }
+
         var rootNamespace = rootAttrDict.Get(nameof(BlazorPathAttribute.Namespace));
         var rootClassName = rootAttrDict.Get(nameof(BlazorPathAttribute.ClassName));
         var rootFileName = rootSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
@@ -70,7 +77,7 @@ internal static class ParseRecordFactory
             AccessModifier = rootSymbol.DeclaredAccessibility.GetAccessibilityString(),
             ExportClassName = rootClassName ?? rootSymbol.Name,
             VariableName = pathItemSymbol.Name,
-            PathRawValue = (string)pathItemSymbol.ConstantValue!,
+            PathRawValue = (string?)pathItemSymbol.ConstantValue ?? string.Empty,
             IsDisplay = !isHiddenFlag,
             DisplayName = itemNameFromConstructor ?? itemNameFromProp ?? pathItemSymbol.Name,
             DisplayDescription = itemDescription,
