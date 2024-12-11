@@ -279,7 +279,7 @@ Then, use it as follows.
 
 @if(MenuItem.Children.Length > 0)
 {
-  <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon)MenuItem.Icon)">    
+  <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
     {
       <NavMenuItem MenuItem="childMenuItem"/>

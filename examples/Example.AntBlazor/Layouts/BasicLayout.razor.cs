@@ -9,9 +9,9 @@ namespace Example.AntBlazor.Layouts
 {
     public partial class BasicLayout : LayoutComponentBase, IDisposable
     {
-        private MenuDataItem[] _menuData;
+        private MenuDataItem[] _menuData = [];
 
-        [Inject] private ReuseTabsService TabService { get; set; }
+        [Inject] private ReuseTabsService TabService { get; set; } = default!;
 
         protected override void OnInitialized()
         {

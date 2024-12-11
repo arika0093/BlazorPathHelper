@@ -2,7 +2,7 @@
 
 @if(MenuItem.Children.Length > 0)
 {
-    <FluentNavGroup @key=@MenuItem.Index Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon)MenuItem.Icon)">    
+    <FluentNavGroup @key=@MenuItem.Index Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
         @foreach(var childMenuItem in MenuItem.Children)
         {
             <NavMenuItem MenuItem="childMenuItem"/>
