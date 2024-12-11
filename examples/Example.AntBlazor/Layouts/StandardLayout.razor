@@ -1,0 +1,41 @@
+﻿@namespace Example.AntBlazor.Layouts
+@inherits LayoutComponentBase
+
+<!-- https://antblazor.com/en-US/components/layout#components-layout-demo-side -->
+<Layout Style="min-height: 100vh; ">
+    <Sider Collapsible>
+        <div class="logo" />
+        <Menu Theme="MenuTheme.Dark" DefaultSelectedKeys=@(new[]{"1"}) Mode="MenuMode.Inline">
+            @foreach (var menuItem in WebPaths.MenuItem)
+            {
+                <StandardMenuItem MenuItem=menuItem/>
+            }
+        </Menu>
+    </Sider>
+    <Layout Class="site-layout" >
+        <Header Class="site-layout-background" Style=" padding: 0 ;" ></Header>
+        <Content Style="margin:0 16px;" >
+            <Breadcrumb Style="margin:16px 0;">
+                <BreadcrumbItem>User</BreadcrumbItem>
+                <BreadcrumbItem>Bill</BreadcrumbItem>
+            </Breadcrumb>
+            <div class="site-layout-background" style="padding: 24; min-height: 360px">
+                @Body
+            </div>
+        </Content>
+        <Footer Style="text-align:center ">Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
+</Layout>
+
+
+<style>
+    #components-layout-demo-side .logo {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px;
+    }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+</style>

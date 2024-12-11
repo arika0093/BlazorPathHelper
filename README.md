@@ -277,7 +277,7 @@ Then, use it as follows.
 @* NavMenuItem.razor *@
 @using BlazorPathHelper
 
-@if(MenuItem.Children.Length > 0)
+@if(MenuItem.HasChildren)
 {
   <FluentNavGroup Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
     @foreach(var childMenuItem in MenuItem.Children)
@@ -319,7 +319,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
     Name = item.Name,
     Key = item.Index.ToString(),
     Icon = item.Icon?.ToString(),
-    Children = item.Children.Length > 0
+    Children = item.HasChildren
       ? ConverterMenuDataItem(item.Children) : null
   }).ToArray();
 }
@@ -342,6 +342,41 @@ public partial class WebPaths
   public const string Sample2 = "/sample2";
   [BlazorPathItem("Sample3", Icon = "file")]
   public const string Sample3 = "/sample3";
+}
+```
+
+of course, it can be used with the standard AntBlazor.
+
+```razor
+@* NavMenuItem.razor *@
+@using BlazorPathHelper
+
+@if(MenuItem.HasChildren)
+{
+  <SubMenu Key=@MenuItem.Key>
+    <TitleTemplate>
+      <Icon Type=@(MenuItem.Icon?.ToString()) Theme="outline" />
+      <span>@MenuItem.Name</span>
+    </TitleTemplate>
+    <ChildContent>
+      @foreach (var childMenuItem in MenuItem.Children)
+      {
+        <StandardMenuItem @key=childMenuItem.Key MenuItem=childMenuItem />
+      }
+    </ChildContent>
+  </SubMenu>
+}
+else
+{
+  <MenuItem RouterLink="@MenuItem.Path" Key=@MenuItem.Key>
+      <Icon Type=@(MenuItem.Icon?.ToString()) Theme="outline" />
+      <span>@MenuItem.Name</span>
+  </MenuItem>    
+}
+
+@code {
+  [Parameter, EditorRequired]
+  public BlazorPathMenuItem MenuItem { get; set; } = default!;
 }
 ```
 
