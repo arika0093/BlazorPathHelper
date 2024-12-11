@@ -6,7 +6,12 @@
 public record BlazorPathMenuItem
 {
     /// <summary>
-    /// Index in the entire path definition. It is mainly intended to be used for the @key attribute.
+    /// Key of the item. It is mainly intended to be used for the @key attribute.
+    /// </summary>
+    public string Key => Index.ToString();
+
+    /// <summary>
+    /// Index in the entire path definition.
     /// </summary>
     public int Index { get; init; }
 
