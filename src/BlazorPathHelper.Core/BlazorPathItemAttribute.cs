@@ -40,7 +40,7 @@ public class BlazorPathItemAttribute(
     /// <summary>
     /// Custom query type. default: null
     /// </summary>
-    public Type? QueryType { get; set; }
+    public Type? Query { get; set; }
 }
 
 /// <summary>
