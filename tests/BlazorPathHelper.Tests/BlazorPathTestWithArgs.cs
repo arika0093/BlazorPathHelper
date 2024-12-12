@@ -34,6 +34,8 @@ internal partial class DefinitionWithArgs
     public const string SampleWithMultiple = $"/multi/{{val1:int}}/{{val2:int}}";
     // super multiple pattern
     public const string SampleWithSuperMultiple = $"/something/{{val1:string}}/{{val2:int}}/{{val3:double?}}";
+    // catch all pattern
+    public const string SampleWithCatchAll = $"/catch-all/{{*rest}}";
 }
 
 public class BlazorPathTestWithArgs
@@ -69,6 +71,8 @@ public class BlazorPathTestWithArgs
             .Should().Be("/something/test/2/3.3");
         DefinitionWithArgs.Helper.SampleWithSuperMultiple("test", 2)
             .Should().Be("/something/test/2/");
+        DefinitionWithArgs.Helper.SampleWithCatchAll("test/1/2/3")
+            .Should().Be("/catch-all/test/1/2/3");
     }
 
 

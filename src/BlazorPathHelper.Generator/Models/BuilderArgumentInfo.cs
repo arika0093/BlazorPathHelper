@@ -26,9 +26,10 @@ internal static class BuilderArgumentInfoFactory
             var isNullable = match.Groups.Count > 4 && match.Groups[4].Value == "?";
             var definition = new BuilderArgumentInfo()
             {
-                VariableName = variable,
+                VariableName = variable.TrimStart('*'),
                 Type = ConvertType(typeString),
-                IsNullable = isNullable
+                IsNullable = isNullable,
+                IsCatchAll = variable[0] == '*'
             };
             yield return definition;
         }
@@ -60,7 +61,8 @@ internal record BuilderArgumentInfo
     public required string VariableName { get; init; }
     public required string Type { get; init; }
     public required bool IsNullable { get; init; }
-    
+    public required bool IsCatchAll { get; init; }
+
     public string ArgDefinition => $"{Type}{NullChar} {VariableName}{(IsNullable ? " = null" : "")}";
     private string NullChar => IsNullable ? "?" : "";
     public string VariableString => (Type == nameof(DateTime))
