@@ -15,7 +15,7 @@ public static class FlattenUtility
     /// <param name="childrenSelector">child selector</param>
     /// <typeparam name="T">type of the array</typeparam>
     /// <returns>flattened array</returns>
-    public static T[] ToFlatten<T>(this T[] items, Func<T, T[]> childrenSelector)
+    public static T[] ToFlatten<T>(this T[] items, Func<T, T[]> childrenSelector) where T : BlazorPathMenuItem
     {
         return items
             .SelectMany(i => childrenSelector(i).ToFlatten(childrenSelector).Prepend(i))
