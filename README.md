@@ -183,7 +183,7 @@ public partial class WebPaths
   // For multilingual support, use nameof to specify resource keys and use IStringLocalizer in components
   [BlazorPathItem(nameof(Resources.SampleTitle))]
   public const string SampleLocalize = "/sample-l10n";
-  [BlazorPathItem(nameof(Resources.SampleTitle), nameof(Resources.SampleDesc))]
+  [BlazorPathItem(nameof(Resources.SampleTitle), Description = nameof(Resources.SampleDesc))]
   public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
 ```
