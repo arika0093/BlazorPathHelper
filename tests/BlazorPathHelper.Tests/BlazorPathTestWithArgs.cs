@@ -7,6 +7,14 @@ using FluentAssertions;
 
 namespace BlazorPathHelper.Tests;
 
+internal class PageSimulateClass
+{
+    internal record QuerySimulate
+    {
+
+    }
+}
+
 [BlazorPath]
 internal partial class DefinitionWithArgs
 {
