@@ -69,7 +69,7 @@ internal class ParseRecordToPathHelper(ParseRecord record)
         var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
         string[] queryArgs = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
         var argNullChar = isAnyRequired ? "" : "?";
-        var queryTuples = membersRecord.Select(m => $"(\"{m.Name}\", ToEscapedString(query{argNullChar}.{m.Name}))").ToArray();
+        var queryTuples = membersRecord.Select(m => $"ToEscapedStrings(\"{m.Name}\", query{argNullChar}.{m.Name})").ToArray();
         string[] queryValue = [$"BuildQuery([{string.Join(",", queryTuples)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";

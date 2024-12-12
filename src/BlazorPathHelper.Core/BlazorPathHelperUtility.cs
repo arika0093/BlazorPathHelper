@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BlazorPathHelper;
 
@@ -25,9 +27,9 @@ public static class BlazorPathHelperUtility
     /// <summary>
     /// Build Query String
     /// </summary>
-    public static string BuildQuery((string key, string? val)[] queryTuples)
+    public static string BuildQuery(IEnumerable<(string key, string? val)[]> queryTuples)
     {
-        var filteredTuples = queryTuples.Where(t => t.val != null).ToArray();
+        var filteredTuples = queryTuples.SelectMany(t => t).Where(t => t.val != null).ToArray();
         if (filteredTuples.Any())
         {
             return "?" + string.Join("&", filteredTuples.Select(t => $"{t.key}={t.val}"));
@@ -38,9 +40,25 @@ public static class BlazorPathHelperUtility
     /// <summary>
     /// Convert any key/value to string for URL
     /// </summary>
-    public static string? ToEscapedString<T>( T? item)
+    public static (string key, string? val)[] ToEscapedStrings<T>(string valName, T[]? items)
     {
-        return item != null ? Uri.EscapeDataString(ToStringForUrl(item)) : null;
+        return items switch
+        {
+            null => [(valName, null)],
+            _ => items.SelectMany(item => ToEscapedStrings(valName, item)).ToArray()
+        };
+    }
+
+    /// <summary>
+    /// Convert any key/value to string for URL
+    /// </summary>
+    public static (string key, string? val)[] ToEscapedStrings<T>(string valName, T? item)
+    {
+        return item switch
+        {
+            null => [(valName, null)],
+            _ => [(valName, Uri.EscapeDataString(ToStringForUrl(item)))]
+        };
     }
 
     /// <summary>
