@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Reflection;
 using BlazorPathHelper.Models;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BlazorPathHelper.CodeBuilders;
 
@@ -42,7 +43,6 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     // e.g. public static string Sample(int val1, int val2, int val3) => string.Format("/sample/{0}/{1}?val3={2}", val1, val2, val3);
     private IEnumerable<string> BuildPathHelperWithQuery()
     {
-        string queryUrl = "";
         // build query string
         var queryType = record.QueryTypeSymbol;
         if (queryType == null && queryType?.DeclaredAccessibility != Accessibility.Public)
@@ -61,38 +61,46 @@ internal class ParseRecordToPathHelper(ParseRecord record)
             yield break;
         }
 
-        var membersRecord = members.Select(m => new QueryMembersRecord()
-        {
-            Name = m.Name,
-            TypeName = m.Type.ToDisplayString(),
-            IsNullable = m.NullableAnnotation == NullableAnnotation.Annotated,
-            IsRequired = m.IsRequired
-        }).ToList();
+        var membersRecord = members.Select(m => new QueryMembersRecord(m)).ToList();
 
-        // make query string: ?param1={2}&param2={3}&...
-        // index will be start from Arguments count
-        var defaultArgCount = record.Arguments.Count;
-        var memberQueryString = "?" + string.Join("&", membersRecord.Select(m => $"{m.Name}={{{defaultArgCount++}}}"));
+        // make query string placeholder. e.g. /foo/bar/{val1}/{val2}?q=... -> /foo/bar/{0}/{1}{2} -> {2}
+        var memberQueryString = $"{{{record.Arguments.Count}}}";
 
-        var queryArg = $"{queryType}? query = null";
-        var queryVals = string.Join(",", membersRecord.Select(m => $"Uri.EscapeDataString(query)"));
+        var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
+        string[] queryArgs = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
+        var argNullChar = isAnyRequired ? "" : "?";
+        var queryTuples = membersRecord.Select(m => $"(\"{m.Name}\", ToEscapedString(query{argNullChar}.{m.Name}))").ToArray();
+        string[] queryValue = [$"BuildQuery([{string.Join(",", queryTuples)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs()}, {queryArg})";
-        yield return $"    => string.Format(\"{record.PathFormatterBase + memberQueryString}\", {GetBuilderVals()}, {queryVals});";
+        yield return $"public static string {record.VariableName}({GetBuilderArgs(queryArgs)})";
+        yield return $"    => string.Format(\"{record.PathFormatterBase + memberQueryString}\", {GetBuilderVals(queryValue)});";
     }
 
-    record QueryMembersRecord()
+    record QueryMembersRecord(IPropertySymbol Symbol)
     {
-        public required string Name { get; init; }
-        public required string TypeName { get; init; }
-        public required bool IsRequired { get; init; }
-        public required bool IsNullable { get; init; }
+        public string Name => Symbol.Name;
+        public string TypeName => Symbol.Type.ToDisplayString();
+        private bool IsRequired => Symbol.IsRequired;
+        private bool HasInitializer => Symbol.DeclaringSyntaxReferences.Any(syntaxRef =>
+        {
+            var syntaxNode = syntaxRef.GetSyntax();
+            if (syntaxNode is PropertyDeclarationSyntax propertyDeclaration)
+            {
+                return propertyDeclaration.Initializer != null;
+            }
+            return false;
+        });
+        private bool IsNullable => Symbol.NullableAnnotation == NullableAnnotation.Annotated;
+        public bool IsRequireInitialize => (!HasInitializer && !IsNullable);
+        public string NullChar => IsNullable ? "?" : "";
     }
 
     // e.g. "int val1, int val2"
-    private string GetBuilderVals() => string.Join(", ", record.Arguments.Select(a => a.VariableString));
+    private string GetBuilderVals(string[]? optionals = null)
+        => string.Join(", ", record.Arguments.Select(a => a.VariableString).Concat(optionals ?? []));
 
     // e.g. "val1, val2"
-    private string GetBuilderArgs() => string.Join(", ", record.Arguments.Select(a => a.ArgDefinition));
+    private string GetBuilderArgs(string[]? optionals = null)
+        => string.Join(", ", record.Arguments.Select(a => a.ArgDefinition).Concat(optionals ?? []));
 }

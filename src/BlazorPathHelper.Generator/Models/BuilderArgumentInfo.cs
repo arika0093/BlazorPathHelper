@@ -65,7 +65,6 @@ internal record BuilderArgumentInfo
 
     public string ArgDefinition => $"{Type}{NullChar} {VariableName}{(IsNullable ? " = null" : "")}";
     private string NullChar => IsNullable ? "?" : "";
-    public string VariableString => (Type == nameof(DateTime))
-        ? $"{VariableName}.ToUniversalTime().ToString(\"yyyy-MM-ddTHH:mm:ssZ\")"
-        : VariableName;
+    // call ToStringForUrl (Core/BlazorPathHelperUtility.cs)
+    public string VariableString => $"ToStringForUrl({VariableName})";
 }

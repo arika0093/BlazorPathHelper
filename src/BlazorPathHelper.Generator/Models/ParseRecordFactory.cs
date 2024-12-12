@@ -27,7 +27,7 @@ internal static class ParseRecordFactory
     /// create instance from BlazorPathAttribute and BlazorPathItemAttribute.
     /// </summary>
     /// <param name="rootSymbol">symbol of class with BlazorPathAttribute</param>
-    /// <param name="pathItemSymbol">symbol of field/parameter with BlazorPathItemAttribute</param>
+    /// <param name="pathItemSymbol">symbol of `const string`</param>
     private static ParseRecord GenerateRecordFromPathAttr(
         INamedTypeSymbol rootSymbol,
         IFieldSymbol pathItemSymbol
@@ -68,14 +68,10 @@ internal static class ParseRecordFactory
         // BlazorPathItemAttribute<Icon> -> new Icon()
         // BlazorPathItemAttribute(Icon = typeof(Icon)) -> new Icon()
         // BlazorPathItemAttribute(Icon = "icon-home") -> "icon-home"
-        var itemIcon = ExtractItemIconData(pathItemAttr, out var iconTypeSymbol);
+        ExtractItemIconData(pathItemAttr, out var itemIcon, out var iconTypeSymbol);
 
         // parse query type
-        ITypeSymbol? queryTypeSymbol = null;
-        if (pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Query)) is ITypeSymbol symbol)
-        {
-            queryTypeSymbol = symbol;
-        }
+        ExtractQueryTypeSymbol(pathItemSymbol, out var queryTypeSymbol, out var blazorPageTypeSymbol);
 
         return new ()
         {
@@ -92,20 +88,22 @@ internal static class ParseRecordFactory
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,
             QueryTypeSymbol = queryTypeSymbol,
+            PageTypeSymbol = blazorPageTypeSymbol,
         };
     }
 
     /// <summary>
     /// extract icon data from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static string ExtractItemIconData(AttributeData? pathItemAttr, out ITypeSymbol? iconTypeSymbol)
+    private static void ExtractItemIconData(AttributeData? pathItemAttr,
+        out string itemIcon, out ITypeSymbol? iconTypeSymbol)
     {
-        var itemIcon = "null";
+        itemIcon = "null";
         iconTypeSymbol = null;
         // PathItem(Icon = typeof(Icon)) -> Icon
         // PathItem(Icon = "icon-home") -> "icon-home"
         if(pathItemAttr == null) {
-            return itemIcon;
+            return;
         }
         var symbol = pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Icon));
         if (symbol is ITypeSymbol iconSymbol)
@@ -124,10 +122,24 @@ internal static class ParseRecordFactory
         // if icon is specified, generate code.
         if (iconTypeSymbol != null)
         {
-
             itemIcon = iconTypeSymbol.SpecialType == SpecialType.System_String ? $"\"{iconTypeSymbol.Name}\"" : $"new {iconTypeSymbol}()";
         }
+    }
 
-        return itemIcon;
+    /// <summary>
+    /// extract query type symbol from AttributeData of BlazorPathItemAttribute.
+    /// </summary>
+    private static void ExtractQueryTypeSymbol(IFieldSymbol pathItemSymbol,
+        out ITypeSymbol? queryTypeSymbol, out ITypeSymbol? blazorPageTypeSymbol)
+    {
+        queryTypeSymbol = null;
+        blazorPageTypeSymbol = null;
+        var pathQueryAttr = pathItemSymbol.GetAttributes()
+            .FirstOrDefault(a => a.AttributeClass?.Name == "BlazorPathQueryAttribute");
+        if (pathQueryAttr is { AttributeClass.IsGenericType: true })
+        {
+            blazorPageTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[0]; // TPage
+            queryTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[1]; // TQuery
+        }
     }
 }

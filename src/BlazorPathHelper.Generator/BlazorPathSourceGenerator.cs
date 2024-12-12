@@ -57,6 +57,8 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             #pragma warning disable CS8603
             #pragma warning disable CS8604
             using System;
+            using static BlazorPathHelper.BlazorPathHelperUtility;
+            
             namespace {{fr.Namespace}};
             
             {{fr.AccessModifier}} partial class {{fr.ExportClassName}}
@@ -92,6 +94,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             using System;
             using System.Collections.Generic;
             using BlazorPathHelper;
+            
             namespace {{fr.Namespace}};
             
             {{fr.AccessModifier}} partial class {{fr.ExportClassName}}

@@ -36,11 +36,6 @@ public class BlazorPathItemAttribute(
     /// Menu item group. default: defined URL parent path (e.g. /a/b -> /a)
     /// </summary>
     public string? Group { get; set; }
-    
-    /// <summary>
-    /// Custom query type. default: null
-    /// </summary>
-    public Type? Query { get; set; }
 }
 
 /// <summary>

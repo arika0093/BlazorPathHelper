@@ -81,6 +81,11 @@ internal record ParseRecord
     public ITypeSymbol? QueryTypeSymbol { get; init; }
 
     /// <summary>
+    /// blazor page type for path builder. default: null
+    /// </summary>
+    public ITypeSymbol? PageTypeSymbol { get; init; }
+
+    /// <summary>
     /// grouping path. default: parent directory of path.
     /// </summary>
     public string? GroupPath
