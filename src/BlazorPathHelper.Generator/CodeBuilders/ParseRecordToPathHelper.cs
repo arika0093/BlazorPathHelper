@@ -33,10 +33,6 @@ internal class ParseRecordToPathHelper(ParseRecord record)
         var builderVals = string.Join(", ", record.Arguments.Select(a => a.VariableString));
         
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        foreach(var arg in record.Arguments)
-        {
-            yield return $"/// <param name=\"{arg.VariableName}\">{arg.Type}</param>";
-        }
         yield return $"public static string {record.VariableName}({builderArgs}) => string.Format(\"{record.PathFormatterBase}\", {builderVals});";
     }
 }
