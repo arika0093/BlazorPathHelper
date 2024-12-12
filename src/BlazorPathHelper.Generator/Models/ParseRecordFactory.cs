@@ -70,6 +70,13 @@ internal static class ParseRecordFactory
         // BlazorPathItemAttribute(Icon = "icon-home") -> "icon-home"
         var itemIcon = ExtractItemIconData(pathItemAttr, out var iconTypeSymbol);
 
+        // parse query type
+        ITypeSymbol? queryTypeSymbol = null;
+        if (pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Query)) is ITypeSymbol symbol)
+        {
+            queryTypeSymbol = symbol;
+        }
+
         return new ()
         {
             BaseFileName = rootFileName,
@@ -84,6 +91,7 @@ internal static class ParseRecordFactory
             GroupPath = itemGroup ?? null,
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,
+            QueryTypeSymbol = queryTypeSymbol,
         };
     }
 
