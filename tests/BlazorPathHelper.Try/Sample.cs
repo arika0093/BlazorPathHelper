@@ -1,17 +1,22 @@
 ﻿namespace BlazorPathHelper.Try;
 
-public class Icon
+internal class PageSimulateClass
 {
-    public string Name { get; init; } = string.Empty;
+    internal record QuerySimulate
+    {
+
+    }
 }
 
 [BlazorPath]
 public partial class WebPaths
 {
     public const string Sample = "/sample";
-    [BlazorPathItem(Icon = typeof(Icon))]
     public const string Sample2 = "/sample2";
     public const string Sample3 = "/sample3";
     public const string BuildPathTest = "/sample/{value:int}";
-    public const string BuildPathTest2 = "/sample/{value:int}/test";
+    [BlazorPathItem(Query = typeof(string))]
+    public const string BuildPathQuery1 = "/query-test1/{test:int}";
+    [BlazorPathItem(Query = typeof(PageSimulateClass.QuerySimulate))]
+    public const string BuildPathQuery2 = "/query-test2/{test:int}";
 }
