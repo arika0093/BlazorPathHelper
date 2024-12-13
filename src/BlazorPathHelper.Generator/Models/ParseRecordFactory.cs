@@ -55,6 +55,7 @@ internal static class ParseRecordFactory
         var pathItemAttr = pathItemSymbol.GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == nameof(BlazorPathItemAttribute));
         var pathItemDict = pathItemAttr?.ToDictionary();
+        var pathRawValue = pathItemSymbol.ConstantValue?.ToString() ?? "";
         var itemVisible = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Visible));
         var itemNameFromProp = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Name));
         var itemNameFromConstructor = pathItemAttr?.ConstructorArguments.FirstOrDefault().Value?.ToString();
@@ -63,6 +64,9 @@ internal static class ParseRecordFactory
 
         // check visibility
         var isHiddenFlag = string.Compare(itemVisible ?? "", "false", StringComparison.OrdinalIgnoreCase) == 0;
+
+        // parse arguments of url
+        var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
         // icon is specified by generic or string. 
         // BlazorPathItemAttribute<Icon> -> new Icon()
@@ -90,6 +94,7 @@ internal static class ParseRecordFactory
             IsDisplay = !isHiddenFlag,
             DisplayName = itemNameFromConstructor ?? itemNameFromProp ?? pathItemSymbol.Name,
             DisplayDescription = itemDescription,
+            Parameters = parseParameters.ToList(),
             GroupPath = itemGroup ?? null,
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,

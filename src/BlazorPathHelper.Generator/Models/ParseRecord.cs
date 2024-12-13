@@ -41,11 +41,9 @@ internal record ParseRecord
     public required string VariableName { get; init; }
 
     /// <summary>
-    /// get list of BuilderArgumentInfo for path builder.
+    /// get list of ParameterRecord for path builder.
     /// </summary>
-    public List<BuilderArgumentInfo> Arguments => _argumentsCache ??= ExtractArgumentInfos().ToList();
-
-    private List<BuilderArgumentInfo>? _argumentsCache;
+    public required List<ParseParameterRecord> Parameters { get; init; }
 
     /// <summary>
     /// is display to menu or not.
@@ -117,11 +115,7 @@ internal record ParseRecord
     public bool IsRoot => GroupPath == "";
 
     // are there any arguments?    
-    public bool IsRequireArgs => Arguments.Count > 0;
-
-    // pick up arguments information from PathRawValue.
-    private IEnumerable<BuilderArgumentInfo> ExtractArgumentInfos()
-        => BuilderArgumentInfoFactory.Create(PathRawValue);
+    public bool IsRequireArgs => Parameters.Count > 0;
 
     // build path string from PathRawValue
     private string BuildDefaultGroupPath()

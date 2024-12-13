@@ -51,7 +51,7 @@ internal class ParseRecordToPathHelper(ParseRecord record)
         // make query string placeholder.
         // want to the value of the placeholder+1 in the URL part
         // because pass the entire "?query=..." part to the format function.
-        var memberQueryString = $"{{{record.Arguments.Count}}}";
+        var memberQueryString = $"{{{record.Parameters.Count}}}";
 
         var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
         var argNullChar = !isAnyRequired ? "?" : "";
@@ -68,9 +68,9 @@ internal class ParseRecordToPathHelper(ParseRecord record)
 
     // e.g. "int val1, int val2"
     private string GetBuilderVals(string[]? optionals = null)
-        => string.Join(", ", record.Arguments.Select(a => a.VariableString).Concat(optionals ?? []));
+        => string.Join(", ", record.Parameters.Select(a => a.VariableString).Concat(optionals ?? []));
 
     // e.g. "val1, val2"
     private string GetBuilderArgs(string[]? optionals = null)
-        => string.Join(", ", record.Arguments.Select(a => a.ArgDefinition).Concat(optionals ?? []));
+        => string.Join(", ", record.Parameters.Select(a => a.ArgDefinition).Concat(optionals ?? []));
 }
