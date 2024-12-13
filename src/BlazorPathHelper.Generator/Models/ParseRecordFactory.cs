@@ -68,6 +68,14 @@ internal static class ParseRecordFactory
         // parse arguments of url
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
+        // get Blazor Page Type
+        ITypeSymbol? blazorPageTypeSymbol = null;
+        var pageType = pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Page));
+        if (pageType is ITypeSymbol pageSymbol)
+        {
+            blazorPageTypeSymbol = pageSymbol;
+        }
+
         // icon is specified by generic or string. 
         // BlazorPathItemAttribute<Icon> -> new Icon()
         // BlazorPathItemAttribute(Icon = typeof(Icon)) -> new Icon()
@@ -75,7 +83,7 @@ internal static class ParseRecordFactory
         ExtractItemIconData(pathItemAttr, out var itemIcon, out var iconTypeSymbol);
 
         // parse query type
-        ExtractQueryTypeSymbol(pathItemSymbol, out var queryTypeSymbol, out var blazorPageTypeSymbol);
+        ExtractQueryTypeSymbol(pathItemSymbol, out var queryTypeSymbol);
 
         List<ParseQueryRecord> queryRecords = [];
         if(queryTypeSymbol != null)
@@ -141,17 +149,14 @@ internal static class ParseRecordFactory
     /// <summary>
     /// extract query type symbol from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractQueryTypeSymbol(IFieldSymbol pathItemSymbol,
-        out ITypeSymbol? queryTypeSymbol, out ITypeSymbol? blazorPageTypeSymbol)
+    private static void ExtractQueryTypeSymbol(IFieldSymbol pathItemSymbol, out ITypeSymbol? queryTypeSymbol)
     {
         queryTypeSymbol = null;
-        blazorPageTypeSymbol = null;
         var pathQueryAttr = pathItemSymbol.GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "BlazorPathQueryAttribute");
         if (pathQueryAttr is { AttributeClass.IsGenericType: true })
         {
-            blazorPageTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[0]; // TPage
-            queryTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[1]; // TQuery
+            queryTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[0]; // TQuery
         }
     }
 }

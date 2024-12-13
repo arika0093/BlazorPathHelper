@@ -6,27 +6,21 @@ using Xunit;
 
 namespace BlazorPathHelper.Tests;
 
-public partial class PageSample1 {
+public partial class PageSample {
     public record Query1(string test1, int test2);
-}
-public partial class PageSample2 {
     // optional pattern
     public record Query2(string? test1 = null, int? test2 = null);
-}
-public partial class PageSample3 {
     // array pattern
     public record Query3(string[] tests);
-}
-public partial class PageSample4 {
-    public record Query4 {
-        // alternative name pattern
-        [SupplyParameterFromQuery(Name = "short")]
+    // alternative name pattern
+    public record Query4
+    {
+        [SupplyParameterFromQuery(Name = "short" )]
         public required string CustomTest { get; set; }
     }
-}
-public partial class PageSample5 {
-    public record Query5 {
-        // field pattern
+    // field pattern
+    public record Query5
+    {
         public required string fieldTest;
     }
 }
@@ -34,15 +28,15 @@ public partial class PageSample5 {
 [BlazorPath]
 internal partial class DefinitionForQuery
 {
-    [BlazorPathQuery<PageSample1, PageSample1.Query1>]
+    [BlazorPathQuery<PageSample.Query1>]
     public const string QueryTest1 = "/query-test/1";
-    [BlazorPathQuery<PageSample2, PageSample2.Query2>]
+    [BlazorPathQuery<PageSample.Query2>]
     public const string QueryTest2 = "/query-test/2";
-    [BlazorPathQuery<PageSample3, PageSample3.Query3>]
+    [BlazorPathQuery<PageSample.Query3>]
     public const string QueryTest3 = "/query-test/3/{val:int}";
-    [BlazorPathQuery<PageSample4, PageSample4.Query4>]
+    [BlazorPathQuery<PageSample.Query4>]
     public const string QueryTest4 = "/query-test/4";
-    [BlazorPathQuery<PageSample5, PageSample5.Query5>]
+    [BlazorPathQuery<PageSample.Query5>]
     public const string QueryTest5 = "/query-test/5";
 }
 
@@ -81,9 +75,9 @@ public class BlazorQueryTest
     {
         DefinitionForQuery.Helper.QueryTest3(0)
             .Should().Be("/query-test/3/0");
-        DefinitionForQuery.Helper.QueryTest3(1,new(["hello"]))
+        DefinitionForQuery.Helper.QueryTest3(1, new(["hello"]))
             .Should().Be("/query-test/3/1?tests=hello");
-        DefinitionForQuery.Helper.QueryTest3(2,new(["hello", "world"]))
+        DefinitionForQuery.Helper.QueryTest3(2, new(["hello", "world"]))
             .Should().Be("/query-test/3/2?tests=hello&tests=world");
     }
 
@@ -92,7 +86,7 @@ public class BlazorQueryTest
     {
         DefinitionForQuery.Helper.QueryTest4()
             .Should().Be("/query-test/4");
-        DefinitionForQuery.Helper.QueryTest4(new(){CustomTest = "hello"})
+        DefinitionForQuery.Helper.QueryTest4(new() { CustomTest = "hello" })
             .Should().Be("/query-test/4?short=hello");
     }
 
@@ -101,7 +95,7 @@ public class BlazorQueryTest
     {
         DefinitionForQuery.Helper.QueryTest5()
             .Should().Be("/query-test/5");
-        DefinitionForQuery.Helper.QueryTest5(new(){fieldTest = "field"})
+        DefinitionForQuery.Helper.QueryTest5(new() { fieldTest = "field" })
             .Should().Be("/query-test/5?fieldTest=field");
     }
 }
