@@ -1,11 +1,13 @@
-﻿namespace BlazorPathHelper.Try;
+﻿using Microsoft.AspNetCore.Components;
+
+namespace BlazorPathHelper.Try;
 
 public class PageSimulateClass
 {
 }
 public record QuerySimulate
 {
-    public int Test1Required { get; set; }
+    public required int Test1Required { get; set; }
     public int? Test2Nullable { get; set; }
     public int Test3HasDefault { get; set; } = 3;
 }
@@ -13,6 +15,6 @@ public record QuerySimulate
 [BlazorPath]
 public partial class WebPaths
 {
-    [BlazorPathItem("tests"), BlazorPathQuery<PageSimulateClass, QuerySimulate>]
-    public const string BuildPathQuery2 = "/query-test/3/{val:int}";
+    [BlazorPathItem("tests"), BlazorPathQuery<QuerySimulate>]
+    public const string BuildPathQuery = "/query-test/3/{val:int}";
 }
