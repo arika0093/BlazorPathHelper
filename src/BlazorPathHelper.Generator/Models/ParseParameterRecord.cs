@@ -1,4 +1,6 @@
-﻿namespace BlazorPathHelper.Models;
+﻿using BlazorPathHelper.Utils;
+
+namespace BlazorPathHelper.Models;
 
 /// <summary>
 /// argument information for builder method.
@@ -8,10 +10,16 @@
 /// </remarks>
 internal record ParseParameterRecord
 {
+    private readonly string _variableNameField = default!;
+
     /// <summary>
     /// name of variable. {value:int} -> value
     /// </summary>
-    public required string VariableName { get; init; }
+    public required string VariableName
+    {
+        get => _variableNameField;
+        init => _variableNameField = RoslynGeneratorUtilities.GetValidVariableName(value);
+    }
 
     /// <summary>
     /// type of variable. {value:int} -> int

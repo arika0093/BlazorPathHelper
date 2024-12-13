@@ -4,6 +4,22 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace BlazorPathHelper.Utils;
 internal static class RoslynGeneratorUtilities
 {
+    // get valid variable name for use in code generation
+    public static string GetValidVariableName(string name)
+    {
+        // if name will start with number, add underscore.
+        if (char.IsDigit(name[0]))
+        {
+            return $"_{name}";
+        }
+        // if name is keyword, add at-mark.
+        if (SyntaxFacts.GetKeywordKind(name) != SyntaxKind.None)
+        {
+            return $"@{name}";
+        }
+        return name;
+    }
+
     // get new line string for use in code generation
     public static string GetNewLine()
     {

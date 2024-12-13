@@ -1,4 +1,6 @@
-﻿namespace BlazorPathHelper.Models;
+﻿using BlazorPathHelper.Utils;
+
+namespace BlazorPathHelper.Models;
 
 // information for parsing query string.
 internal record ParseQueryRecord
@@ -32,4 +34,7 @@ internal record ParseQueryRecord
     /// e.g. public string? Name { get; set; } -> false
     /// </summary>
     public bool IsRequireInitialize => (!HasInitializer && !IsNullable);
+
+    // check is enable variable name.
+    public string PageVariableName => RoslynGeneratorUtilities.GetValidVariableName(Name);
 }
