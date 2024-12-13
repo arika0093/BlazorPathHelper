@@ -16,9 +16,9 @@ internal record ParseRecord
     public required string BaseFileName { get; init; }
 
     /// <summary>
-    /// namespace of target class.
+    /// namespace of target class. if null then global namespace.
     /// </summary>
-    public required string Namespace { get; init; }
+    public required string? Namespace { get; init; }
 
     /// <summary>
     /// access modifier of export class.

@@ -4,6 +4,17 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace BlazorPathHelper.Utils;
 internal static class RoslynGeneratorUtilities
 {
+    // get namespace string for use in code generation
+    public static string? GetNamespace(INamespaceSymbol symbol)
+    {
+        // if global namespace, return null
+        if (symbol.IsGlobalNamespace)
+        {
+            return null;
+        }
+        return symbol.ToDisplayString();
+    }
+
     // get valid variable name for use in code generation
     public static string GetValidVariableName(string name)
     {

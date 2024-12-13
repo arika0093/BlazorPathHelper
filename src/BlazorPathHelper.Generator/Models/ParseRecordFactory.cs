@@ -94,7 +94,7 @@ internal static class ParseRecordFactory
         return new ()
         {
             BaseFileName = rootFileName,
-            Namespace = rootNamespace ?? rootSymbol.ContainingNamespace.ToDisplayString(),
+            Namespace = rootNamespace ?? RoslynGeneratorUtilities.GetNamespace(rootSymbol.ContainingNamespace),
             AccessModifier = rootSymbol.DeclaredAccessibility.GetAccessibilityString(),
             ExportClassName = rootClassName ?? rootSymbol.Name,
             VariableName = pathItemSymbol.Name,
