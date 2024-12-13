@@ -63,13 +63,15 @@ internal class ParseRecordToPathHelper(ParseRecord record)
 
         var membersRecord = members.Select(m => new QueryMembersRecord(m)).ToList();
 
-        // make query string placeholder. e.g. /foo/bar/{val1}/{val2}?q=... -> /foo/bar/{0}/{1}{2} -> {2}
+        // make query string placeholder.
+        // I want the value of the placeholder+1 in the URL part
+        // because I want to pass the entire "?query=..." part to the format function.
         var memberQueryString = $"{{{record.Arguments.Count}}}";
 
         var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
         string[] queryArgs = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
         var argNullChar = isAnyRequired ? "" : "?";
-        var queryTuples = membersRecord.Select(m => $"ToEscapedStrings(\"{m.Name}\", query{argNullChar}.{m.Name})").ToArray();
+        var queryTuples = membersRecord.Select(m => $"ToEscapedStrings(\"{m.UrlName}\", query{argNullChar}.{m.Name})").ToArray();
         string[] queryValue = [$"BuildQuery([{string.Join(",", queryTuples)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
@@ -79,6 +81,11 @@ internal class ParseRecordToPathHelper(ParseRecord record)
 
     record QueryMembersRecord(IPropertySymbol Symbol)
     {
+        private string? ShortName => Symbol.GetAttributes()
+            .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute")
+            ?.NamedArguments
+            .FirstOrDefault(pair => pair.Key == "Name").Value.Value?.ToString();
+        public string UrlName => ShortName ?? Name;
         public string Name => Symbol.Name;
         public string TypeName => Symbol.Type.ToDisplayString();
         private bool IsRequired => Symbol.IsRequired;

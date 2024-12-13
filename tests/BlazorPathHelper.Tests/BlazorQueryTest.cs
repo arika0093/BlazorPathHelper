@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using FluentAssertions;
+using Microsoft.AspNetCore.Components;
 using Xunit;
 // ReSharper disable InconsistentNaming
 
@@ -10,6 +11,11 @@ public partial class PageSample
     public record Query1(string test1, int test2);
     public record Query2(string? test1 = null, int? test2 = null);
     public record Query3(string[] tests);
+    public record Query4
+    {
+        [SupplyParameterFromQuery(Name = "short")]
+        public required string CustomTest { get; set; }
+    }
 }
 
 [BlazorPath]
@@ -21,6 +27,8 @@ internal partial class DefinitionForQuery
     public const string QueryTest2 = "/query-test/2";
     [BlazorPathQuery<PageSample, PageSample.Query3>]
     public const string QueryTest3 = "/query-test/3/{val:int}";
+    [BlazorPathQuery<PageSample, PageSample.Query4>]
+    public const string QueryTest4 = "/query-test/4";
 }
 
 public class BlazorQueryTest
@@ -43,8 +51,10 @@ public class BlazorQueryTest
             .Should().Be("/query-test/2");
         DefinitionForQuery.Helper.QueryTest2(new("test", 3))
             .Should().Be("/query-test/2?test1=test&test2=3");
-        DefinitionForQuery.Helper.QueryTest2(new("test"))
+        DefinitionForQuery.Helper.QueryTest2(new(test1: "test"))
             .Should().Be("/query-test/2?test1=test");
+        DefinitionForQuery.Helper.QueryTest2(new(test2: 5))
+            .Should().Be("/query-test/2?test2=5");
         DefinitionForQuery.Helper.QueryTest2(new())
             .Should().Be("/query-test/2");
         DefinitionForQuery.Helper.QueryTest2(null)
@@ -62,4 +72,12 @@ public class BlazorQueryTest
             .Should().Be("/query-test/3/2?tests=hello&tests=world");
     }
 
+    [Fact]
+    public void QueryTest4()
+    {
+        DefinitionForQuery.Helper.QueryTest4()
+            .Should().Be("/query-test/4");
+        DefinitionForQuery.Helper.QueryTest4(new(){CustomTest = "hello"})
+            .Should().Be("/query-test/4?short=hello");
+    }
 }
