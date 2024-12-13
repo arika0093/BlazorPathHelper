@@ -48,7 +48,7 @@ public class RazorClassTest
         attribute.ConstructorArguments[0].Value.Should().Be(PageSampleWebPaths.Sample2);
         // check the parameter
         var parameter = typeof(PageSample2).GetProperties()
-            .First(p => p.Name == "val");
+            .First(p => p.Name == "Val");
         var exist = parameter.GetCustomAttributesData()
             .Any(attr => attr.AttributeType.Name == "ParameterAttribute");
         parameter.PropertyType.Should().Be(typeof(string));
@@ -65,10 +65,10 @@ public class RazorClassTest
         attribute.ConstructorArguments[0].Value.Should().Be(PageSampleWebPaths.Sample3);
         // check the parameter
         var parameters = typeof(PageSample3).GetProperties();
-        parameters[0].Name.Should().Be("val1");
+        parameters[0].Name.Should().Be("Val1");
         parameters[0].PropertyType.Should().Be(typeof(int));
         parameters[0].GetCustomAttributesData().Any(attr => attr.AttributeType.Name == "ParameterAttribute");
-        parameters[1].Name.Should().Be("val2");
+        parameters[1].Name.Should().Be("Val2");
         parameters[1].PropertyType.Should().Be(typeof(long));
         parameters[1].GetCustomAttributesData().Any(attr => attr.AttributeType.Name == "ParameterAttribute");
         // check the query
