@@ -69,12 +69,8 @@ internal static class ParseRecordFactory
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
         // get Blazor Page Type
-        ITypeSymbol? blazorPageTypeSymbol = null;
-        var pageType = pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Page));
-        if (pageType is ITypeSymbol pageSymbol)
-        {
-            blazorPageTypeSymbol = pageSymbol;
-        }
+        // BlazorPathPageAttribute<Page> -> Page
+        ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol);
 
         // icon is specified by generic or string. 
         // BlazorPathItemAttribute<Icon> -> new Icon()
@@ -157,6 +153,20 @@ internal static class ParseRecordFactory
         if (pathQueryAttr is { AttributeClass.IsGenericType: true })
         {
             queryTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[0]; // TQuery
+        }
+    }
+
+    /// <summary>
+    /// extract p@age type symbol from AttributeData of BlazorPathItemAttribute.
+    /// </summary>
+    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol, out ITypeSymbol? blazorPageTypeSymbol)
+    {
+        blazorPageTypeSymbol = null;
+        var pathPageAttr = pathItemSymbol.GetAttributes()
+            .FirstOrDefault(a => a.AttributeClass?.Name == "BlazorPathPageAttribute");
+        if (pathPageAttr is { AttributeClass.IsGenericType: true })
+        {
+            blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
         }
     }
 }

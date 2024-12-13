@@ -15,6 +15,6 @@ public record QuerySimulate
 [BlazorPath]
 public partial class WebPaths
 {
-    [BlazorPathItem("tests", Page = typeof(PageSimulateClass)), BlazorPathQuery<QuerySimulate>]
+    [BlazorPathItem("tests"), BlazorPathPage<PageSimulateClass>, BlazorPathQuery<QuerySimulate>]
     public const string BuildPathQuery = "/query-test/{val:int}";
 }

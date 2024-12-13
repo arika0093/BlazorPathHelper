@@ -16,11 +16,11 @@ public record class PageQuery3
 [BlazorPath]
 public partial class PageSampleWebPaths
 {
-    [BlazorPathItem("Sample1", Page = typeof(PageSample1))]
+    [BlazorPathItem("Sample1"), BlazorPathPage<PageSample1>]
     public const string Sample1 = "/sample1";
-    [BlazorPathItem("Sample2", Page = typeof(PageSample2))]
+    [BlazorPathItem("Sample2"), BlazorPathPage<PageSample2>]
     public const string Sample2 = "/sample2/{val}";
-    [BlazorPathItem("Sample3", Page = typeof(PageSample3)), BlazorPathQuery<PageQuery3>]
+    [BlazorPathItem("Sample3"), BlazorPathPage<PageSample3>, BlazorPathQuery<PageQuery3>]
     public const string Sample3 = "/sample3/{val1:int}/{val2:long}";
 }
 
