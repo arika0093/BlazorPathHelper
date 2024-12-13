@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Reflection;
 using BlazorPathHelper.Models;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BlazorPathHelper.CodeBuilders;
 
@@ -37,70 +33,37 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     private IEnumerable<string> BuildPathHelperWithArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs()}) => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
+        yield return $"public static string {record.VariableName}({GetBuilderArgs()})" +
+                     $"    => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
     }
 
-    // e.g. public static string Sample(int val1, int val2, int val3) => string.Format("/sample/{0}/{1}?val3={2}", val1, val2, val3);
+    // e.g. public static string Sample(int val1, int val2, QueryClass query)
+    //    => string.Format("/sample/{0}/{1}{2}", val1, val2, query);
     private IEnumerable<string> BuildPathHelperWithQuery()
     {
-        // build query string
-        var queryType = record.QueryTypeSymbol;
-        if (queryType == null && queryType?.DeclaredAccessibility != Accessibility.Public)
+        var queryType = record.QueryTypeSymbol?.ToDisplayString();
+        var membersRecord = record.QueryRecords;
+        if (queryType == null || !membersRecord.Any())
         {
-            // nothing
             yield break;
         }
-        // extract contain members
-        var members = queryType.GetMembers()
-            .OfType<IPropertySymbol>()
-            .Where(m => m.IsDefinition && m is { IsReadOnly: false, DeclaredAccessibility: Accessibility.Public })
-            .ToArray();
-        if(members.Length == 0)
-        {
-            // nothing
-            yield break;
-        }
-
-        var membersRecord = members.Select(m => new QueryMembersRecord(m)).ToList();
 
         // make query string placeholder.
-        // I want the value of the placeholder+1 in the URL part
-        // because I want to pass the entire "?query=..." part to the format function.
+        // want to the value of the placeholder+1 in the URL part
+        // because pass the entire "?query=..." part to the format function.
         var memberQueryString = $"{{{record.Arguments.Count}}}";
 
         var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
-        string[] queryArgs = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
-        var argNullChar = isAnyRequired ? "" : "?";
-        var queryTuples = membersRecord.Select(m => $"ToEscapedStrings(\"{m.UrlName}\", query{argNullChar}.{m.Name})").ToArray();
-        string[] queryValue = [$"BuildQuery([{string.Join(",", queryTuples)}])"];
+        var argNullChar = !isAnyRequired ? "?" : "";
+        var eachQueryVals = membersRecord
+            .Select(m => $"ToEscapedStrings(\"{m.UrlName}\", query{argNullChar}.{m.Name})")
+            .ToArray();
+        string[] queryArg = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
+        string[] queryValue = [$"BuildQuery([{string.Join(",", eachQueryVals)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs(queryArgs)})";
+        yield return $"public static string {record.VariableName}({GetBuilderArgs(queryArg)})";
         yield return $"    => string.Format(\"{record.PathFormatterBase + memberQueryString}\", {GetBuilderVals(queryValue)});";
-    }
-
-    record QueryMembersRecord(IPropertySymbol Symbol)
-    {
-        private string? ShortName => Symbol.GetAttributes()
-            .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute")
-            ?.NamedArguments
-            .FirstOrDefault(pair => pair.Key == "Name").Value.Value?.ToString();
-        public string UrlName => ShortName ?? Name;
-        public string Name => Symbol.Name;
-        public string TypeName => Symbol.Type.ToDisplayString();
-        private bool IsRequired => Symbol.IsRequired;
-        private bool HasInitializer => Symbol.DeclaringSyntaxReferences.Any(syntaxRef =>
-        {
-            var syntaxNode = syntaxRef.GetSyntax();
-            if (syntaxNode is PropertyDeclarationSyntax propertyDeclaration)
-            {
-                return propertyDeclaration.Initializer != null;
-            }
-            return false;
-        });
-        private bool IsNullable => Symbol.NullableAnnotation == NullableAnnotation.Annotated;
-        public bool IsRequireInitialize => (!HasInitializer && !IsNullable);
-        public string NullChar => IsNullable ? "?" : "";
     }
 
     // e.g. "int val1, int val2"

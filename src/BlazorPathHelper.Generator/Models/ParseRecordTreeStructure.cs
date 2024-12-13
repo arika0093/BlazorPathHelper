@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using BlazorPathHelper.Utils;
-
-namespace BlazorPathHelper.Models;
+﻿namespace BlazorPathHelper.Models;
 
 /// <summary>
 /// Parse record tree structure.

@@ -73,6 +73,12 @@ internal static class ParseRecordFactory
         // parse query type
         ExtractQueryTypeSymbol(pathItemSymbol, out var queryTypeSymbol, out var blazorPageTypeSymbol);
 
+        List<ParseQueryRecord> queryRecords = [];
+        if(queryTypeSymbol != null)
+        {
+            queryRecords = ParseQueryRecordFactory.CreateFromType(queryTypeSymbol);
+        }
+
         return new ()
         {
             BaseFileName = rootFileName,
@@ -88,6 +94,7 @@ internal static class ParseRecordFactory
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,
             QueryTypeSymbol = queryTypeSymbol,
+            QueryRecords = queryRecords,
             PageTypeSymbol = blazorPageTypeSymbol,
         };
     }

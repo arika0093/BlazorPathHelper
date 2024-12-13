@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BlazorPathHelper.Utils;
 using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.Models;
@@ -76,9 +73,14 @@ internal record ParseRecord
     public ITypeSymbol? IconSymbol { get; init; }
 
     /// <summary>
-    /// query type for path builder. default: null
+    /// query type for use path builder. default: null
     /// </summary>
     public ITypeSymbol? QueryTypeSymbol { get; init; }
+
+    /// <summary>
+    /// query record for use path builder. default: null
+    /// </summary>
+    public List<ParseQueryRecord> QueryRecords { get; init; } = [];
 
     /// <summary>
     /// blazor page type for path builder. default: null
@@ -119,7 +121,7 @@ internal record ParseRecord
 
     // pick up arguments information from PathRawValue.
     private IEnumerable<BuilderArgumentInfo> ExtractArgumentInfos()
-        => BuilderArgumentInfoFactory.Parse(PathRawValue);
+        => BuilderArgumentInfoFactory.Create(PathRawValue);
 
     // build path string from PathRawValue
     private string BuildDefaultGroupPath()
