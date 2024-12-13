@@ -2,7 +2,7 @@
 
 namespace BlazorPathHelper.Try;
 
-public class PageSimulateClass
+public partial class PageSimulateClass
 {
 }
 public record QuerySimulate
@@ -15,6 +15,6 @@ public record QuerySimulate
 [BlazorPath]
 public partial class WebPaths
 {
-    [BlazorPathItem("tests"), BlazorPathQuery<QuerySimulate>]
-    public const string BuildPathQuery = "/query-test/3/{val:int}";
+    [BlazorPathItem("tests", Page = typeof(PageSimulateClass)), BlazorPathQuery<QuerySimulate>]
+    public const string BuildPathQuery = "/query-test/{val:int}";
 }

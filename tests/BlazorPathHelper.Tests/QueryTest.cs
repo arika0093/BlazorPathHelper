@@ -6,41 +6,41 @@ using Xunit;
 
 namespace BlazorPathHelper.Tests;
 
-public partial class PageSample {
-    public record Query1(string test1, int test2);
-    // optional pattern
-    public record Query2(string? test1 = null, int? test2 = null);
-    // array pattern
-    public record Query3(string[] tests);
-    // alternative name pattern
-    public record Query4
-    {
-        [SupplyParameterFromQuery(Name = "short" )]
-        public required string CustomTest { get; set; }
-    }
-    // field pattern
-    public record Query5
-    {
-        public required string fieldTest;
-    }
+// normal pattern
+public record Query1(string test1, int test2);
+// optional pattern
+public record Query2(string? test1 = null, int? test2 = null);
+// array pattern
+public record Query3(string[] tests);
+// alternative name pattern
+public record Query4
+{
+    [SupplyParameterFromQuery(Name = "short")]
+    public required string CustomTest { get; set; }
 }
+// field pattern
+public record Query5
+{
+    public required string fieldTest;
+}
+// ------------------------------------------------
 
 [BlazorPath]
 internal partial class DefinitionForQuery
 {
-    [BlazorPathQuery<PageSample.Query1>]
+    [BlazorPathQuery<Query1>]
     public const string QueryTest1 = "/query-test/1";
-    [BlazorPathQuery<PageSample.Query2>]
+    [BlazorPathQuery<Query2>]
     public const string QueryTest2 = "/query-test/2";
-    [BlazorPathQuery<PageSample.Query3>]
+    [BlazorPathQuery<Query3>]
     public const string QueryTest3 = "/query-test/3/{val:int}";
-    [BlazorPathQuery<PageSample.Query4>]
+    [BlazorPathQuery<Query4>]
     public const string QueryTest4 = "/query-test/4";
-    [BlazorPathQuery<PageSample.Query5>]
+    [BlazorPathQuery<Query5>]
     public const string QueryTest5 = "/query-test/5";
 }
 
-public class BlazorQueryTest
+public class QueryTest
 {
     [Fact]
     public void QueryTest1()

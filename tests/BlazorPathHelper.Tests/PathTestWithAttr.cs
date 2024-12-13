@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using System.Threading;
+using BlazorPathHelper.Tests.Resources;
 using Xunit;
 using FluentAssertions;
 // ReSharper disable InconsistentNaming
@@ -51,7 +52,7 @@ internal partial class DefinitionWithAttr
     public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
 
-public class DefinitionWithAttrTest
+public class PathTestWithAttr
 {
     [Fact]
     public void IsVisiblyFalseItemHidden()
@@ -109,5 +110,15 @@ public class DefinitionWithAttrTest
         var menuItem = DefinitionWithAttr.MenuItemFlatten;
         var sampleC1Item = menuItem.First(item => item.Path == DefinitionWithAttr.SampleC1);
         sampleC1Item.Icon.Should().BeAssignableTo(typeof(IconFromClass));
+    }
+
+    [Fact]
+    public void HasLocalizedKeyCheck()
+    {
+        var menuItem = DefinitionWithAttr.MenuItemFlatten;
+        var l10n = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalize);
+        var l10nDesc = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalizeWithDesc);
+        l10n.Name.Should().Be(nameof(Localize.Sample));
+        l10nDesc.Description.Should().Be(nameof(Localize.SampleDesc));
     }
 }

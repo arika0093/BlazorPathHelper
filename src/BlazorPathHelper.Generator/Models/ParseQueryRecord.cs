@@ -1,4 +1,5 @@
 ﻿using BlazorPathHelper.Utils;
+using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.Models;
 
@@ -9,6 +10,11 @@ internal record ParseQueryRecord
     /// name of url parameter. ?q=1 -> q
     /// </summary>
     public required string UrlName { get; init; }
+
+    /// <summary>
+    /// type of property or field.
+    /// </summary>
+    public required ITypeSymbol Type { get; init; }
 
     /// <summary>
     /// name of property or field. string.Format("?q={0}", Name) -> "Name"

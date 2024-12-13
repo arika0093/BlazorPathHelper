@@ -43,7 +43,7 @@ internal partial class DefinitionBase
     public const string Sample4Child = $"{Sample4ForceRoot}/fuga";
 }
 
-public class BlazorPathTest
+public class PathTest
 {
     [Fact]
     public void PathRoutingTest()

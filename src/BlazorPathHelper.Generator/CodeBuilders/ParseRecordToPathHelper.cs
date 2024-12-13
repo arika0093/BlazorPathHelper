@@ -33,8 +33,8 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     private IEnumerable<string> BuildPathHelperWithArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs()})" +
-                     $"    => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
+        yield return $"public static string {record.VariableName}({GetBuilderArgs()})";
+        yield return $"    => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
     }
 
     // e.g. public static string Sample(int val1, int val2, QueryClass query)

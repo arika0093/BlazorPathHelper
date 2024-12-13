@@ -58,6 +58,12 @@ internal class ParseQueryRecordFactory
 
         return new ParseQueryRecord() {
             UrlName = urlName,
+            Type = symbol switch
+            {
+                IFieldSymbol fieldSymbol => fieldSymbol.Type,
+                IPropertySymbol propertySymbol => propertySymbol.Type,
+                _ => throw new ArgumentException("symbol is not field or property.")
+            },
             Name = name,
             HasInitializer = hasInitializer,
             IsNullable = isNullable

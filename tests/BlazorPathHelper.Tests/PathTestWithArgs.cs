@@ -43,7 +43,7 @@ internal partial class DefinitionWithArgs
     public const string SampleWithKeyword = $"/keyword/{{namespace:string}}";
 }
 
-public class BlazorPathTestWithArgs
+public class PathTestWithArgs
 {
     [Fact]
     public void PathBuildableTest()
