@@ -7,6 +7,7 @@ using FluentAssertions;
 
 namespace BlazorPathHelper.Tests;
 
+
 [BlazorPath]
 internal partial class DefinitionWithArgs
 {
@@ -36,9 +37,13 @@ internal partial class DefinitionWithArgs
     public const string SampleWithSuperMultiple = $"/something/{{val1:string}}/{{val2:int}}/{{val3:double?}}";
     // catch all pattern
     public const string SampleWithCatchAll = $"/catch-all/{{*rest}}";
+    // be able to use number as parameter name (but not recommended)
+    public const string SampleWithNumberVar = $"/number/{{1:int}}";
+    // be able to use keyword as parameter name (but not recommended)
+    public const string SampleWithKeyword = $"/keyword/{{namespace:string}}";
 }
 
-public class BlazorPathTestWithArgs
+public class PathTestWithArgs
 {
     [Fact]
     public void PathBuildableTest()
@@ -73,6 +78,10 @@ public class BlazorPathTestWithArgs
             .Should().Be("/something/test/2/");
         DefinitionWithArgs.Helper.SampleWithCatchAll("test/1/2/3")
             .Should().Be("/catch-all/test/1/2/3");
+        DefinitionWithArgs.Helper.SampleWithNumberVar(1)
+            .Should().Be("/number/1");
+        DefinitionWithArgs.Helper.SampleWithKeyword("test")
+            .Should().Be("/keyword/test");
     }
 
 

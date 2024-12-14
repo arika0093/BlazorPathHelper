@@ -1,17 +1,20 @@
-﻿namespace BlazorPathHelper.Try;
+﻿using Microsoft.AspNetCore.Components;
 
-public class Icon
+namespace BlazorPathHelper.Try;
+
+public partial class PageSimulateClass
 {
-    public string Name { get; init; } = string.Empty;
+}
+public record QuerySimulate
+{
+    public required int Test1Required { get; set; }
+    public int? Test2Nullable { get; set; }
+    public int Test3HasDefault { get; set; } = 3;
 }
 
 [BlazorPath]
 public partial class WebPaths
 {
-    public const string Sample = "/sample";
-    [BlazorPathItem(Icon = typeof(Icon))]
-    public const string Sample2 = "/sample2";
-    public const string Sample3 = "/sample3";
-    public const string BuildPathTest = "/sample/{value:int}";
-    public const string BuildPathTest2 = "/sample/{value:int}/test";
+    [BlazorPathItem("tests"), BlazorPathPage<PageSimulateClass>, BlazorPathQuery<QuerySimulate>]
+    public const string BuildPathQuery = "/query-test/{val:int}";
 }

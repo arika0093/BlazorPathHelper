@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BlazorPathHelper.Utils;
 using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.Models;
@@ -19,9 +16,9 @@ internal record ParseRecord
     public required string BaseFileName { get; init; }
 
     /// <summary>
-    /// namespace of target class.
+    /// namespace of target class. if null then global namespace.
     /// </summary>
-    public required string Namespace { get; init; }
+    public required string? Namespace { get; init; }
 
     /// <summary>
     /// access modifier of export class.
@@ -44,11 +41,9 @@ internal record ParseRecord
     public required string VariableName { get; init; }
 
     /// <summary>
-    /// get list of BuilderArgumentInfo for path builder.
+    /// get list of ParameterRecord for path builder.
     /// </summary>
-    public List<BuilderArgumentInfo> Arguments => _argumentsCache ??= ExtractArgumentInfos().ToList();
-
-    private List<BuilderArgumentInfo>? _argumentsCache;
+    public required List<ParseParameterRecord> Parameters { get; init; }
 
     /// <summary>
     /// is display to menu or not.
@@ -74,6 +69,21 @@ internal record ParseRecord
     /// icon symbol of menu item. used for menu item. default: null
     /// </summary>
     public ITypeSymbol? IconSymbol { get; init; }
+
+    /// <summary>
+    /// query type for use path builder. default: null
+    /// </summary>
+    public ITypeSymbol? QueryTypeSymbol { get; init; }
+
+    /// <summary>
+    /// query record for use path builder. default: null
+    /// </summary>
+    public List<ParseQueryRecord> QueryRecords { get; init; } = [];
+
+    /// <summary>
+    /// blazor page type for path builder. default: null
+    /// </summary>
+    public ITypeSymbol? PageTypeSymbol { get; init; }
 
     /// <summary>
     /// grouping path. default: parent directory of path.
@@ -105,11 +115,7 @@ internal record ParseRecord
     public bool IsRoot => GroupPath == "";
 
     // are there any arguments?    
-    public bool IsRequireArgs => Arguments.Count > 0;
-
-    // pick up arguments information from PathRawValue.
-    private IEnumerable<BuilderArgumentInfo> ExtractArgumentInfos()
-        => BuilderArgumentInfoFactory.Parse(PathRawValue);
+    public bool IsRequireArgs => Parameters.Count > 0;
 
     // build path string from PathRawValue
     private string BuildDefaultGroupPath()

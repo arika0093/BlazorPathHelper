@@ -58,6 +58,11 @@ public record BlazorPathMenuItem
     public BlazorPathMenuItem[] Children { get; init; } = [];
 
     /// <summary>
+    /// Is the home route.
+    /// </summary>
+    public bool IsHome => Path == "/";
+
+    /// <summary>
     /// Is the root group.
     /// </summary>
     public bool IsTopLevelItem => GroupKey == "";

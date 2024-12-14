@@ -32,15 +32,11 @@ public class BlazorPathItemAttribute(
     /// </summary>
     public object? Icon { get; set; }
 
+
     /// <summary>
     /// Menu item group. default: defined URL parent path (e.g. /a/b -> /a)
     /// </summary>
     public string? Group { get; set; }
-    
-    /// <summary>
-    /// Custom query type. default: null
-    /// </summary>
-    public Type? QueryType { get; set; }
 }
 
 /// <summary>
