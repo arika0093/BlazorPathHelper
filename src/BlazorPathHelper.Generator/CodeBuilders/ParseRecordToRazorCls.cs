@@ -7,6 +7,11 @@ internal class ParseRecordToRazorCls(ParseRecord record)
 {
     public IEnumerable<string> ExportParametersCode()
     {
+        if (record.Parameters is null)
+        {
+            yield break;
+        }
+        
         foreach (var param in record.Parameters)
         {
             yield return $"/// <summary>{param.VariableName} from \"{record.PathRawValue}\"</summary>";
