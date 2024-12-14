@@ -36,6 +36,10 @@ internal static class ParseParameterRecordFactory
     {
         // {value:int} -> value
         var variable = match.Groups[1].Value;
+        if (string.IsNullOrEmpty(variable))
+        {
+            throw new ArgumentException("Parameter name cannot be empty");
+        }
         // {value:int} -> int
         var typeString = match.Groups.Count > 3 ? match.Groups[3].Value : "";
         // {value:int?} -> true
