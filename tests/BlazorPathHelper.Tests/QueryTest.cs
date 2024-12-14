@@ -45,8 +45,6 @@ public class QueryTest
     [Fact]
     public void QueryTest1()
     {
-        DefinitionForQuery.Helper.QueryTest1()
-            .Should().Be("/query-test/1");
         DefinitionForQuery.Helper.QueryTest1(new("test", 3))
             .Should().Be("/query-test/1?test1=test&test2=3");
         DefinitionForQuery.Helper.QueryTest1(new("!?", 0))
@@ -56,7 +54,7 @@ public class QueryTest
     [Fact]
     public void QueryTest2()
     {
-        DefinitionForQuery.Helper.QueryTest2()
+        DefinitionForQuery.Helper.QueryTest2(new())
             .Should().Be("/query-test/2");
         DefinitionForQuery.Helper.QueryTest2(new("test", 3))
             .Should().Be("/query-test/2?test1=test&test2=3");
@@ -66,14 +64,12 @@ public class QueryTest
             .Should().Be("/query-test/2?test2=5");
         DefinitionForQuery.Helper.QueryTest2(new())
             .Should().Be("/query-test/2");
-        DefinitionForQuery.Helper.QueryTest2(null)
-            .Should().Be("/query-test/2");
     }
 
     [Fact]
     public void QueryTest3()
     {
-        DefinitionForQuery.Helper.QueryTest3(0)
+        DefinitionForQuery.Helper.QueryTest3(0, new([]))
             .Should().Be("/query-test/3/0");
         DefinitionForQuery.Helper.QueryTest3(1, new(["hello"]))
             .Should().Be("/query-test/3/1?tests=hello");
@@ -84,8 +80,6 @@ public class QueryTest
     [Fact]
     public void QueryTest4()
     {
-        DefinitionForQuery.Helper.QueryTest4()
-            .Should().Be("/query-test/4");
         DefinitionForQuery.Helper.QueryTest4(new() { CustomTest = "hello" })
             .Should().Be("/query-test/4?short=hello");
     }
@@ -93,8 +87,6 @@ public class QueryTest
     [Fact]
     public void QueryTest5()
     {
-        DefinitionForQuery.Helper.QueryTest5()
-            .Should().Be("/query-test/5");
         DefinitionForQuery.Helper.QueryTest5(new() { fieldTest = "field" })
             .Should().Be("/query-test/5?fieldTest=field");
     }
