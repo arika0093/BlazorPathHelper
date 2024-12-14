@@ -17,6 +17,10 @@ internal static class ParseParameterRecordFactory
     /// </summary>
     public static IEnumerable<ParseParameterRecord> CreateFromPath(string path)
     {
+        if (string.IsNullOrEmpty(path))
+        {
+            throw new ArgumentException("Path cannot be null or empty", nameof(path));
+        }
         var pathRegex = new Regex(SampleExtractArgsPattern);
         var matches = pathRegex.Matches(path);
         foreach (Match match in matches)
