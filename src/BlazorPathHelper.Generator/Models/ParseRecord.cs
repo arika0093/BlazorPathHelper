@@ -117,6 +117,9 @@ internal record ParseRecord
     // are there any arguments?    
     public bool IsRequireArgs => Parameters.Count > 0;
 
+    // are there any query?
+    public bool IsExistQuery => QueryRecords.Count > 0;
+
     // build path string from PathRawValue
     private string BuildDefaultGroupPath()
     {

@@ -7,11 +7,6 @@ internal class ParseRecordToRazorCls(ParseRecord record)
 {
     public IEnumerable<string> ExportParametersCode()
     {
-        if (record.Parameters is null)
-        {
-            yield break;
-        }
-        
         foreach (var param in record.Parameters)
         {
             yield return $"/// <summary>{param.VariableName} from \"{record.PathRawValue}\"</summary>";
@@ -24,9 +19,10 @@ internal class ParseRecordToRazorCls(ParseRecord record)
     {
         foreach (var query in record.QueryRecords)
         {
+            var initValue = query.InitialValue is null ? "" : $" = {query.InitialValue.Value};";
             yield return $"/// <summary>{query.Name} from \"{record.QueryTypeSymbol?.ToDisplayString()}\"</summary>";
             yield return $"[SupplyParameterFromQuery]";
-            yield return $"public {query.Type.ToDisplayString()} {query.PageVariableName} {{ get; set; }}";
+            yield return $"public {query.Type.ToDisplayString()} {query.PageVariableName} {{ get; set; }}{initValue}";
         }
     }
 }

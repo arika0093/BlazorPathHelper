@@ -1,5 +1,6 @@
 ﻿using BlazorPathHelper.Utils;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BlazorPathHelper.Models;
 
@@ -22,16 +23,21 @@ internal record ParseQueryRecord
     public required string Name {get; init;}
 
     /// <summary>
-    /// has initializer or not.
-    /// e.g. public string Name { get; set; } = "default"; -> true
-    /// e.g. public string Name { get; set; } -> false
+    /// initial value of property or field.
     /// </summary>
-    public required bool HasInitializer {get; init;}
+    public required EqualsValueClauseSyntax? InitialValue {get; init; }
 
     /// <summary>
     /// is nullable or not.
     /// </summary>
     public required bool IsNullable {get; init;}
+
+    /// <summary>
+    /// has initializer or not.
+    /// e.g. public string Name { get; set; } = "default"; -> true
+    /// e.g. public string Name { get; set; } -> false
+    /// </summary>
+    public bool HasInitializer => InitialValue != null;
 
     /// <summary>
     /// is required initialize or not.

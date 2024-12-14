@@ -39,12 +39,15 @@ internal class ParseQueryRecordFactory
         var urlName = shortName ?? name;
 
         // check has initializer
-        var hasInitializer = symbol.DeclaringSyntaxReferences.Any(syntaxRef =>
+        EqualsValueClauseSyntax? clauseSyntax = null;
+        symbol.DeclaringSyntaxReferences.Any(syntaxRef =>
         {
             var syntaxNode = syntaxRef.GetSyntax();
-            if (syntaxNode is PropertyDeclarationSyntax propertyDeclaration)
+            // get initialize value
+            if (syntaxNode is ParameterSyntax parameterSyntax)
             {
-                return propertyDeclaration.Initializer != null;
+                clauseSyntax = parameterSyntax.Default;
+                return clauseSyntax != null;
             }
             return false;
         });
@@ -65,7 +68,7 @@ internal class ParseQueryRecordFactory
                 _ => throw new ArgumentException("symbol is not field or property.")
             },
             Name = name,
-            HasInitializer = hasInitializer,
+            InitialValue = clauseSyntax,
             IsNullable = isNullable
         };
     }

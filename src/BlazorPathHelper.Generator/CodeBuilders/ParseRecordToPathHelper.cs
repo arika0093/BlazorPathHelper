@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BlazorPathHelper.Models;
 
@@ -6,20 +7,22 @@ namespace BlazorPathHelper.CodeBuilders;
 
 internal class ParseRecordToPathHelper(ParseRecord record)
 {
+    private const string QueryVarName = "__query";
+
     /// <summary>
     /// build path helper function.
     /// </summary>
     public IEnumerable<string> BuildPathHelpers()
     {
-        // return default definition
-        var baseFunction = record.IsRequireArgs
-            ? BuildPathHelperWithArguments()
-            : BuildPathHelperWithoutArguments();
-        // return query definition
-        var queryFunction = BuildPathHelperWithQuery();
-
-        // concat collections
-        return baseFunction.Concat(queryFunction);
+        if (record.IsExistQuery)
+        {
+            return BuildPathHelperWithQuery();
+        }
+        if (record.IsRequireArgs)
+        {
+            return BuildPathHelperWithArguments();
+        }
+        return BuildPathHelperWithoutArguments();
     }
 
     // e.g. public static string Sample() => "/sample";
@@ -41,24 +44,23 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     //    => string.Format("/sample/{0}/{1}{2}", val1, val2, query);
     private IEnumerable<string> BuildPathHelperWithQuery()
     {
-        var queryType = record.QueryTypeSymbol?.ToDisplayString();
-        var membersRecord = record.QueryRecords;
-        if (queryType == null || !membersRecord.Any())
+        if (!record.IsExistQuery)
         {
             yield break;
         }
 
+        var queryType = record.QueryTypeSymbol?.ToDisplayString();
+        var membersRecord = record.QueryRecords;
         // make query string placeholder.
         // want to the value of the placeholder+1 in the URL part
         // because pass the entire "?query=..." part to the format function.
         var memberQueryString = $"{{{record.Parameters.Count}}}";
 
         var isAnyRequired = membersRecord.Any(m => m.IsRequireInitialize);
-        var argNullChar = !isAnyRequired ? "?" : "";
         var eachQueryVals = membersRecord
-            .Select(m => $"ToEscapedStrings(\"{m.UrlName}\", query{argNullChar}.{m.Name})")
+            .Select(m => $"ToEscapedStrings(\"{m.UrlName}\", {QueryVarName}.{m.Name})")
             .ToArray();
-        string[] queryArg = isAnyRequired ?[$"{queryType} query"] : [$"{queryType}? query = null"];
+        string[] queryArg = [$"{queryType} {QueryVarName}"];
         string[] queryValue = [$"BuildQuery([{string.Join(",", eachQueryVals)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
