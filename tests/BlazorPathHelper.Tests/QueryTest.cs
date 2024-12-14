@@ -28,15 +28,15 @@ public record Query5
 [BlazorPath]
 internal partial class DefinitionForQuery
 {
-    [BlazorPathQuery<Query1>]
+    [Query<Query1>]
     public const string QueryTest1 = "/query-test/1";
-    [BlazorPathQuery<Query2>]
+    [Query<Query2>]
     public const string QueryTest2 = "/query-test/2";
-    [BlazorPathQuery<Query3>]
+    [Query<Query3>]
     public const string QueryTest3 = "/query-test/3/{val:int}";
-    [BlazorPathQuery<Query4>]
+    [Query<Query4>]
     public const string QueryTest4 = "/query-test/4";
-    [BlazorPathQuery<Query5>]
+    [Query<Query5>]
     public const string QueryTest5 = "/query-test/5";
 }
 

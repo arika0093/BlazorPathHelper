@@ -7,4 +7,4 @@ namespace BlazorPathHelper;
 /// </summary>
 /// <typeparam name="TQuery">Query Type</typeparam>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class BlazorPathQueryAttribute<TQuery> : Attribute;
+public class QueryAttribute<TQuery> : Attribute;

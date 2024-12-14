@@ -25,11 +25,11 @@ internal partial class DefinitionBase
     public const string SampleSub3 = $"{SampleTop}/sub3";
 
     // ignore menu parameter
-    [BlazorPathItem(Visible = false)]
+    [Item(Visible = false)]
     public const string SampleSub4 = $"{SampleTop}/sub4";
 
     // be able customize menu item
-    [BlazorPathItem("test5")]
+    [Item("test5")]
     public const string SampleSub5 = $"{SampleTop}/sub5";
 
     // multiple root item
@@ -38,7 +38,7 @@ internal partial class DefinitionBase
     public const string Sample3Top = "/sample3"; 
 
     // ... and specify root item
-    [BlazorPathItem(Group = TopPage)]
+    [Item(Group = TopPage)]
     public const string Sample4ForceRoot = "/sample4/hoge";
     public const string Sample4Child = $"{Sample4ForceRoot}/fuga";
 }

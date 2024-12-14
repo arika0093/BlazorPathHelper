@@ -8,7 +8,7 @@ namespace BlazorPathHelper;
 /// </summary>
 /// <param name="name">Display name</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class BlazorPathItemAttribute(
+public class ItemAttribute(
     string? name = null
 ) : Attribute
 {
@@ -45,7 +45,7 @@ public class BlazorPathItemAttribute(
 /// <typeparam name="TIcon">Customize Icon Type</typeparam>
 /// <param name="name">Display name</param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class BlazorPathItemAttribute<TIcon>(
+public class ItemAttribute<TIcon>(
     string? name = null
-) : BlazorPathItemAttribute(name)
+) : ItemAttribute(name)
     where TIcon : new();

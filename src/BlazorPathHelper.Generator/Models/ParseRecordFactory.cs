@@ -53,14 +53,14 @@ internal static class ParseRecordFactory
 
         // get member value of BlazorPathItemAttribute
         var pathItemAttr = pathItemSymbol.GetAttributes()
-            .FirstOrDefault(a => a.AttributeClass?.Name == nameof(BlazorPathItemAttribute));
+            .FirstOrDefault(a => a.AttributeClass?.Name == nameof(ItemAttribute));
         var pathItemDict = pathItemAttr?.ToDictionary();
         var pathRawValue = pathItemSymbol.ConstantValue?.ToString() ?? "";
-        var itemVisible = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Visible));
-        var itemNameFromProp = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Name));
+        var itemVisible = pathItemDict?.Get(nameof(ItemAttribute.Visible));
+        var itemNameFromProp = pathItemDict?.Get(nameof(ItemAttribute.Name));
         var itemNameFromConstructor = pathItemAttr?.ConstructorArguments.FirstOrDefault().Value?.ToString();
-        var itemDescription = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Description));
-        var itemGroup = pathItemDict?.Get(nameof(BlazorPathItemAttribute.Group));
+        var itemDescription = pathItemDict?.Get(nameof(ItemAttribute.Description));
+        var itemGroup = pathItemDict?.Get(nameof(ItemAttribute.Group));
 
         // check visibility
         var isHiddenFlag = string.Compare(itemVisible ?? "", "false", StringComparison.OrdinalIgnoreCase) == 0;
@@ -69,7 +69,7 @@ internal static class ParseRecordFactory
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
         // get Blazor Page Type
-        // BlazorPathPageAttribute<Page> -> Page
+        // PageAttribute<Page> -> Page
         ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol);
 
         // icon is specified by generic or string. 
@@ -121,7 +121,7 @@ internal static class ParseRecordFactory
         if(pathItemAttr == null) {
             return;
         }
-        var symbol = pathItemAttr?.GetSymbol(nameof(BlazorPathItemAttribute.Icon));
+        var symbol = pathItemAttr?.GetSymbol(nameof(ItemAttribute.Icon));
         if (symbol is ITypeSymbol iconSymbol)
         {
             iconTypeSymbol = iconSymbol;
@@ -149,7 +149,7 @@ internal static class ParseRecordFactory
     {
         queryTypeSymbol = null;
         var pathQueryAttr = pathItemSymbol.GetAttributes()
-            .FirstOrDefault(a => a.AttributeClass?.Name == "BlazorPathQueryAttribute");
+            .FirstOrDefault(a => a.AttributeClass?.Name == "QueryAttribute");
         if (pathQueryAttr is { AttributeClass.IsGenericType: true })
         {
             queryTypeSymbol = pathQueryAttr.AttributeClass.TypeArguments[0]; // TQuery
@@ -163,7 +163,7 @@ internal static class ParseRecordFactory
     {
         blazorPageTypeSymbol = null;
         var pathPageAttr = pathItemSymbol.GetAttributes()
-            .FirstOrDefault(a => a.AttributeClass?.Name == "BlazorPathPageAttribute");
+            .FirstOrDefault(a => a.AttributeClass?.Name == "PageAttribute");
         if (pathPageAttr is { AttributeClass.IsGenericType: true })
         {
             blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
