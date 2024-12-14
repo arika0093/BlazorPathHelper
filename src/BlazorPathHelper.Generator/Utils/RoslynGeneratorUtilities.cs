@@ -21,6 +21,10 @@ internal static class RoslynGeneratorUtilities
     // get valid variable name for use in code generation
     public static string GetValidVariableName(string name)
     {
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new ArgumentException("Name cannot be null or empty", nameof(name));
+        }
         var pascalName = ToPascalCase(name);
         // if name will start with number, add underscore.
         if (char.IsDigit(pascalName[0]))
