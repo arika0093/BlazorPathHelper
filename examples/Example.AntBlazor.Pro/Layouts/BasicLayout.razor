@@ -1,4 +1,4 @@
-﻿@namespace Example.AntBlazor.Layouts
+﻿@namespace Example.AntBlazor.Pro.Layouts
 @inherits LayoutComponentBase
 
 <AntDesign.ProLayout.BasicLayout
@@ -19,7 +19,7 @@
     <RightContentRender>
     </RightContentRender>
     <ChildContent>
-        <ReuseTabs></ReuseTabs>
+        @Body
     </ChildContent>
     <FooterRender>
         <FooterView Copyright="2021 Ant Design Blazor" Links="Links"></FooterView>

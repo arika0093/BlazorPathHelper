@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Plain", "examples\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FluentUI", "examples\Example.FluentUI\Example.FluentUI.csproj", "{304A157F-78C6-4245-90E5-46F63E477260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.AntBlazor", "examples\Example.AntBlazor\Example.AntBlazor.csproj", "{609E34CE-3FB0-46B1-BDB4-A22457AD5276}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.AntBlazor.Pro", "examples\Example.AntBlazor.Pro\Example.AntBlazor.Pro.csproj", "{609E34CE-3FB0-46B1-BDB4-A22457AD5276}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

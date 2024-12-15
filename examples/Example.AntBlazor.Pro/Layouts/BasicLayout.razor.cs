@@ -1,11 +1,8 @@
-﻿using AntDesign.Extensions.Localization;
-using AntDesign.ProLayout;
-using Microsoft.AspNetCore.Components;
-using System.Globalization;
-using System.Net.Http.Json;
+﻿using AntDesign.ProLayout;
 using BlazorPathHelper;
+using Microsoft.AspNetCore.Components;
 
-namespace Example.AntBlazor.Layouts
+namespace Example.AntBlazor.Pro.Layouts
 {
     public partial class BasicLayout : LayoutComponentBase, IDisposable
     {
@@ -24,7 +21,7 @@ namespace Example.AntBlazor.Layouts
             {
                 Path = item.Path,
                 Name = item.Name,
-                Key = item.Index.ToString(),
+                Key = item.Key,
                 Icon = item.Icon?.ToString(),
                 Children = item.Children.Length > 0
                     ? ConverterMenuDataItem(item.Children) : null

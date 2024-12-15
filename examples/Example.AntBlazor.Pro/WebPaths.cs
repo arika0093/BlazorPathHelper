@@ -8,10 +8,8 @@ namespace Example.AntBlazor;
 [BlazorPath]
 public partial class WebPaths
 {
-    [Item("Home(Pro)", Icon = "home")]
+    [Item("Home", Icon = "home")]
     public const string Home = "/";
-    [Item("Home(Standard)", Icon = "folder")]
-    public const string Standard = "/standard";
     [Item("Sample1", Icon = "folder")]
     public const string Sample1 = "/sample1";
     [Item("Sample1C1", Icon = "file")]

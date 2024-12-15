@@ -1,11 +1,7 @@
 using AntDesign.ProLayout;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Example.AntBlazor
+namespace Example.AntBlazor.Pro
 {
     public class Program
     {

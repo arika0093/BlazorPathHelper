@@ -9,10 +9,7 @@
 
 <div class="@NavMenuCssClass nav-scrollable">
     <nav class="flex-column pe-3">
-        @foreach(var menuItem in WebPaths.MenuItem)
-        {
-            <NavMenuItem @key=menuItem.Key MenuItem="menuItem"/>
-        }
+        <NavMenuItem MenuItems="WebPaths.MenuItem"/>
     </nav>
 </div>
 

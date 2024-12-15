@@ -6,10 +6,7 @@
     </label>
     <nav class="sitenav" aria-labelledby="main-menu">
         <FluentNavMenu Id="main-menu" Width="250" Collapsible="true" Title="Navigation menu" @bind-Expanded="expanded" CustomToggle="true">
-            @foreach(var menuItem in WebPaths.MenuItem)
-            {
-                <NavMenuItem @key=@menuItem.Key MenuItem="menuItem"/>
-            }
+	        <NavMenuItem MenuItems="WebPaths.MenuItem"/>
         </FluentNavMenu>
     </nav>
 </div>

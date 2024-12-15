@@ -1,23 +1,24 @@
 ﻿@using BlazorPathHelper
 
-@if(MenuItem.Children.Length > 0)
+@foreach(var menuItem in MenuItems)
 {
-    <FluentNavGroup @key=@MenuItem.Key Href="@MenuItem.Path" Title="@MenuItem.Name" Icon="@((Icon?)MenuItem.Icon)">    
-        @foreach(var childMenuItem in MenuItem.Children)
-        {
-            <NavMenuItem MenuItem="childMenuItem"/>
-        }
-    </FluentNavGroup>
-}
-else
-{
-    <FluentNavLink @key=@MenuItem.Key Href="@MenuItem.Path" Match="@(MenuItem.Path != "/" ? NavLinkMatch.Prefix : NavLinkMatch.All)"
-                   Icon="@((Icon?)MenuItem.Icon)" IconColor="Color.Accent">
-        @MenuItem.Name
-    </FluentNavLink>
+	@if(menuItem.HasChildren)
+	{
+		<FluentNavGroup @key=@menuItem.Key Href="@menuItem.Path" Title="@menuItem.Name" Icon="@((Icon?)menuItem.Icon)">
+			<NavMenuItem MenuItems="menuItem.Children"/>
+		</FluentNavGroup>
+	}
+	else
+	{
+		<FluentNavLink @key=@menuItem.Key Href="@menuItem.Path"
+		               Match="@(menuItem.IsHome ? NavLinkMatch.All : NavLinkMatch.Prefix)"
+		               Icon="@((Icon?)menuItem.Icon)" IconColor="Color.Accent">
+			@menuItem.Name
+		</FluentNavLink>
+	}
 }
 
 @code {
     [Parameter, EditorRequired]
-    public BlazorPathMenuItem MenuItem { get; set; } = default!;
+    public BlazorPathMenuItem[] MenuItems { get; set; } = [];
 }

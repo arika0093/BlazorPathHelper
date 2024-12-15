@@ -1,0 +1,11 @@
+﻿@page "/{*Url:nonfile}"
+
+<PageContainer Title="Welcome">
+	<Card>
+		Current URL is /@Url
+	</Card>
+</PageContainer>
+
+@code {
+	[Parameter] public string Url { get; set; }
+}
