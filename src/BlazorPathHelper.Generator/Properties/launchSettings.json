@@ -8,6 +8,10 @@
     "Debug:Tests": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
+    },
+    "Debug:Blazor": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.Plain/Example.Plain.csproj"
     }
   }
 }
