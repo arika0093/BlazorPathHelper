@@ -21,7 +21,7 @@ internal class ParseRecordToRazorCls(ParseRecord record)
         {
             var initValue = query.InitialValue is null ? "" : $" = {query.InitialValue.Value};";
             yield return $"/// <summary>{query.Name} from \"{record.QueryTypeSymbol?.ToDisplayString()}\"</summary>";
-            yield return $"[SupplyParameterFromQuery]";
+            yield return $"[SupplyParameterFromQuery(Name = \"{query.UrlName}\")]";
             yield return $"public {query.Type.ToDisplayString()} {query.PageVariableName} {{ get; set; }}{initValue}";
         }
     }
