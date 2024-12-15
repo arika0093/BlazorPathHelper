@@ -46,11 +46,6 @@ internal record ParseRecord
     public required List<ParseParameterRecord> Parameters { get; init; }
 
     /// <summary>
-    /// is display to menu or not.
-    /// </summary>
-    public required bool IsDisplay { get; init; }
-
-    /// <summary>
     /// display name of path. used for menu item. default: VariableName
     /// </summary>
     public required string DisplayName { get; init; }
@@ -64,6 +59,11 @@ internal record ParseRecord
     /// icon name of menu item. e.g. string "icon-home" or `new Icon();` constructor.
     /// </summary>
     public required string? Icon { get; init; }
+
+    /// <summary>
+    /// is display to menu or not.
+    /// </summary>
+    public bool? ForceDisplayFlag { get; set; }
 
     /// <summary>
     /// icon symbol of menu item. used for menu item. default: null
@@ -95,6 +95,13 @@ internal record ParseRecord
     }
 
     private string? _groupPathCache;
+
+    /// <summary>
+    /// is display to menu or not.
+    /// default: true on IsRequireArgs/IsExistQuery is false.
+    /// you can override this value by ForceDisplayFlag.
+    /// </summary>
+    public bool IsDisplay => ForceDisplayFlag ?? !(IsRequireArgs || IsExistQuery);
 
     /// <summary>
     /// get string for string.Format. e.g. /sample/{0}/{1}

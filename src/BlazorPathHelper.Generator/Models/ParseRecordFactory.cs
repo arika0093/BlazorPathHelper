@@ -63,7 +63,9 @@ internal static class ParseRecordFactory
         var itemGroup = pathItemDict?.Get(nameof(ItemAttribute.Group));
 
         // check visibility
-        var isHiddenFlag = string.Compare(itemVisible ?? "", "false", StringComparison.OrdinalIgnoreCase) == 0;
+        bool? visibleFlag = itemVisible != null
+            ? string.Compare(itemVisible, "true", StringComparison.OrdinalIgnoreCase) == 0
+            : null;
 
         // parse arguments of url
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
@@ -95,11 +97,11 @@ internal static class ParseRecordFactory
             ExportClassName = rootClassName ?? rootSymbol.Name,
             VariableName = pathItemSymbol.Name,
             PathRawValue = (string?)pathItemSymbol.ConstantValue ?? string.Empty,
-            IsDisplay = !isHiddenFlag,
             DisplayName = itemNameFromConstructor ?? itemNameFromProp ?? pathItemSymbol.Name,
             DisplayDescription = itemDescription,
             Parameters = parseParameters.ToList(),
             GroupPath = itemGroup ?? null,
+            ForceDisplayFlag = visibleFlag,
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,
             QueryTypeSymbol = queryTypeSymbol,
