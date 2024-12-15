@@ -113,6 +113,33 @@ public partial class WebPaths
 
 Now, the URL builder for `CounterWithQuery` can receive queries.
 
+<details>
+<summary>about query parameter specification</summary>
+
+* Extracts the fields/properties of the specified class and makes them available as query parameters.
+  * Note that this is **NOT** a feature that restores the class as it is.
+* Supports types such as `string`/`int`/`bool?`/`string[]`.
+  * If an array is specified, the URL will be `?key=value1&key=value2&...`.
+* Only top-level members are supported. Nested classes are not supported.
+* If you want to shorten the name of the URL part, you can specify it as follows.
+
+```csharp
+public record QueryRecord
+{
+  [SupplyParameterFromQuery("q")]
+  string query { get; set; } = "hello";
+  [SupplyParameterFromQuery("p")]
+  int page { get; set; } = 0;
+  [SupplyParameterFromQuery("o")]
+  bool? opt { get; set; } = null;
+}
+// -> /counter/query?q=hello&p=0&o=true
+```
+
+</details>
+
+
+
 ### URL Builder Usage
 `(ClassName).Helper.(VariableName)` is the URL builder function.
 You can use it as follows.
@@ -135,6 +162,7 @@ Console.WriteLine(counterQueryUrl3); // -> "/counter/query?query=foo&page=1&opt=
 // @inject NavigationManager Nav
 Nav.NavigateTo(counterStateUrl);
 ```
+
 
 ### Automatic Page Attribute Specification
 You need to specify attributes such as `@page`, `[Parameter]` and `[SupplyParameterFromQuery]` on the Blazor page side, but these can also be automatically generated.
@@ -210,7 +238,9 @@ public partial class Counter3
 Now, the page attributes are automatically set, so you don't have to write them in the `.razor` file.
 `@page` attribute can be removed from the `.razor` file.
 
-
+> [!TIP]
+> Automatic generation by `Page` attribute specification is a completely independent feature.
+> Therefore, you can remove the `Page` attribute at any time if you do not need the automatic definition.
 
 
 ### Menu Structure Automatic Generation
@@ -225,20 +255,20 @@ using BlazorPathHelper;
 [BlazorPath] // <- Add this attribute
 public partial class WebPaths
 {
-    // add [Item("Menu name")] attribute
-    // [Page]/[Query] attribute is not required. this is an independent feature.
-    [Item("TopPage"),  Page<Home>]
-    public const string Index = "/";
-    [Item("Sample1a"), Page<Sample>]
-    public const string Sample = "/sample";
-    [Item("Sample1b"), Page<SampleChild>]
-    public const string SampleChild = "/sample/child";
-    [Item("Sample2a"), Page<Counter>]
-    public const string Counter = "/counter";
-    [Item("Sample2b"), Page<Counter2>]
-    public const string CounterWithState = "/counter/{count:int}";
-    [Item("Sample2c"), Page<Counter3>, Query<QueryRecord>]
-    public const string CounterWithQuery = "/counter/query";
+  // add [Item("Menu name")] attribute
+  // [Page]/[Query] attribute is not required. this is an independent feature.
+  [Item("TopPage"),  Page<Home>]
+  public const string Index = "/";
+  [Item("Sample1a"), Page<Sample>]
+  public const string Sample = "/sample";
+  [Item("Sample1b"), Page<SampleChild>]
+  public const string SampleChild = "/sample/child";
+  [Item("Sample2a"), Page<Counter>]
+  public const string Counter = "/counter";
+  [Item("Sample2b"), Page<Counter2>]
+  public const string CounterWithState = "/counter/{count:int}";
+  [Item("Sample2c"), Page<Counter3>, Query<QueryRecord>]
+  public const string CounterWithQuery = "/counter/query";
 }
 ```
 
@@ -450,17 +480,17 @@ using static Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20;
 [BlazorPath]
 public partial class WebPaths
 {
-    // Specify the icon with Item<T>
-    // ---------------------------------
-    [Item<Home>("Home")]
-    public const string Home = "/";
-    [Item<TextHeader1>("Sample1")]
-    public const string Sample1 = "/sample1";
-    [Item<TextHeader2>("Sample2")]
-    public const string Sample2 = "/sample2";
-    [Item<TextHeader3>("Sample3")]
-    public const string Sample3 = "/sample3";
-    // ... and so on
+  // Specify the icon with Item<T>
+  // ---------------------------------
+  [Item<Home>("Home")]
+  public const string Home = "/";
+  [Item<TextHeader1>("Sample1")]
+  public const string Sample1 = "/sample1";
+  [Item<TextHeader2>("Sample2")]
+  public const string Sample2 = "/sample2";
+  [Item<TextHeader3>("Sample3")]
+  public const string Sample3 = "/sample3";
+  // ... and so on
 }
 ```
 
@@ -499,7 +529,7 @@ and
 ```razor
 @* NavMenu.razor *@
 <FluentNavMenu Id="main-menu" Width="250" Collapsible="true" Title="Navigation menu" CustomToggle="true">
-    <NavMenuItem MenuItems="WebPaths.MenuItem"/>
+  <NavMenuItem MenuItems="WebPaths.MenuItem"/>
 </FluentNavMenu>
 ```
 
@@ -515,25 +545,25 @@ Implementation examples are available in [Example.FluentUI](./examples/Example.F
 
 @foreach (var menuItem in MenuItems)
 {
-	@if (menuItem.HasChildren)
-	{
-		<SubMenu Key=@menuItem.Key>
-			<TitleTemplate>
-				<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
-				<span>@menuItem.Name</span>
-			</TitleTemplate>
-			<ChildContent>
-				<NavMenuItem MenuItems="menuItem.Children" />
-			</ChildContent>
-		</SubMenu>
-	}
-	else
-	{
-		<MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
-			<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
-			<span>@menuItem.Name</span>
-		</MenuItem>    
-	}
+  @if (menuItem.HasChildren)
+  {
+    <SubMenu Key=@menuItem.Key>
+      <TitleTemplate>
+        <Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+        <span>@menuItem.Name</span>
+      </TitleTemplate>
+      <ChildContent>
+        <NavMenuItem MenuItems="menuItem.Children" />
+      </ChildContent>
+    </SubMenu>
+  }
+  else
+  {
+    <MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
+      <Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+      <span>@menuItem.Name</span>
+    </MenuItem>    
+  }
 }
 
 @code {
@@ -544,8 +574,9 @@ Implementation examples are available in [Example.FluentUI](./examples/Example.F
 
 <img src="./docs/assets/sample-antblazor.gif" style="width:400px;" />
 
-Note that elements with submenus like Sample1 **do not** have an Href specified.
-This is because AntBlazor does not allow links to be set for elements with submenus.
+> [!NOTE]
+> That elements with submenus like Sample1 do **NOT** have an Href specified.
+> This is because AntBlazor does not allow links to be set for elements with submenus.
 
 Implementation examples are available in [Example.AntBlazor.Standard](./examples/Example.AntBlazor.Standard/).
 
