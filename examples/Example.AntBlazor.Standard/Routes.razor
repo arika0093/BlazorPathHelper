@@ -1,0 +1,11 @@
+﻿@using BasicLayout = Example.AntBlazor.Standard.Layouts.BasicLayout
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <CascadingValue Value="routeData">
+            <RouteView RouteData="routeData" DefaultLayout="typeof(BasicLayout)"/>
+        </CascadingValue>
+        <FocusOnNavigate RouteData="routeData" Selector="h1"/>
+    </Found>
+</Router>
+
+<AntContainer/>

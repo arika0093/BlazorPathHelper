@@ -1,0 +1,35 @@
+﻿@using BlazorPathHelper
+
+@foreach (var menuItem in MenuItems)
+{
+	@if (menuItem.HasChildren)
+	{
+		<SubMenu Key=@menuItem.Key>
+			<TitleTemplate>
+				<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+				<span>@menuItem.Name</span>
+			</TitleTemplate>
+			<ChildContent>
+				<NavMenuItem MenuItems="menuItem.Children" />
+			</ChildContent>
+		</SubMenu>
+	}
+	else
+	{
+		<MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
+			<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+			<span>@menuItem.Name</span> 
+		</MenuItem>    
+	}
+}
+
+@inject NavigationManager NavigationManager
+@code {
+    [Parameter, EditorRequired]
+    public BlazorPathMenuItem[] MenuItems { get; set; } = default!;
+
+    void OnClickSubMenuTitle(MouseEventArgs args)
+    {
+	    
+    }
+}

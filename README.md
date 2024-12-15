@@ -5,6 +5,8 @@
 
 `BlazorPathHelper` is a library that assists in managing URL paths within Blazor projects.
 
+![sample](./docs/assets/sample.gif)
+
 ## Main Features
 This library **automatically** generates the following contents.
 * **Type-safe** URL builders from URL definitions
@@ -502,40 +504,43 @@ Implementation examples are available in [Example.FluentUI](./examples/Example.F
 
 #### AntBlazor (Standard)
 
-of course, it can be used with the standard AntBlazor.
-
 ```razor
 @* StandardMenuItem.razor *@
 @using BlazorPathHelper
 
-@if(MenuItem.HasChildren)
+@foreach (var menuItem in MenuItems)
 {
-  <SubMenu Key=@MenuItem.Key>
-    <TitleTemplate>
-      <Icon Type=@(MenuItem.Icon?.ToString()) Theme="outline" />
-      <span>@MenuItem.Name</span>
-    </TitleTemplate>
-    <ChildContent>
-      @foreach (var childMenuItem in MenuItem.Children)
-      {
-        <StandardMenuItem @key=childMenuItem.Key MenuItem=childMenuItem />
-      }
-    </ChildContent>
-  </SubMenu>
-}
-else
-{
-  <MenuItem RouterLink="@MenuItem.Path" Key=@MenuItem.Key>
-      <Icon Type=@(MenuItem.Icon?.ToString()) Theme="outline" />
-      <span>@MenuItem.Name</span>
-  </MenuItem>    
+	@if (menuItem.HasChildren)
+	{
+		<SubMenu Key=@menuItem.Key>
+			<TitleTemplate>
+				<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+				<span>@menuItem.Name</span>
+			</TitleTemplate>
+			<ChildContent>
+				<NavMenuItem MenuItems="menuItem.Children" />
+			</ChildContent>
+		</SubMenu>
+	}
+	else
+	{
+		<MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
+			<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+			<span>@menuItem.Name</span>
+		</MenuItem>    
+	}
 }
 
 @code {
   [Parameter, EditorRequired]
-  public BlazorPathMenuItem MenuItem { get; set; } = default!;
+  public BlazorPathMenuItem[] MenuItems { get; set; } = default!;
 }
 ```
+
+<img src="./docs/assets/sample-antblazor.gif" style="width:400px;" />
+
+Note that elements with submenus like Sample1 **do not** have an Href specified.
+This is because AntBlazor does not allow links to be set for elements with submenus.
 
 Implementation examples are available in [Example.AntBlazor](./examples/Example.AntBlazor/).
 
@@ -561,26 +566,6 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
     Children = item.HasChildren
       ? ConverterMenuDataItem(item.Children) : null
   }).ToArray();
-}
-```
-
-Then, it's the same as others.
-
-```csharp
-// WebPaths.cs
-using BlazorPathHelper;
-
-[BlazorPath]
-public partial class WebPaths
-{
-  [Item("Home", Icon = "home")]
-  public const string Home = "/";
-  [Item("Sample1", Icon = "folder")]
-  public const string Sample1 = "/sample1";
-  [Item("Sample2", Icon = "folder")]
-  public const string Sample2 = "/sample2";
-  [Item("Sample3", Icon = "file")]
-  public const string Sample3 = "/sample3";
 }
 ```
 

@@ -3,7 +3,7 @@
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable ClassNeverInstantiated.Global
 
-namespace Example.AntBlazor.Pro;
+namespace Example.AntBlazor.Standard;
 
 [BlazorPath]
 public partial class WebPaths

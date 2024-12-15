@@ -5,10 +5,6 @@
       "commandName": "DebugRoslynComponent",
       "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
     },
-    "Debug:Demo": {
-      "commandName": "DebugRoslynComponent",
-      "targetProject": "../../demo/BlazorPathHelper.Demo/BlazorPathHelper.Demo.csproj"
-    },
     "Debug:Example.Plain": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "../../examples/Example.Plain/Example.Plain.csproj"

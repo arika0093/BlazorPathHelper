@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.FluentUI", "example
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.AntBlazor.Pro", "examples\Example.AntBlazor.Pro\Example.AntBlazor.Pro.csproj", "{609E34CE-3FB0-46B1-BDB4-A22457AD5276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPathHelper.Demo", "demo\BlazorPathHelper.Demo.csproj", "{30655D46-59FD-4C53-A753-7DBD9B7C16DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.AntBlazor.Standard", "examples\Example.AntBlazor.Standard\Example.AntBlazor.Standard.csproj", "{2CDE2C9D-3588-415F-8C33-642E1F78119F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{609E34CE-3FB0-46B1-BDB4-A22457AD5276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{609E34CE-3FB0-46B1-BDB4-A22457AD5276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{609E34CE-3FB0-46B1-BDB4-A22457AD5276}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30655D46-59FD-4C53-A753-7DBD9B7C16DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30655D46-59FD-4C53-A753-7DBD9B7C16DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30655D46-59FD-4C53-A753-7DBD9B7C16DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30655D46-59FD-4C53-A753-7DBD9B7C16DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CDE2C9D-3588-415F-8C33-642E1F78119F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CDE2C9D-3588-415F-8C33-642E1F78119F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CDE2C9D-3588-415F-8C33-642E1F78119F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CDE2C9D-3588-415F-8C33-642E1F78119F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,9 @@
+﻿@page "/{*Url:nonfile}"
+
+<Card>
+	Current URL is /@Url
+</Card>
+
+@code {
+	[Parameter] public string Url { get; set; }
+}
