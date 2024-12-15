@@ -30,7 +30,7 @@ internal class ParseRecordTreeToMenuItems(ParseRecordTreeStructure ts)
               {{tab}}    Name = "{{ts.Record.DisplayName}}",
               {{tab}}    Path = "{{ts.Record.PathRawValue}}",
               """);
-        
+
         // export description
         if (!string.IsNullOrEmpty(ts.Record.DisplayDescription))
         {
@@ -38,17 +38,18 @@ internal class ParseRecordTreeToMenuItems(ParseRecordTreeStructure ts)
                 $"{nl}{tab}    Description = \"{ts.Record.DisplayDescription}\",");
         }
         // export icon
-        if(ts.Record.Icon != null)
+        if (ts.Record.Icon != null)
         {
             sb.Append(
                 $"{nl}{tab}    Icon = {ts.Record.Icon},");
         }
         // export children
-        var childMenuItems = ts.ChildItems.Select((c, i) => {
+        var childMenuItems = ts.ChildItems.Select((c, i) =>
+        {
             var builder = new ParseRecordTreeToMenuItems(c);
             return builder.ExportMenuCode(i, groupLevel + 1);
         }).ToList();
-        if(childMenuItems.Any())
+        if (childMenuItems.Any())
         {
             sb.Append(
                 $"""
@@ -59,6 +60,7 @@ internal class ParseRecordTreeToMenuItems(ParseRecordTreeStructure ts)
                  """);
         }
         sb.Append($"{nl}{tab}}}");
-        
+
         return sb.ToString();
-    }}
+    }
+}

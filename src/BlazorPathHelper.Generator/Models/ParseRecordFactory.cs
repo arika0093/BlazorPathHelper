@@ -84,12 +84,12 @@ internal static class ParseRecordFactory
         ExtractQueryTypeSymbol(pathItemSymbol, out var queryTypeSymbol);
 
         List<ParseQueryRecord> queryRecords = [];
-        if(queryTypeSymbol != null)
+        if (queryTypeSymbol != null)
         {
             queryRecords = ParseQueryRecordFactory.CreateFromType(queryTypeSymbol);
         }
 
-        return new ()
+        return new()
         {
             BaseFileName = rootFileName,
             Namespace = rootNamespace ?? RoslynGeneratorUtilities.GetNamespace(rootSymbol.ContainingNamespace),
@@ -120,7 +120,8 @@ internal static class ParseRecordFactory
         iconTypeSymbol = null;
         // PathItem(Icon = typeof(Icon)) -> Icon
         // PathItem(Icon = "icon-home") -> "icon-home"
-        if(pathItemAttr == null) {
+        if (pathItemAttr == null)
+        {
             return;
         }
         var symbol = pathItemAttr?.GetSymbol(nameof(ItemAttribute.Icon));

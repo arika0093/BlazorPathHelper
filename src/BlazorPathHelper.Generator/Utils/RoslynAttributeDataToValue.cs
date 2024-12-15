@@ -16,7 +16,7 @@ internal static class RoslynAttributeDataToValue
     }
 
     // get multiple values from attribute data
-    public static Dictionary<string,string?> ToDictionary(this AttributeData attributeData)
+    public static Dictionary<string, string?> ToDictionary(this AttributeData attributeData)
     {
         return attributeData.NamedArguments.ToDictionary(arg => arg.Key, arg => arg.Value.Value?.ToString());
     }

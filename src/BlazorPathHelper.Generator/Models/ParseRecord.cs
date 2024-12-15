@@ -54,7 +54,7 @@ internal record ParseRecord
     /// display description of path. used for menu item. default: null
     /// </summary>
     public required string? DisplayDescription { get; init; }
-    
+
     /// <summary>
     /// icon name of menu item. e.g. string "icon-home" or `new Icon();` constructor.
     /// </summary>

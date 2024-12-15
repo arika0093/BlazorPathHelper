@@ -20,17 +20,17 @@ internal record ParseQueryRecord
     /// <summary>
     /// name of property or field. string.Format("?q={0}", Name) -> "Name"
     /// </summary>
-    public required string Name {get; init;}
+    public required string Name { get; init; }
 
     /// <summary>
     /// initial value of property or field.
     /// </summary>
-    public required EqualsValueClauseSyntax? InitialValue {get; init; }
+    public required EqualsValueClauseSyntax? InitialValue { get; init; }
 
     /// <summary>
     /// is nullable or not.
     /// </summary>
-    public required bool IsNullable {get; init;}
+    public required bool IsNullable { get; init; }
 
     /// <summary>
     /// has initializer or not.

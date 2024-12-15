@@ -9,12 +9,12 @@ internal class ParseRecordTreeStructure
     /// index of this record.
     /// </summary>
     public required int Index { get; init; }
-    
+
     /// <summary>
     /// menu record.
     /// </summary>
     public required ParseRecord Record { get; init; }
-    
+
     /// <summary>
     /// child items.
     /// </summary>

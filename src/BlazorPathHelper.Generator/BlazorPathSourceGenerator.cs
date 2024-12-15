@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
 using BlazorPathHelper.CodeBuilders;
 using BlazorPathHelper.Models;
 using BlazorPathHelper.Utils;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 
 #pragma warning disable CS1591
 
@@ -53,17 +50,18 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
         ExportMenuStructureCode(context, treeStructures);
         ExportRazorClassCode(context, parseRecords, structures);
     }
-    
+
     private static void ExportBuilderCode(SourceProductionContext context, List<ParseRecord> records)
     {
         var no = 0;
-        var recordsGroupBy = records.GroupBy(r => new {r.ExportClassName, r.Namespace});
+        var recordsGroupBy = records.GroupBy(r => new { r.ExportClassName, r.Namespace });
         foreach (var recordsOfCls in recordsGroupBy)
         {
             no++;
             var fr = recordsOfCls.First();
             var exportNamespace = fr.Namespace is not null ? $"namespace {fr.Namespace};" : "";
-            var builderCodes = recordsOfCls.SelectMany(r => {
+            var builderCodes = recordsOfCls.SelectMany(r =>
+            {
                 var builder = new ParseRecordToPathHelper(r);
                 return builder.BuildPathHelpers();
             });
@@ -94,16 +92,17 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             context.AddSource($"BPH_{fr.ExportClassName}_{no:D4}_Builder.g.cs", code);
         }
     }
-    
+
     private static void ExportMenuStructureCode(SourceProductionContext context, List<ParseRecordTreeStructure> treeRecords)
     {
         var no = 0;
-        var recordsGroupBy = treeRecords.GroupBy(r => new {r.Record.ExportClassName, r.Record.Namespace});
+        var recordsGroupBy = treeRecords.GroupBy(r => new { r.Record.ExportClassName, r.Record.Namespace });
         foreach (var recordsOfCls in recordsGroupBy)
         {
             no++;
             var fr = recordsOfCls.First().Record;
-            var menuCodes = recordsOfCls.Select((t, i) => {
+            var menuCodes = recordsOfCls.Select((t, i) =>
+            {
                 var builder = new ParseRecordTreeToMenuItems(t);
                 return builder.ExportMenuCode(i, 0);
             });
@@ -136,7 +135,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                 ];
             }
             """;
-            context.AddSource($"BPH_{fr.ExportClassName}_{no:D4}_Menu.g.cs", code); 
+            context.AddSource($"BPH_{fr.ExportClassName}_{no:D4}_Menu.g.cs", code);
         }
     }
 

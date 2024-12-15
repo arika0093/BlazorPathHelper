@@ -21,7 +21,7 @@ internal static class ParseRecordTreeStructureFactory
         var rootItems = usableRecords.Where(b => b.IsRoot);
         return rootItems.Select(r => CreateTreeRecord(usableRecords, r)).ToList();
     }
-    
+
     /// <summary>
     /// create record tree structure.
     /// </summary>
@@ -38,7 +38,7 @@ internal static class ParseRecordTreeStructureFactory
             .Where(r => r.PathRawValue != rootRecord.PathRawValue)
             .Select(r => CreateTreeRecord(allRecords, r))
             .ToArray();
-        return new ()
+        return new()
         {
             Index = rootIndex,
             Record = rootRecord,

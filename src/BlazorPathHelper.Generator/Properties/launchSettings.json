@@ -1,15 +1,15 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Debug:Try": {
-      "commandName": "DebugRoslynComponent",
-      "targetProject": "../../tests/BlazorPathHelper.Try/BlazorPathHelper.Try.csproj"
-    },
     "Debug:Tests": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
     },
-    "Debug:Blazor": {
+    "Debug:Demo": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../demo/BlazorPathHelper.Demo/BlazorPathHelper.Demo.csproj"
+    },
+    "Debug:Example.Plain": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "../../examples/Example.Plain/Example.Plain.csproj"
     }

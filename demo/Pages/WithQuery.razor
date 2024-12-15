@@ -1,0 +1,34 @@
+﻿<h3>With Query Values</h3>
+
+<div>
+	<p>RequiredString: @RequiredString</p>
+	<p>OptionalString: @OptionalString</p>
+	<p>Number: @Number</p>
+</div>
+<button @onclick="RandomValue">query random value</button>
+<button @onclick="RandomValue2">without optional value</button>
+
+@inject NavigationManager NavigationManager
+@code
+{
+	readonly string[] _requiredStrings = ["sample1", "sample2", "sample3", "sample4", "sample5"];
+	void RandomValue()
+	{
+		var requiredString = _requiredStrings[Random.Shared.Next(_requiredStrings.Length)];
+		var val = Random.Shared.Next();
+		NavigationManager.NavigateTo(PathsUrl.Helper.WithQuery(new() {
+			RequiredString = requiredString,
+			OptionalString = $"optional-{val % 2215}",
+			Number = val
+		}));
+	}
+
+	void RandomValue2()
+	{
+		var requiredString = _requiredStrings[Random.Shared.Next(_requiredStrings.Length)];
+		NavigationManager.NavigateTo(PathsUrl.Helper.WithQuery(new() {
+			RequiredString = requiredString
+		}));
+	}
+}
+

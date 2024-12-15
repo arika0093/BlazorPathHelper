@@ -1,0 +1,20 @@
+@page "/{*Url:nonfile}"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p>Current URL is /@Url</p>
+
+<ul>
+	<li><a href="@PathsUrl.Helper.WithParam(0)">With Param</a></li>
+	<li><a href="@PathsUrl.Helper.WithQuery(new(){ RequiredString = "required" })">With Query</a></li>
+</ul>
+
+@code
+{
+	[Parameter] 
+	public string Url { get; set; } = "";
+}

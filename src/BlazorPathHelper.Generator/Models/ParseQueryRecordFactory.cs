@@ -29,7 +29,7 @@ internal class ParseQueryRecordFactory
     // extract information from property/member.
     public static ParseQueryRecord CreateFromSymbol(ISymbol symbol)
     {
-        var name = symbol.Name; 
+        var name = symbol.Name;
         // [SupplyParameterFromQuery(Name = "short")] -> short
         var supplyParameterAttr = symbol.GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute");
@@ -59,7 +59,8 @@ internal class ParseQueryRecordFactory
             _ => throw new ArgumentException("symbol is not field or property.")
         };
 
-        return new ParseQueryRecord() {
+        return new ParseQueryRecord()
+        {
             UrlName = urlName,
             Type = symbol switch
             {
