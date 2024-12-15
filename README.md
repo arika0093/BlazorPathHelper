@@ -88,6 +88,10 @@ public partial class WebPaths
 public record QueryRecord(string query = "hello", int page = 0, bool? opt = null);
 ```
 
+> [!IMPORTANT]
+> The class definition to be specified as a query parameter will **NOT** be generated correctly if it is described in the `.razor` file.
+> This is due to the specifications of the Source Generator. (Razor files are also converted to C# by the Source Generator, so there is a conflict.)
+
 Then, the following class definition is **automatically** generated.
 
 ```csharp
