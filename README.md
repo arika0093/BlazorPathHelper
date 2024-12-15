@@ -547,7 +547,7 @@ Implementation examples are available in [Example.FluentUI](./examples/Example.F
 Note that elements with submenus like Sample1 **do not** have an Href specified.
 This is because AntBlazor does not allow links to be set for elements with submenus.
 
-Implementation examples are available in [Example.AntBlazor](./examples/Example.AntBlazor/).
+Implementation examples are available in [Example.AntBlazor.Standard](./examples/Example.AntBlazor.Standard/).
 
 
 #### AntBlazor (Pro)
