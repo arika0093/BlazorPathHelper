@@ -320,6 +320,7 @@ and use it as follows.
 ```
 
 You can create menus like this!
+
 ![menu](./docs/assets/readme-menu-image.gif)
 
 
