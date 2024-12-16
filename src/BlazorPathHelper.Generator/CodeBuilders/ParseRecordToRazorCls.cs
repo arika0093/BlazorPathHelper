@@ -11,7 +11,7 @@ internal class ParseRecordToRazorCls(ParseRecord record)
         {
             yield return $"/// <summary>{param.VariableName} from \"{record.PathRawValue}\"</summary>";
             yield return $"[Parameter]";
-            yield return $"public {param.Type} {param.VariableName} {{ get; set; }}";
+            yield return $"public {param.TypeDefinition} {param.VariableName} {{ get; set; }}";
         }
     }
 
