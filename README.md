@@ -126,11 +126,11 @@ Now, the URL builder for `CounterWithQuery` can receive queries.
 ```csharp
 public record QueryRecord
 {
-  [SupplyParameterFromQuery("q")] // -> URL key is "q"
+  [SupplyParameterFromQuery(Name = "q")] // -> URL key is "q"
   public string query { get; set; } = "hello";
-  [SupplyParameterFromQuery("p")]
+  [SupplyParameterFromQuery(Name = "p")]
   public int page { get; set; } = 0;
-  [SupplyParameterFromQuery("o")]
+  [SupplyParameterFromQuery(Name = "o")]
   public bool? opt { get; set; } = null;
 }
 // -> /counter/query?q=hello&p=0&o=true
@@ -403,6 +403,20 @@ public partial class WebPaths
   public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
 ```
+
+## Usage
+### Checking the output of the automatically generated code
+You can check the automatically generated code by adding the following attribute to the `.csproj` file.
+
+```xml
+<PropertyGroup>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+</PropertyGroup>
+```
+
+After the above settings, the generated files will be displayed under `Dependencies`>`Analyzer`>`BlazorPathHelper.Generator`.
+
+![generator-source-location](./docs/assets/generator-code-view.png)
 
 ### Implementation Examples for Each Framework
 #### Blazor Template
