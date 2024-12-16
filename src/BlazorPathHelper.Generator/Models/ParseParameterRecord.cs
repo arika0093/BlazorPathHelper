@@ -37,11 +37,18 @@ internal record ParseParameterRecord
     public required bool IsCatchAll { get; init; }
 
     /// <summary>
+    /// type definition for builder method.
+    /// e.g. {value1} -> "string"
+    /// e.g. {value2:int?} -> "int?"
+    /// </summary>
+    public string TypeDefinition => $"{Type}{NullChar}";
+
+    /// <summary>
     /// argument definition for builder method.
     /// e.g. {value1} -> "string value1"
     /// e.g. {value2:int?} -> "int? value2 = null"
     /// </summary>
-    public string ArgDefinition => $"{Type}{NullChar} {VariableName}{(IsNullable ? " = null" : "")}";
+    public string ArgDefinition => $"{TypeDefinition} {VariableName}{(IsNullable ? " = null" : "")}";
 
     /// <summary>
     /// argument definition for builder method.
