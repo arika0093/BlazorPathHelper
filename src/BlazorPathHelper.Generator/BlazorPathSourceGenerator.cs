@@ -147,33 +147,9 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
         foreach (var record in targetRecords)
         {
             no++;
-            var pageType = record.PageTypeSymbol!;
-            var builder = new ParseRecordToRazorCls(record);
-            var pageClassName = pageType.ToDisplayParts().LastOrDefault().ToString();
-
-            // If the PageTypeSymbol is thought not to exist in the source code
-            // In this case, it is assumed that the information is obtained from the Razor side
-            // If it does not exist there either, it is probably a typo, so the generation is omitted
-            var exportNamespace = "";
-            var syntaxReferences = pageType.DeclaringSyntaxReferences;
-            if (syntaxReferences.Length == 0)
-            {
-                var searchRazorInfo = structures.FirstOrDefault(s => s.PageClassName == pageClassName);
-                if (searchRazorInfo == null)
-                {
-                    continue;
-                }
-                exportNamespace = $"namespace {searchRazorInfo.Namespace};";
-            }
-            else
-            {
-                var containedNamespace = pageType?.ContainingNamespace;
-                if (containedNamespace?.IsGlobalNamespace != true)
-                {
-                    exportNamespace = $"namespace {containedNamespace};";
-                }
-            }
-
+            var builder = new ParseRecordToRazorCls(record, structures);
+            var pageClassName = builder.PageClassName;
+            var exportNamespace = builder.ExportNamespaceCode();
             var parameterCodes = builder.ExportParametersCode();
             var queryCodes = builder.ExportQueryCode();
             var exportCodes = parameterCodes.Concat(queryCodes);
