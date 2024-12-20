@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using BlazorPathHelper.Models;
@@ -30,7 +31,7 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
             // => so namespace is not found in the source code
             // search for the namespace from the Razor side
             // first. search by FullClassName
-            var searchRazorInfo = structures.Where(s => s.Namespace.Contains(PageFullClassName)).ToList();
+            var searchRazorInfo = structures.Where(s => s.FullClassName == PageFullClassName).ToList();
             if (searchRazorInfo.Count == 0)
             {
                 // second. search by PageClassName
@@ -41,7 +42,11 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
                 case >= 2:
                     // namespace is ambiguous.
                     // ex. Pages.Index and Pages.Admin.Index
-                    break;
+                    // error show: must replace 'Index' -> 'Pages.Index' or 'Pages.Admin.Index'
+                    var detectItems = searchRazorInfo
+                        .Select(v => v.FullClassName.Replace(v.DefaultNamespace, "").Trim('.'))
+                        .ToArray();
+                    throw new NamespaceAmbiguousException(PageFullClassName, detectItems);
                 case 1:
                     // exact match
                     exportNamespace = $"namespace {searchRazorInfo.First().Namespace};";
@@ -81,4 +86,13 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
             yield return $"public {query.Type.ToDisplayString()} {query.PageVariableName} {{ get; set; }}{initValue}";
         }
     }
+}
+
+// exception for ambiguous namespace
+internal class NamespaceAmbiguousException(string baseClass, string[] replaceStrings)
+    : Exception(
+        $"You must replace '{baseClass}' -> " +
+        $"{string.Join(" or ", replaceStrings.Select(r => $"'{r}'"))}"
+    )
+{
 }

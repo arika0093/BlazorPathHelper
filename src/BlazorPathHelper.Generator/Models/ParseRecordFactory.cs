@@ -71,8 +71,8 @@ internal static class ParseRecordFactory
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
         // get Blazor Page Type
-        // PageAttribute<Page> -> Page
-        ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol);
+        // PageAttribute<Page> and Page
+        ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol, out var pageAttributeLocation);
 
         // icon is specified by generic or string. 
         // BlazorPathItemAttribute<Icon> -> new Icon()
@@ -107,6 +107,7 @@ internal static class ParseRecordFactory
             QueryTypeSymbol = queryTypeSymbol,
             QueryRecords = queryRecords,
             PageTypeSymbol = blazorPageTypeSymbol,
+            PageAttributeLocation = pageAttributeLocation
         };
     }
 
@@ -160,16 +161,25 @@ internal static class ParseRecordFactory
     }
 
     /// <summary>
-    /// extract p@age type symbol from AttributeData of BlazorPathItemAttribute.
+    /// extract page type symbol from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol, out ITypeSymbol? blazorPageTypeSymbol)
+    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol,
+        out ITypeSymbol? blazorPageTypeSymbol, out Location? pageAttributeLocation)
     {
         blazorPageTypeSymbol = null;
+        pageAttributeLocation = null;
         var pathPageAttr = pathItemSymbol.GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "PageAttribute");
         if (pathPageAttr is { AttributeClass.IsGenericType: true })
         {
-            blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
+           blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
         }
+
+        var reference = pathPageAttr?.ApplicationSyntaxReference;
+        if (reference == null) return;
+        // get location of PageAttribute
+        var span = reference.Span;
+        var syntaxTree = reference.SyntaxTree;
+        pageAttributeLocation = syntaxTree.GetLocation(span);
     }
 }

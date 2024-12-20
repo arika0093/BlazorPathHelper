@@ -81,6 +81,11 @@ internal record ParseRecord
     public List<ParseQueryRecord> QueryRecords { get; init; } = [];
 
     /// <summary>
+    /// blazor page specific attribute for path builder. default: null
+    /// </summary>
+    public Location? PageAttributeLocation { get; init; }
+
+    /// <summary>
     /// blazor page type for path builder. default: null
     /// </summary>
     public ITypeSymbol? PageTypeSymbol { get; init; }
