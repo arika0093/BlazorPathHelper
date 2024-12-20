@@ -52,6 +52,9 @@ internal static class ParseRazorStructureFactory
                 var nsMatch = nsRegex.Match(source?.ToString() ?? "");
                 var ns = nsMatch.Success ? nsMatch.Groups["namespace"].Value : relativeNs;
 
+                // has inherited attribute?
+                var hasInherit = source?.ToString().Contains("@inherits") ?? false;
+
                 return new ParseRazorStructure()
                 {
                     ProjectDirectory = p.ProjectDirectory,
@@ -59,6 +62,7 @@ internal static class ParseRazorStructureFactory
                     FullPath = filePath,
                     PageClassName = fileName,
                     Namespace = ns,
+                    HasInheritAttribute = hasInherit
                 };
             })
             .Collect();

@@ -72,7 +72,8 @@ internal static class ParseRecordFactory
 
         // get Blazor Page Type
         // PageAttribute<Page> -> Page
-        ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol);
+        ExtractPageTypeSymbol(pathItemSymbol,
+            out var blazorPageTypeSymbol, out var pageInheritTypeSymbol, out var inheritTypeOverride);
 
         // icon is specified by generic or string. 
         // BlazorPathItemAttribute<Icon> -> new Icon()
@@ -107,6 +108,8 @@ internal static class ParseRecordFactory
             QueryTypeSymbol = queryTypeSymbol,
             QueryRecords = queryRecords,
             PageTypeSymbol = blazorPageTypeSymbol,
+            InheritTypeSymbol = pageInheritTypeSymbol,
+            IsInheritedOverride = inheritTypeOverride,
         };
     }
 
@@ -162,14 +165,23 @@ internal static class ParseRecordFactory
     /// <summary>
     /// extract p@age type symbol from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol, out ITypeSymbol? blazorPageTypeSymbol)
+    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol,
+        out ITypeSymbol? blazorPageTypeSymbol,
+        out ITypeSymbol? pageInheritTypeSymbol,
+        out bool isInheritTypeOverride)
     {
         blazorPageTypeSymbol = null;
+        pageInheritTypeSymbol = null;
+        isInheritTypeOverride = false;
         var pathPageAttr = pathItemSymbol.GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "PageAttribute");
         if (pathPageAttr is { AttributeClass.IsGenericType: true })
         {
             blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
+            var inheritsArguments = pathPageAttr.NamedArguments
+                .FirstOrDefault((kv) => kv.Key == "Inherits");
+            pageInheritTypeSymbol = inheritsArguments.Value.Value as ITypeSymbol;
+            isInheritTypeOverride = inheritsArguments.Key != null;
         }
     }
 }

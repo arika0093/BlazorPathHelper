@@ -5,6 +5,8 @@ using Xunit;
 
 namespace BlazorPathHelper.Tests;
 
+public class TemplateBase { }
+public class AnotherTemplateBase { }
 public partial class PageSample1;
 public partial class PageSample2;
 public partial class PageSample3;
@@ -15,8 +17,6 @@ public record class PageQuery3
     public string? QueryValue1 { get; set; }
 }
 
-public class TemplateBase { }
-public class AnotherTemplateBase { }
 
 [BlazorPath(PageTemplate = typeof(TemplateBase))]
 public partial class PageSampleWebPaths

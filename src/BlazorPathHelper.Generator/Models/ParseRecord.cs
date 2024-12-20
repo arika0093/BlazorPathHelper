@@ -86,6 +86,17 @@ internal record ParseRecord
     public ITypeSymbol? PageTypeSymbol { get; init; }
 
     /// <summary>
+    /// blazor page type for path builder. default: null
+    /// </summary>
+    public ITypeSymbol? InheritTypeSymbol { get; init; }
+
+    /// <summary>
+    /// is inherited override or not.
+    /// e.g. [Page&lt;Component&gt;(Inherit = null)] -> true
+    /// </summary>
+    public bool IsInheritedOverride { get; init; } = false;
+
+    /// <summary>
     /// grouping path. default: parent directory of path.
     /// </summary>
     public string? GroupPath
