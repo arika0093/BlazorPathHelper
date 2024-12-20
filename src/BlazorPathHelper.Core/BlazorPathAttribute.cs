@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 // ReSharper disable StringIndexOfIsCultureSpecific.1
 
@@ -19,4 +19,9 @@ public class BlazorPathAttribute : Attribute
     /// export class name. default: same as defined class name
     /// </summary>
     public string? ClassName { get; set; } = null;
+
+    /// <summary>
+    /// Page template for inheritance
+    /// </summary>
+    public Type? PageTemplate { get; set; } = null;
 }

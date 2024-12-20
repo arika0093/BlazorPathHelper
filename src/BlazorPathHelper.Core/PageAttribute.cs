@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace BlazorPathHelper;
 
@@ -7,4 +7,10 @@ namespace BlazorPathHelper;
 /// </summary>
 /// <typeparam name="TPage">Blazor Page Type</typeparam>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class PageAttribute<TPage> : Attribute;
+public class PageAttribute<TPage> : Attribute
+{
+    /// <summary>
+    /// Template for inheritance
+    /// </summary>
+    public Type? Inherits { get; set; } = null;
+}
