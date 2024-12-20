@@ -32,4 +32,9 @@ internal record ParseRazorStructure
     /// class name of razor file.
     /// </summary>
     public required string PageClassName { get; init; }
+
+    /// <summary>
+    /// full class name
+    /// </summary>
+    public string FullClassName => $"{Namespace}.{PageClassName}";
 }

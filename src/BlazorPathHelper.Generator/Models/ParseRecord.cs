@@ -81,6 +81,14 @@ internal record ParseRecord
     public List<ParseQueryRecord> QueryRecords { get; init; } = [];
 
     /// <summary>
+    /// Location of the attribute on the Blazor page in the source code.
+    /// This is needed to present error information by the analyzer
+    /// when multiple components share the same name.
+    /// default: null
+    /// </summary>
+    public Location? PageAttributeLocation { get; init; }
+
+    /// <summary>
     /// blazor page type for path builder. default: null
     /// </summary>
     public ITypeSymbol? PageTypeSymbol { get; init; }
