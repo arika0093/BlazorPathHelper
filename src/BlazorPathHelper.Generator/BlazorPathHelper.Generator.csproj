@@ -15,28 +15,19 @@
         <IncludeSymbols>false</IncludeSymbols>
         <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-         <!-- <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>-->
     </PropertyGroup>
 
     <!-- load external libraries -->
 	<!-- thanks https://github.com/dotnet/roslyn/discussions/47517#discussioncomment-3542590 -->
     <ItemGroup>
         <ProjectReference Include="..\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj" GeneratePathProperty="true" PrivateAssets="all" />
-        <!--  <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="6.*" GeneratePathProperty="true" PrivateAssets="all" /> -->
     </ItemGroup>
     <ItemGroup>
         <None Include="$(OutputPath)\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
         <None Include="BlazorPathHelper.Generator.props" Pack="true" PackagePath="build" Visible="false" />
-        <!-- <None Include="$(PKGMicrosoft_AspNetCore_Razor_Language)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
+		<None Include="Templates\WebPaths.cs" Pack="true" PackagePath="content" />
     </ItemGroup>
-    <!--
-    <Target Name="GetDependencyTargetPaths">
-	    <ItemGroup>
-			<TargetPathWithTargetPlatformMoniker Include="$(PKGMicrosoft_AspNetCore_Razor_Language)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
-	    </ItemGroup>
-    </Target>
-    -->
-    
+	
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
             <PrivateAssets>all</PrivateAssets>
