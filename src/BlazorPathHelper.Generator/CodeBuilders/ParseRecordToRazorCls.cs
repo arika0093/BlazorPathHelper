@@ -30,8 +30,10 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
         {
             // => so namespace is not found in the source code
             // search for the namespace from the Razor side
-            // first. search by FullClassName
-            var searchRazorInfo = structures.Where(s => s.FullClassName == PageFullClassName).ToList();
+            // first. search by FullClassName or PartialClassName
+            var searchRazorInfo = structures
+                .Where(s => s.FullClassName == PageFullClassName || s.PartialClassName == PageFullClassName)
+                .ToList();
             if (searchRazorInfo.Count == 0)
             {
                 // second. search by PageClassName
