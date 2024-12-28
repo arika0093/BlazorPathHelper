@@ -37,4 +37,15 @@ internal record ParseRazorStructure
     /// full class name
     /// </summary>
     public string FullClassName => $"{Namespace}.{PageClassName}";
+
+    /// <summary>
+    /// full class name without default namespace.
+    /// </summary>
+    /// <remarks>
+    /// e.g.
+    /// * default namespace: "Example.FluentUI"
+    /// * full class name: "Example.FluentUI.Foo.Bar.Test"
+    /// => "Foo.Bar.Test"
+    /// </remarks>
+    public string PartialClassName => FullClassName.Replace(DefaultNamespace,"").Trim('.');
 }
