@@ -14,10 +14,4 @@
 		<ProjectReference Include="..\BlazorPathHelper.Generator\BlazorPathHelper.Generator.csproj" />
 	</ItemGroup>
 
-	<!-- Copy content files to project directory -->
-    <ItemGroup>
-	    <Content Include="BlazorPathHelper.targets" PackagePath="build/BlazorPathHelper.targets" />
-		<None Include="WebPaths.cs" Pack="true" PackagePath="contentFiles\any\netstandard2.0\" />
-    </ItemGroup>
-
 </Project>
