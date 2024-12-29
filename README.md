@@ -622,4 +622,70 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 Implementation examples are available in [Example.AntBlazor.Pro](./examples/Example.AntBlazor.Pro/).
 
 #### MudBlazor
-(TODO)
+```csharp
+// WebPaths.cs
+using BlazorPathHelper;
+// To shorten, use using static
+using static MudBlazor.Icons.Material.Filled;
+
+[BlazorPath]
+public partial class WebPaths
+{
+  [Item("Home", Icon = House)]
+  public const string Home = "/";
+  [Item("Sample1", Icon = Filter1)]
+  public const string Sample1 = "/sample1";
+  [Item("Sample2", Icon = Filter2)]
+  public const string Sample2 = "/sample2";
+  [Item("Sample3", Icon = Filter3)]
+  public const string Sample3 = "/sample3";
+  // ... and so on
+}
+
+```
+
+```razor
+@* NavMenu.razor *@
+@using BlazorPathHelper
+@using global::MudBlazor
+
+@foreach(var menuItem in MenuItems)
+{
+  @if (menuItem.HasChildren)
+  {
+    <MudNavGroup Title="@menuItem.Name" Icon="@menuItem.Icon?.ToString()" 
+                 Expanded="true" ExpandIcon="@Icons.Material.Filled.ExpandMore">
+      <NavMenu MenuItems="@menuItem.Children" />
+    </MudNavGroup>
+  }
+  else
+  {
+    <MudNavLink Href="@menuItem.Path" Icon="@menuItem.Icon?.ToString()" 
+                Match="@(menuItem.IsHome ? NavLinkMatch.All : NavLinkMatch.Prefix)">
+      @menuItem.Name
+    </MudNavLink>
+  }
+}
+
+@code {
+  [Parameter, EditorRequired]
+  public BlazorPathMenuItem[] MenuItems { get; set; } = [];
+}
+```
+
+and 
+
+```razor
+@* MainLayout.razor *@
+@* ... *@
+<MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+  <MudNavMenu>
+    <NavMenu MenuItems="WebPaths.MenuItem"/>
+  </MudNavMenu>
+</MudDrawer>
+@* ... *@
+```
+
+<img src="./docs/assets/sample-mudblazor.gif" style="width:400px;">
+
+Implementation examples are available in [Example.MudBlazor](./examples/Example.MudBlazor/).

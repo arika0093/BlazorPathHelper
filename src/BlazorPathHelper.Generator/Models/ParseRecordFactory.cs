@@ -132,7 +132,7 @@ internal static class ParseRecordFactory
         }
         else if (symbol is string iconText)
         {
-            itemIcon = $"\"{iconText}\"";
+            itemIcon = $"""" """{iconText}""" """";
         }
         // PathItem<Icon> -> new Icon()
         else if (pathItemAttr?.AttributeClass?.IsGenericType == true)
@@ -142,7 +142,9 @@ internal static class ParseRecordFactory
         // if icon is specified, generate code.
         if (iconTypeSymbol != null)
         {
-            itemIcon = iconTypeSymbol.SpecialType == SpecialType.System_String ? $"\"{iconTypeSymbol.Name}\"" : $"new {iconTypeSymbol}()";
+            itemIcon = iconTypeSymbol.SpecialType == SpecialType.System_String
+                ? $"""" """{iconTypeSymbol.Name}""" """"
+                : $"new {iconTypeSymbol}()";
         }
     }
 
