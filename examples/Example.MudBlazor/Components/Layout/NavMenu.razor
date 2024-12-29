@@ -1,0 +1,25 @@
+﻿@using BlazorPathHelper
+@using global::MudBlazor
+
+@foreach(var menuItem in MenuItems)
+{
+    @if (menuItem.HasChildren)
+    {
+	    <MudNavGroup Title="@menuItem.Name" Icon="@menuItem.Icon?.ToString()" 
+					 Expanded="true" ExpandIcon="@Icons.Material.Filled.ExpandMore">
+            <NavMenu MenuItems="@menuItem.Children" />
+        </MudNavGroup>
+    }
+    else
+    {
+	    <MudNavLink Href="@menuItem.Path" Icon="@menuItem.Icon?.ToString()" 
+	                Match="@(menuItem.IsHome ? NavLinkMatch.All : NavLinkMatch.Prefix)">
+		    @menuItem.Name
+	    </MudNavLink>
+    }
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public BlazorPathMenuItem[] MenuItems { get; set; } = [];
+}
