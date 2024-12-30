@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://github.com/arika0093/BlazorPathHelper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/arika0093/BlazorPathHelper</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.Nuget.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
@@ -21,6 +21,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="../../README.md" Pack="true" PackagePath="\" />
+    <None Include="../../README.Nuget.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
