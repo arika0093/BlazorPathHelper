@@ -5,8 +5,8 @@ on:
     paths:
       - '/docs/**/*.md'
       - '/.github/workflows/docs.yaml'
-    branches-ignore:
-      - release/**
+    branches:
+      - main
 
 permissions:
   contents: write
