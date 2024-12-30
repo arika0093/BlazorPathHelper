@@ -111,7 +111,7 @@ public record QueryRecord(string query = "hello", int page = 0, bool? opt = null
     ```
 
 これで、`CounterWithQuery`のURLビルダーがクエリを受け取れるようになりました。
-クエリ定義の詳細については、[クエリサポート](./Features/UrlBuilder/QuerySupport.md)を参照してください。
+クエリ定義の詳細については、[クエリサポート](../Features/UrlBuilder/QuerySupport.md)を参照してください。
 
 
 ### 使い方
@@ -138,7 +138,7 @@ Console.WriteLine(counterQueryUrl3); // -> "/counter/query?query=foo&page=1&opt=
 Nav.NavigateTo(counterStateUrl);
 ```
 
-より詳細な使い方は、[URLビルダーの使い方](./Features/UrlBuilder/index.md)を参照してください。
+より詳細な使い方は、[URLビルダーの使い方](../Features/UrlBuilder/index.md)を参照してください。
 
 ## 自動ページ属性指定
 Blazorページ側には`#!razor @page`、`#!csharp [Parameter]`、`#!csharp [SupplyParameterFromQuery]`などの属性を指定する必要がありますが、これらもURL定義情報を元に自動生成できます。
@@ -213,7 +213,7 @@ public partial class Counter3 : ComponentBase;
 
 これで、ページ属性が自動的に設定されるため、`.razor`ファイルの記述が不要になります。
 よって、`.razor`ファイルから`@page`属性などを削除できます。
-詳細な使い方は、[自動ページ属性](./Features/AutoPageAttribute/index.md)を参照してください。
+詳細な使い方は、[自動ページ属性](../Features/AutoPageAttribute/index.md)を参照してください。
 
 !!! tip "いつでも取り外し可能です"
 
@@ -290,13 +290,13 @@ public partial class WebPaths
 
 詳細は各フレームワークごとのサンプルを参照してください。
 
-- [組み込みBlazorテンプレートの場合](./Features/MenuBuilder/FrameworkExamples/UsagePlain.md)
-- [Fluent UIの場合](./Features/MenuBuilder/FrameworkExamples/UsageFluentUI.md)
-- [AntBlazorの場合](./Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.md)
-- [MudBlazorの場合](./Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.md)
+- [組み込みBlazorテンプレートの場合](../Features/MenuBuilder/FrameworkExamples/UsagePlain.md)
+- [Fluent UIの場合](../Features/MenuBuilder/FrameworkExamples/UsageFluentUI.md)
+- [AntBlazorの場合](../Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.md)
+- [MudBlazorの場合](../Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.md)
 
 ### カスタマイズ
 メニューの生成に際して、説明文・アイコン・ローカライズなどのカスタマイズが可能です。
-詳細は[メニュー構造のカスタマイズ](./Features/MenuBuilder/MenuCustomization.md)を参照してください。
+詳細は[メニュー構造のカスタマイズ](../Features/MenuBuilder/MenuCustomization.md)を参照してください。
 
 
