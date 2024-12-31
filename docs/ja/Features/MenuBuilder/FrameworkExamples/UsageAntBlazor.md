@@ -129,7 +129,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 ## 注意事項
 
 この例ではSample1のようなサブメニューを持つ要素にはリンクが指定されていません。
-これはMudBlazorがサブメニューを持つ要素にリンクを設定するAPIを用意していないためです。
+これはAntBlazorがサブメニューを持つ要素にリンクを設定するAPIを用意していないためです。
 
 ## ソースコード
 実装例は [Example.AntBlazor.Standard](https://github.com/arika0093/BlazorPathHelper/examples/Example.AntBlazor.Standard/) および [Example.AntBlazor.Pro](https://github.com/arika0093/BlazorPathHelper/examples/Example.AntBlazor.Pro/) で利用できます。
