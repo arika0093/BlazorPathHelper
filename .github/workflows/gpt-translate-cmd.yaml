@@ -1,5 +1,7 @@
 # https://github.com/3ru/gpt-translate/
-# usual usage: /gpt-translate docs/ja/**/*.md docs/en/**/*.md english
+# usual usage
+# /gpt-translate docs/ja/**/*.md docs/en/**/*.md english
+# /gpt-translate docs/ja/**/*.md docs/zh/**/*.md chinese
 name: GPT Translate with comments on PR
 
 on:
