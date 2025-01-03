@@ -79,12 +79,12 @@ public static string CounterWithQuery(QueryRecord __query)
 ### 更改查询名称
 
 指定 `#!csharp [Query<QueryRecord>]` 属性时，查询名称直接使用 `QueryRecord` 的属性名。
-如果想更改查询名称，请添加 `#!csharp [SupplyParameterFromQuery(Name = "shortName")]` 属性。（与传统指定方法相同）
+如果想更改查询名称，请添加 `#!csharp [QueryName("shortName")]` 属性。
 
 ```csharp title="WebPaths.cs"
 public record QueryRecord
 {
-    [SupplyParameterFromQuery(Name = "short")]
+    [QueryName("short")] // or [SupplyParameterFromQuery(Name = "short")]
     public required string SuperLongName { get; set; }
 }
 

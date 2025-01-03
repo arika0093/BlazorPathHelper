@@ -78,13 +78,13 @@ public static string CounterWithQuery(QueryRecord __query)
 ## クエリ名を変更する
 
 `#!csharp [Query<QueryRecord>]`属性を指定した場合、クエリ名は`QueryRecord`のプロパティ名がそのまま使用されます。
-クエリ名を変更したい場合は、`#!csharp [SupplyParameterFromQuery(Name = "shortName")]`属性を付与してください。(従来の指定方法と同じです)
+クエリ名を変更したい場合は、`#!csharp [QueryName("shortName")]`属性を付与してください。
 
 
 ```csharp title="WebPaths.cs"
 public record QueryRecord
 {
-    [SupplyParameterFromQuery(Name = "short")]
+    [QueryName("short")] // or [SupplyParameterFromQuery(Name = "short")]
     public required string SuperLongName { get; set; }
 }
 

@@ -1,12 +1,15 @@
 # https://g-t.vercel.app/docs/examples/commit
 name: GPT Translate per Commit from Japanese
- 
+
+# comment out because of the bug in gpt-translate when translating multiple languages
 on:
   push:
-    paths:
-      - 'docs/ja/**.md'
+    # paths:
+    #   - 'docs/ja/**.md'
+    # branches-ignore:
+    #   - release/**
     branches-ignore:
-      - release/**
+      - '**'
   
 jobs:
   gpt_translate:
