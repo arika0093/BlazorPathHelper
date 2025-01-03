@@ -1,10 +1,10 @@
-# Home Page
+# 主页
 
-`BlazorPathHelper` is a library designed to assist with managing URL paths within Blazor projects. To get started, please refer to [Getting Started](./GettingStarted/index.md).
+`BlazorPathHelper` 是一个帮助管理 Blazor 项目中 URL 路径的库。要开始使用，请参阅 [开始使用](./GettingStarted/index.md)。
 
-!!! tip "Translations Available"
+!!! 提示 "翻译可用"
 
-    The documentation is available in the following languages:
-    [English](/BlazorPathHelper/) | [Japanese](/BlazorPathHelper/ja/) | [Simplified Chinese](/BlazorPathHelper/zh/)
+    文档提供以下语言版本：
+    [English](/BlazorPathHelper/) | [日本語](/BlazorPathHelper/ja/) | [简体中文](/BlazorPathHelper/zh/)
 
-![sample](../assets/sample.gif)
+![示例](../assets/sample.gif)
