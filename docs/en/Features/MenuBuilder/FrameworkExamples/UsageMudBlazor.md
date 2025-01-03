@@ -1,7 +1,3 @@
-Certainly! Here's the text translated into natural-sounding English:
-
----
-
 # Integrating with MudBlazor
 
 ## Prerequisites
@@ -20,7 +16,7 @@ Create `WebPaths.cs` to define URL paths. Use [MudBlazor Icons](https://mudblazo
 
 ```csharp
 using BlazorPathHelper;
-// Use static to simplify icon definitions
+// Use static imports to simplify icon definitions
 using static MudBlazor.Icons.Material.Filled;
 
 [BlazorPath]
@@ -93,11 +89,11 @@ Add the menu component to `MainLayout.razor`.
 
 ## Result
 
-<img src="sample-mudblazor.gif" style="width:400px;">
+<img src="../../../../assets/sample-mudblazor.gif" style="width:400px;">
 
 ## Notes
 
-In this example, elements like Sample1 that have submenus do not have links specified. This is because MudBlazor does not provide an API to set links for elements with submenus.
+In this example, elements like Sample1 that have submenus do not have links assigned. This is because MudBlazor does not provide an API to set links for elements with submenus.
 
 ## Source Code
 

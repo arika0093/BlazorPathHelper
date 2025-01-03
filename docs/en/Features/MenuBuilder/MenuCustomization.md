@@ -14,9 +14,9 @@ public partial class WebPaths
 }
 ```
 
-!!! tip "Implementation on the Menu Side is Also Required"
+!!! tip "Implementation Needed on the Menu Side"
 
-    This only updates the data side, so you'll need to implement the display of `Description` on the menu side as well.
+    This is just a method for updating the data. You will also need to implement the display of `Description` on the menu side.
 
 ## Specifying Icons
 To assign an icon to a menu item, use the `Icon` property.
@@ -32,7 +32,7 @@ public partial class WebPaths
 }
 ```
 
-The above specification is generally sufficient, but if icon definitions are provided as classes, like in FluentUI, you can use generics.
+Generally, the above specification is sufficient, but if icon definitions are provided as classes, like in FluentUI, you can use generics.
 
 ```csharp title="WebPaths.cs"
 using BlazorPathHelper;
@@ -97,9 +97,9 @@ public partial class WebPaths
 }
 ```
 
-Specify the parent element's key in the `Group` property of the child elements.
+Specify the parent element's key in the `Group` property of child elements.
 
-Consider another example with the following structure:
+For another example, consider the following hierarchical structure:
 
 ```
 ├── TopPage (/)
@@ -133,11 +133,14 @@ public partial class WebPaths
 }
 ```
 
-## Implementing Multilingual Support (i18n) for Menu Items
+## Implementing Multilingual Support (i10n) for Menu Items
 
-First, create a resource. In this example, create `Localize.resx` in the `Resources` folder with the following content.
+First, create a resource file. In this example, create `Localize.resx` in the `Resources` folder with the following content:
 
-![resource keys](resource-keys.png)
+| Name       | English            | Japanese |
+| ---------- | ------------------ | -------- |
+| Sample     | Sample Text        | サンプルテキスト |
+| SampleDesc | Sample Description | サンプル説明文  |
 
 Then, specify it as follows:
 
@@ -154,7 +157,7 @@ public partial class WebPaths
 }
 ```
 
-Resource keys are passed, so use those keys for display.
+The resource key is passed, so use it for display on the UI side.
 
 ```csharp title="Menu.razor"
 @inject IStringLocalizer<Localize> Localizer

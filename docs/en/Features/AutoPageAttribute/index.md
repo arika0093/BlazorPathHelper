@@ -2,13 +2,13 @@
 
 ## Basic Usage
 
-Here's what you need to do at a minimum:
+Here's the minimum you need to do:
 
 * Create a class with the `#!csharp [BlazorPath]` attribute. Make sure the class definition includes the `#!csharp partial` keyword.
 * Define a constant of type `#!csharp const string` as a member within that class.
 * Add the `#!csharp [Page<PageComponent>]` attribute to the member.
 
-BlazorPathHelper will automatically scan for class definitions that meet these criteria and generate URL builder functions.
+BlazorPathHelper will automatically scan the class definitions that meet these criteria and generate URL builder functions.
 
 ```csharp title="WebPaths.cs"
 using BlazorPathHelper;
@@ -21,7 +21,7 @@ public partial class WebPaths
   public const string Index = "/";
 }
 
-// Definition for each component (actually written in each component)
+// Definition for each component (typically written within each component)
 public partial class Home : ComponentBase;
 ```
 
@@ -39,9 +39,10 @@ As a result, the `Home` component will automatically have the same effect as if 
 
     You need to remove the originally defined `@page` attribute at the end.
 
+
 ## Parameter and Query Support
 
-If the URL includes [parameter definitions](../UrlBuilder/index.md), the `[Parameter]` attribute is automatically added.
+If the URL includes [parameter definitions](../UrlBuilder/index.md), the `[Parameter]` attribute will be automatically added.
 
 ```csharp title="WebPaths.cs"
 using BlazorPathHelper;
@@ -66,7 +67,7 @@ public partial class WebPaths
     }
     ```
 
-Similarly, by adding the `[Query<QueryRecord>]` attribute, the `[SupplyParameterFromQuery]` attribute is automatically added.
+Similarly, by adding the `[Query<QueryRecord>]` attribute, the `[SupplyParameterFromQuery]` attribute will be automatically added.
 
 ```csharp title="WebPaths.cs"
 using BlazorPathHelper;

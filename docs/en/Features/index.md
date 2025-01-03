@@ -1,11 +1,10 @@
----
-title: Feature List
-description: An overview of the main features provided by this library.
----
+### Title: Feature List
+
+### Description: This document explains the main features offered by this library.
 
 This library **automatically** generates the following:
 
-* A **type-safe** [URL builder](./UrlBuilder/index.md) from URL definitions
+* A **type-safe** [URL Builder](./UrlBuilder/index.md) from URL definitions
     * Supports parameters, optional parameters, and queries
 * [Automatic definition](./AutoPageAttribute/index.md) of routes, parameters, and queries
 * [Automatic generation](./MenuBuilder/index.md) of menu structure data

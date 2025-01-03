@@ -142,7 +142,10 @@ public partial class WebPaths
 
 まずはリソースを作成します。今回は`Resources`フォルダに以下の内容で`Localize.resx`を作成します。
 
-![resource keys](resource-keys.png)
+| Name       | English            | Japanese |
+| ---------- | ------------------ | -------- |
+| Sample     | Sample Text        | サンプルテキスト |
+| SampleDesc | Sample Description | サンプル説明文  |
 
 そして、以下のように指定します。
 

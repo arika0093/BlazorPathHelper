@@ -1,11 +1,10 @@
-# Integrating AntBlazor
+# Integrating Ant Blazor
 
 ## Prerequisites
 
 Create a project using the [official template](https://antblazor.com/en-US/docs/introduce).
 
-```bash
-# Installing the AntBlazor template
+```bash title="Setting up the AntBlazor Template"
 dotnet new --install AntDesign.Templates
 dotnet new antdesign -o MyAntDesignApp
 ```
@@ -14,7 +13,7 @@ dotnet new antdesign -o MyAntDesignApp
 
 Create `WebPaths.cs` to define URL paths. Use [Ant Design Icons](https://antblazor.com/en-US/components/icon) for icon definitions. For detailed configuration, refer to [Menu Item Customization](../MenuCustomization.md).
 
-```csharp
+```csharp title="WebPaths.cs"
 using BlazorPathHelper;
 
 [BlazorPath]
@@ -41,13 +40,13 @@ public partial class WebPaths
 
 ## Creating the Menu Component
 
-When using the above template, the default menu component from `AntBlazor.Pro` is used.
+When you use the above template, the default menu component from `AntBlazor.Pro` is used.
 
 ### If Not Using `AntBlazor.Pro`
 
 Create `NavMenuItem.razor` to display the menu component.
 
-```razor
+```razor title="NavMenuItem.razor"
 @using BlazorPathHelper
 
 @foreach (var menuItem in MenuItems)
@@ -86,9 +85,9 @@ Create `NavMenuItem.razor` to display the menu component.
 
 ### If Using `AntBlazor.Pro`
 
-The standard template (Pro) includes functionality to generate menus from objects, which can be simplified as follows:
+The standard template (Pro) includes a feature to generate menus from objects, but you can simplify the definition generation as follows:
 
-```csharp
+```csharp title="Layout/BasicLayout.razor.cs"
 protected override async Task OnInitializedAsync()
 {
   _menuData = ConverterMenuDataItem(WebPaths.MenuItem);
@@ -111,7 +110,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 
 Add a component to display the menu in `MainLayout.razor`.
 
-```razor
+```razor title="MainLayout.razor"
 <!-- Omitted -->
 <Menu Theme="MenuTheme.Dark" DefaultSelectedKeys=@(new[]{"1"}) Mode="MenuMode.Inline">
     <NavMenuItem MenuItems="WebPaths.MenuItem"/>
@@ -121,7 +120,7 @@ Add a component to display the menu in `MainLayout.razor`.
 
 ## Result
 
-<img src="sample-antblazor.gif" style="width:400px;">
+<img src="../../../../assets/sample-antblazor.gif" style="width:400px;">
 
 ## Notes
 
@@ -129,4 +128,4 @@ In this example, elements like Sample1 that have submenus do not have links spec
 
 ## Source Code
 
-Implementation examples are available at [Example.AntBlazor.Standard](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Standard/) and [Example.AntBlazor.Pro](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Pro/).
+You can find implementation examples at [Example.AntBlazor.Standard](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Standard/) and [Example.AntBlazor.Pro](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Pro/).

@@ -4,11 +4,11 @@
 
 Create a project using the Blazor template in Visual Studio 2022.
 
-![alt text](blazor-template.png)
+![](../../../../assets/blazor-template.png)
 
-## Preparations
+## Preparation
 
-The standard template does not include icons, so add the following to `wwwroot/index.html`:
+Since the standard template does not include icons, add the following to `wwwroot/index.html`:
 
 ```html
 <head>
@@ -60,7 +60,7 @@ Create `NavMenuItem.razor` to display the menu component.
   <!-- Use menuItem.Key for defining the key attribute -->
   <div @key=menuItem.Key class="nav-item ps-3 py-1">
     <!-- menuItem.Path represents the URL path of the menu item -->
-    <!-- NavLinkMatch.All applies only to the homepage, otherwise use Prefix -->
+    <!-- NavLinkMatch.All applies only to the homepage, others use Prefix -->
     <NavLink class="nav-link" href="@menuItem.Path"
              Match="@(menuItem.IsHome ? NavLinkMatch.All : NavLinkMatch.Prefix)">
       <!-- Icons and menu names are passed as strings -->
@@ -83,7 +83,7 @@ Create `NavMenuItem.razor` to display the menu component.
 
 ## Displaying the Menu
 
-Add the menu component to `MainLayout.razor`.
+Add the menu display component to `MainLayout.razor`.
 
 ```razor title="MainLayout.razor"
 <!-- Omitted -->
@@ -97,7 +97,7 @@ Add the menu component to `MainLayout.razor`.
 
 ## Execution Result
 
-<img src="sample-plain.gif" style="width:400px;">
+<img src="../../../../assets/sample-plain.gif" style="width:400px;">
 
 ## Source Code
 

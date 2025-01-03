@@ -6,7 +6,7 @@ title: Blazorテンプレートに組み込む
 
 Visual Studio 2022のBlazorテンプレートを使用してプロジェクトを作成します。
 
-![alt text](blazor-template.png)
+![](../../../../assets/blazor-template.png)
 
 ## 事前準備
 
@@ -101,7 +101,7 @@ public partial class WebPaths
 
 ## 実行結果
 
-<img src="sample-plain.gif" style="width:400px;">
+<img src="../../../../assets/sample-plain.gif" style="width:400px;">
 
 
 ## ソースコード
