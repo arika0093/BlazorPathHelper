@@ -80,11 +80,28 @@ plugins:
         default: true
         name: English
         build: true
+      - locale: zh-CN
+        name: 简体中文
+        build: true
+        nav_translations:
+          Home: 主页
+          Getting Started: 快速开始
+          View Generated Code: 查看生成的代码
+          Features: 功能
+          Features TopPage: 主要功能
+          URLBuilder: URL生成器
+          URLBuilder Usage: 用法
+          Query Support: 查询支持
+          Auto Page Attribute: 自动页面属性
+          MenuBuilder Usage: 用法
+          MenuBuilder: 菜单生成器
+          Menu Customization: 菜单定制
+          Framework Examples: 各框架示例
+          Plain: Blazor模板
       - locale: ja
         name: 日本語
         build: true
         nav_translations:
-          Introduction: イントロダクション
           Home: トップページ
           Getting Started: 使ってみる
           View Generated Code: 生成されたコードの閲覧
@@ -99,8 +116,6 @@ plugins:
           Menu Customization: メニュー項目カスタマイズ
           Framework Examples: 各フレームワーク例
           Plain: Blazorテンプレート
-          Reference: リファレンス
-          API: API
   # pip install mkdocs-git-revision-date-localized-plugin
   git-revision-date-localized:
     enable_creation_date: true
