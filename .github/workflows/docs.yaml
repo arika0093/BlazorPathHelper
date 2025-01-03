@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'docs/**/*.md'
+      - 'docs/**'
       - '.github/workflows/docs.yaml'
     branches:
       - main
