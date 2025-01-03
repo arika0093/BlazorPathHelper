@@ -355,11 +355,6 @@ and use it as follows.
 <NavMenuItem MenuItems="@WebPaths.MenuItem"/>
 ```
 
-You can create menus like this!
-
-![menu](./docs/assets/readme-menu-image.gif)
-
-
 #### Menu Customization
 You can customize menu display using the `Item` attribute.
 
@@ -409,4 +404,6 @@ public partial class WebPaths
   public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
 ```
+
+See [documentation](https://arika0093.github.io/BlazorPathHelper/latest/Features/MenuBuilder/MenuCustomization.html) for more information.
 
