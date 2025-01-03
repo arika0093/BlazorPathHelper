@@ -3,6 +3,7 @@ site_name: BlazorPathHelper
 site_url: https://arika0093.github.io/BlazorPathHelper/
 repo_url: https://github.com/arika0093/BlazorPathHelper
 repo_name: BlazorPathHelper
+use_directory_urls: false
 theme:
   name: material
   language: en
@@ -25,20 +26,20 @@ theme:
       media: "(prefers-color-scheme: dark)"
 nav:
   - Home: index.md
-  - GettingStarted:
+  - Getting Started:
     - GettingStarted/index.md
-    - ViewGeneratedCode: GettingStarted/ViewGeneratedCode.md
+    - View Generated Code: GettingStarted/ViewGeneratedCode.md
   - Features:
     - Features/index.md
     - URLBuilder:
       - Features/UrlBuilder/index.md
       - Query Support: Features/UrlBuilder/QuerySupport.md
-    - AutoPageAttribute:
+    - Auto Page Attribute:
       - Features/AutoPageAttribute/index.md
     - MenuBuilder:
       - Features/MenuBuilder/index.md
       - Menu Customization: Features/MenuBuilder/MenuCustomization.md
-      - FrameworkExamples:
+      - Framework Examples:
         - Features/MenuBuilder/FrameworkExamples/index.md
         - Plain: Features/MenuBuilder/FrameworkExamples/UsagePlain.md
         - Fluent UI: Features/MenuBuilder/FrameworkExamples/UsageFluentUI.md
@@ -72,7 +73,6 @@ plugins:
   search:
   i18n:
     # pip install mkdocs-static-i18n
-    default_language: en
     reconfigure_material: true
     docs_structure: folder
     languages:
@@ -86,18 +86,18 @@ plugins:
         nav_translations:
           Introduction: イントロダクション
           Home: トップページ
-          GettingStarted: 使ってみる
-          ViewGeneratedCode: 生成されたコードの閲覧
+          Getting Started: 使ってみる
+          View Generated Code: 生成されたコードの閲覧
           Features: 機能一覧
           Features TopPage: 主な機能
           URLBuilder: URLビルダー
           URLBuilder Usage: 概要
           Query Support: クエリサポート
-          AutoPageAttribute: 自動ページ属性
+          Auto Page Attribute: 自動ページ属性
           MenuBuilder Usage: 概要
           MenuBuilder: メニュービルダー機能
           Menu Customization: メニュー項目カスタマイズ
-          FrameworkExamples: 各フレームワーク例
+          Framework Examples: 各フレームワーク例
           Plain: Blazorテンプレート
           Fluent UI: Fluent UI
           AntBlazor: AntBlazor
