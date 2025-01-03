@@ -4,7 +4,8 @@
 
 Create a project using the [official template](https://www.fluentui-blazor.net/CodeSetup).
 
-```bash title="Installing the FluentUI Template"
+```bash
+# Installing the FluentUI template
 dotnet new install Microsoft.FluentUI.AspNetCore.Templates
 dotnet new fluentblazorwasm --name MyApplication
 ```
@@ -13,7 +14,7 @@ dotnet new fluentblazorwasm --name MyApplication
 
 Create `WebPaths.cs` to define URL paths. Unlike other frameworks, FluentUI's `Icon` is defined as a class rather than a string, so you can't specify it directly. Therefore, specify the icon class in a generic format. Use [FluentUI Icons](https://www.fluentui-blazor.net/Icon) for icon definitions. For detailed configuration, refer to [Menu Item Customization](../MenuCustomization.md).
 
-```csharp title="WebPaths.cs"
+```csharp
 using BlazorPathHelper;
 // Use static to simplify icon definitions
 using static Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20;
@@ -44,12 +45,12 @@ public partial class WebPaths
 
 Create `NavMenuItem.razor` to display the menu component.
 
-```razor title="NavMenuItem.razor"
+```razor
 @using BlazorPathHelper
 
 @foreach(var menuItem in MenuItems)
 {
-  <!-- Separate processing based on whether there are child elements -->
+  <!-- Handle cases with and without child elements separately -->
   @if(menuItem.HasChildren)
   {
     <!-- Use menuItem.Key for defining the key attribute -->
@@ -63,7 +64,7 @@ Create `NavMenuItem.razor` to display the menu component.
   }
   else
   {
-    <!-- NavLinkMatch.All applies only to the homepage, otherwise use Prefix -->
+    <!-- Apply NavLinkMatch.All only to the homepage, use Prefix otherwise -->
     <FluentNavLink @key=@menuItem.Key Href="@menuItem.Path"
         Match="@(menuItem.IsHome ? NavLinkMatch.All : NavLinkMatch.Prefix)"
         Icon="@((Icon?)menuItem.Icon)" IconColor="Color.Accent">
@@ -83,7 +84,7 @@ Create `NavMenuItem.razor` to display the menu component.
 
 Add the menu display component to `MainLayout.razor`.
 
-```razor title="MainLayout.razor"
+```razor
 <!-- Omitted -->
 <FluentNavMenu Id="main-menu" Width="250" Collapsible="true"
                Title="Navigation menu" CustomToggle="true">
@@ -94,7 +95,7 @@ Add the menu display component to `MainLayout.razor`.
 
 ## Execution Result
 
-<img src="sample-fluentui.gif" style="width:400px;">
+<img src="../../../../assets/sample-fluentui.gif" style="width:400px;">
 
 ## Source Code
 

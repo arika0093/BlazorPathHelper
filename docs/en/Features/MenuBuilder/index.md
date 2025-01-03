@@ -4,9 +4,9 @@
 
 The minimum requirements are as follows:
 
-* Create a class with the `#!csharp [BlazorPath]` attribute. This class must be defined with the `#!csharp partial` attribute.
+* Create a class with the `#!csharp [BlazorPath]` attribute. The class definition must include the `#!csharp partial` attribute.
 * Define constants of type `#!csharp const string` as members within the class.
-* Add the `#!csharp [Item("DisplayName")]` attribute to these members.
+* Add the `#!csharp [Item("DisplayName")]` attribute to the members.
 
 BlazorPathHelper will automatically scan for class definitions that meet these criteria and generate menu structure data.
 
@@ -162,7 +162,7 @@ In the simplest example, the structure would look like this:
 }
 ```
 
-Of course, you can customize the design to fit each component. For more details, refer to [Framework Examples](FrameworkExamples/index.md).
+Of course, you can modify the design to suit each component. For more details, refer to [Framework Examples](FrameworkExamples/index.md).
 
 ## Customizing Menu Items
 
@@ -172,15 +172,15 @@ Refer to [Customizing Menu Items](./MenuCustomization.md).
 
 The following properties are generated as part of the `BlazorPathMenuItem` class. For more details, refer to [BlazorPathMenuItem](https://github.com/arika0093/BlazorPathHelper/blob/main/src/BlazorPathHelper.Core/BlazorPathMenuItem.cs) and [ItemAttribute](https://github.com/arika0093/BlazorPathHelper/blob/main/src/BlazorPathHelper.Core/ItemAttribute.cs).
 
-| Property of `BlazorPathMenuItem` | How to Specify in `ItemAttribute` | Description | Default Value |
+| Property of `BlazorPathMenuItem` | Specification Method for `ItemAttribute` | Description | Default Value |
 | -------------------------- | ---------------------------- | ---------------------------------------- | --------------------------------- |
 | Key                        | (Auto-generated)             | A unique key (string) for the entire menu | —                                 |
 | Index                      | (Auto-generated)             | An index (number) for the entire menu     | —                                 |
 | GroupKey                   | `Group`                      | A string representing the menu's hierarchy. Items with the same GroupKey belong to the same group. | Automatically determined from URL (e.g., `/foo/bar` becomes `/foo`) |
 | GroupLevel                 | (Auto-generated)             | The hierarchy level of the menu. The top level is 0. | —                                 |
-| GroupIndex                 | (Auto-generated)             | An index (number) within the child menu   | —                                 |
-| Path                       | (Auto-generated)             | The link destination of the menu          | Value of the `const string` variable |
+| GroupIndex                 | (Auto-generated)             | An index (number) within the submenu     | —                                 |
+| Path                       | (Auto-generated)             | The link destination of the menu         | Value of the `const string` variable |
 | Name                       | `Name` or first argument     | The display name of the menu. Can support i18n by specifying a resource key name. | Variable name                     |
-| Description                | `Description`                | A description of the menu                 | NULL                              |
-| Icon                       | `Icon` or specified generically (for classes) | The icon of the menu                      | NULL                              |
-| Children                   | (Auto-generated)             | The child elements of the menu            | Empty array                       |
+| Description                | `Description`                | A description of the menu                | NULL                              |
+| Icon                       | `Icon` or specified generically (for classes) | The icon of the menu                     | NULL                              |
+| Children                   | (Auto-generated)             | The child elements of the menu           | Empty array                       |

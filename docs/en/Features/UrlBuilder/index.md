@@ -4,10 +4,10 @@
 
 The minimum requirements are as follows:
 
-* Prepare a class with the `#!csharp [BlazorPath]` attribute. The class definition must include the `#!csharp partial` attribute.
+* Prepare a class with the `#!csharp [BlazorPath]` attribute. This class definition must also include the `#!csharp partial` attribute.
 * Define constants of type `#!csharp const string` as members within that class.
 
-BlazorPathHelper will automatically inspect classes that meet the above criteria and generate URL builder functions.
+BlazorPathHelper will automatically search for class definitions that meet the above criteria and generate URL builder functions.
 
 ```csharp title="WebPaths.cs"
 [BlazorPath]
@@ -37,35 +37,35 @@ All URL definitions listed in the [official documentation](https://learn.microso
 
 ### Standard Examples
 
-| Definition Example                    | Generated Function                               | Example Output URL                                      |
-| ------------------------------------- | ------------------------------------------------ | ------------------------------------------------------- |
-| `#!csharp "/{text}"`                  | `#!csharp string Text(string text)`              | `#!csharp "/sample-text"`                               |
-| `#!csharp "/{active:bool}"`           | `#!csharp string Active(bool active)`            | `#!csharp "/true"`                                      |
-| `#!csharp "/{dob:datetime}"`          | `#!csharp string Dob(DateTime dob)`              | `#!csharp "/2025-01-01T00:00:00Z"` ※1                   |
-| `#!csharp "/{price:decimal}"`         | `#!csharp string Price(decimal price)`           | `#!csharp "/123.45"`                                    |
-| `#!csharp "/{weight:double}"`         | `#!csharp string Weight(double weight)`          | `#!csharp "/123.45"`                                    |
-| `#!csharp "/{weight:float}"`          | `#!csharp string Weight(float weight)`           | `#!csharp "/123.45"`                                    |
-| `#!csharp "/{id:guid}"`               | `#!csharp string Id(Guid id)`                    | `#!csharp "/00001111-aaaa-2222-bbbb-3333cccc4444"`      |
-| `#!csharp "/{id:int}"`                | `#!csharp string Id(int id)`                     | `#!csharp "/123456789"`                                 |
-| `#!csharp "/{ticks:long}"`            | `#!csharp string Ticks(long ticks)`              | `#!csharp "/123456789"`                                 |
-| `#!csharp "/{parameter:nonfile}"`     | `#!csharp string Parameter(string parameter)`    | `#!csharp "/foo"`                                       |
-| `#!csharp "/{*pageRoute}"`            | `#!csharp string PageRoute(string pageRoute)`    | `#!csharp "/foo/bar/buz"`                               |
+| Definition Example                      | Generated Function                              | Example Output URL                                      |
+| --------------------------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| `#!csharp "/{text}"`                    | `#!csharp string Text(string text)`             | `#!csharp "/sample-text"`                               |
+| `#!csharp "/{active:bool}"`             | `#!csharp string Active(bool active)`           | `#!csharp "/true"`                                      |
+| `#!csharp "/{dob:datetime}"`            | `#!csharp string Dob(DateTime dob)`             | `#!csharp "/2025-01-01T00:00:00Z"` ※1                   |
+| `#!csharp "/{price:decimal}"`           | `#!csharp string Price(decimal price)`          | `#!csharp "/123.45"`                                    |
+| `#!csharp "/{weight:double}"`           | `#!csharp string Weight(double weight)`         | `#!csharp "/123.45"`                                    |
+| `#!csharp "/{weight:float}"`            | `#!csharp string Weight(float weight)`          | `#!csharp "/123.45"`                                    |
+| `#!csharp "/{id:guid}"`                 | `#!csharp string Id(Guid id)`                   | `#!csharp "/00001111-aaaa-2222-bbbb-3333cccc4444"`      |
+| `#!csharp "/{id:int}"`                  | `#!csharp string Id(int id)`                    | `#!csharp "/123456789"`                                 |
+| `#!csharp "/{ticks:long}"`              | `#!csharp string Ticks(long ticks)`             | `#!csharp "/123456789"`                                 |
+| `#!csharp "/{parameter:nonfile}"`       | `#!csharp string Parameter(string parameter)`   | `#!csharp "/foo"`                                       |
+| `#!csharp "/{*pageRoute}"`              | `#!csharp string PageRoute(string pageRoute)`   | `#!csharp "/foo/bar/buz"`                               |
 
 ※1: The output is converted to ISO 8601 format and UTC format.
 
 ### Optional Parameter Examples
 
-| Definition Example                  | Generated Function                                    | Example Output URL                   |
-| ----------------------------------- | ----------------------------------------------------- | ------------------------------------ |
-| `#!csharp "/{text?}"`               | `#!csharp string Text(string? text = null)`           | `#!csharp "/sample-text-2", "/"`     |
-| `#!csharp "/{active:bool?}"`        | `#!csharp string Active(bool? active = null)`         | `#!csharp "/true", "/"`              |
+| Definition Example                      | Generated Function                                  | Example Output URL                      |
+| --------------------------------------- | --------------------------------------------------- | --------------------------------------- |
+| `#!csharp "/{text?}"`                   | `#!csharp string Text(string? text = null)`         | `#!csharp "/sample-text-2", "/"`        |
+| `#!csharp "/{active:bool?}"`            | `#!csharp string Active(bool? active = null)`       | `#!csharp "/true", "/"`                 |
 
 ### Combined Examples
 
-| Definition Example                           | Generated Function                                         | Example Output URL                        |
-| -------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------- |
-| `#!csharp "/{text}/{val:int}"`               | `#!csharp string TextValue(string text, int val)`          | `#!csharp "/sample/123"`                  |
-| `#!csharp "/{id:int}/{flag:bool?}"`          | `#!csharp string IdFlag(int id, bool? flag = null)`        | `#!csharp "/123/true", "/456/"`           |
+| Definition Example                      | Generated Function                                      | Example Output URL                      |
+| --------------------------------------- | ------------------------------------------------------- | --------------------------------------- |
+| `#!csharp "/{text}/{val:int}"`          | `#!csharp string TextValue(string text, int val)`       | `#!csharp "/sample/123"`                |
+| `#!csharp "/{id:int}/{flag:bool?}"`     | `#!csharp string IdFlag(int id, bool? flag = null)`     | `#!csharp "/123/true", "/456/"`         |
 
 ## Various Definition Methods
 

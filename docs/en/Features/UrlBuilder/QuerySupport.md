@@ -10,7 +10,7 @@ The minimum requirements are as follows:
 * Define constants of type `#!csharp const string` as members within this class.
 * Add the `#!csharp [Query<QueryClass>]` attribute to these members.
 
-During the process of generating URL builder functions, functions that support queries will be created based on the definition of `#!csharp [Query<QueryClass>]`.
+During the process of generating URL builder functions, a query-compatible version of the function will be created based on the `#!csharp [Query<QueryClass>]` definition.
 
 ```csharp title="WebPaths.cs"
 [BlazorPath]
@@ -25,12 +25,11 @@ public record QueryRecord(string query = "hello", int page = 0, bool? opt = null
 
 !!! warning "Caution!"
 
-    The `QueryRecord` class must be written in a `.cs` file.
-    Due to the specifications of the SourceGenerator, it cannot be written in a `.razor` file.
+    The `QueryRecord` class must be written in a `.cs` file. Due to the specifications of the SourceGenerator, it cannot be written in a `.razor` file.
 
 !!! note "Recommendation: Clearly define default parameter values"
 
-    It is recommended to specify default values for each parameter or make them nullable. (You need to consider cases where query parameters are not specified)
+    It is recommended to specify default values for each parameter or make them nullable. (You need to consider the case where query parameters are not specified.)
 
 ??? abstract "Generated Code"
 
@@ -80,7 +79,7 @@ As you can see from the generated code above, each property of the `QueryRecord`
 
 ## Changing Query Names
 
-When specifying the `#!csharp [Query<QueryRecord>]` attribute, the query name uses the property name of `QueryRecord` as is. If you want to change the query name, add the `#!csharp [SupplyParameterFromQuery(Name = "shortName")]` attribute. (This is the same as the traditional method)
+When you specify the `#!csharp [Query<QueryRecord>]` attribute, the query name uses the property name of `QueryRecord` as is. If you want to change the query name, add the `#!csharp [SupplyParameterFromQuery(Name = "shortName")]` attribute. (This is the same as the traditional method of specifying.)
 
 ```csharp title="WebPaths.cs"
 public record QueryRecord
@@ -104,19 +103,17 @@ The following definitions are possible for properties of `QueryClass`.
 
 ### Standard Types
 
-| Example Class Definition                     | Example Output Query URL       |
-| -------------------------------------------- | ------------------------------ |
-| `#!csharp record QueryClass(int val1)`       | `#!csharp "/?val1=5"`          |
-| `#!csharp record QueryClass(bool? flg1)`     | `#!csharp "/?flg1=true", "/"`  |
+| Example Class Definition                      | Example Output Query URL         |
+| --------------------------------------------- | -------------------------------- |
+| `#!csharp record QueryClass(int val1)`        | `#!csharp "/?val1=5"`            |
+| `#!csharp record QueryClass(bool? flg1)`      | `#!csharp "/?flg1=true", "/"`    |
 
 In addition to these, any type that implements `#!csharp ToString()` and can be restored by Blazor should generally be supported.
 
 ### Arrays
 
-| Example Class Definition                     | Example Output Query URL                 |
-| -------------------------------------------- | ---------------------------------------- |
-| `#!csharp record QueryClass(string[] arr)`   | `#!csharp "/?arr=foo&arr=bar&arr=buz"`   |
+| Example Class Definition                      | Example Output Query URL                 |
+| --------------------------------------------- | ---------------------------------------- |
+| `#!csharp record QueryClass(string[] arr)`    | `#!csharp "/?arr=foo&arr=bar&arr=buz"`   |
 
-Besides `#!csharp string[]`, types like `#!csharp int[]` and `#!csharp bool[]` are also supported. However, `IEnumerable` and `List` are not supported as Blazor does not handle them.
-
----
+In addition to `#!csharp string[]`, types like `#!csharp int[]` and `#!csharp bool[]` are also supported. However, `IEnumerable` and `List` are not supported as Blazor does not handle them.

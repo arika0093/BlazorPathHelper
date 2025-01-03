@@ -1,4 +1,4 @@
-Certainly! Here's the text translated into naturalistic English:
+Certainly! Here's the translation of the given text into naturalistic English:
 
 ---
 
