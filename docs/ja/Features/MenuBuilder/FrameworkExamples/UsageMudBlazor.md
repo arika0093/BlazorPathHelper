@@ -1,7 +1,3 @@
----
-title: MudBlazorに組み込む
----
-
 ## 前提
 
 [公式のテンプレート](https://mudblazor.com/getting-started/installation#using-templates)を使用してプロジェクトを作成します。

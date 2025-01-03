@@ -1,9 +1,4 @@
-﻿---
-title: 使ってみる
-description: BlazorPathHelperの基本的な使い方を説明します。
----
-
-# 使ってみる
+﻿# 使ってみる
 ## 導入
 Blazorプロジェクトに[BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/)をインストールします。
 

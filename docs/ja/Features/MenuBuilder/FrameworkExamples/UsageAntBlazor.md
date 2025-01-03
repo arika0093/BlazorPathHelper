@@ -1,7 +1,3 @@
----
-title: AntBlazorに組み込む
----
-
 ## 前提
 
 [公式のテンプレート](https://antblazor.com/en-US/docs/introduce)を使用してプロジェクトを作成します。

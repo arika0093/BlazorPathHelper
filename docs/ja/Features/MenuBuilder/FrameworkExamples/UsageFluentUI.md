@@ -1,7 +1,3 @@
----
-title: Fluent UIに組み込む
----
-
 ## 前提
 
 [公式のテンプレート](https://www.fluentui-blazor.net/CodeSetup)を使用してプロジェクトを作成します。
