@@ -1,4 +1,5 @@
 # https://github.com/3ru/gpt-translate/
+# usual usage: /gpt-translate docs/ja/**/*.md docs/en/**/*.md english
 name: GPT Translate
 
 on:
