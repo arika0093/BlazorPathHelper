@@ -8,9 +8,9 @@ title: 自動ページ属性
 
 * `#!csharp [BlazorPath]`属性を付与したクラスを用意します。この際、クラス定義には`#!csharp partial`属性が必要です。
 * そのクラス内のメンバーとして`#!csharp const string`型の定数を定義します。
-* メンバーの属性として、`#!csharp [Page<PagteComponent>]`を付与します。
+* メンバーの属性として、`#!csharp [Page<PageComponent>]`を付与します。
 
-BlazorPathHelperは上記の内容を満たすクラス定義を自動で捜査して、URLビルダー関数を生成します。
+BlazorPathHelperは上記の内容を満たすクラス定義を自動で走査して、URLビルダー関数を生成します。
 
 ```csharp title="WebPaths.cs"
 using BlazorPathHelper;
