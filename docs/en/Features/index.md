@@ -1,7 +1,3 @@
-Certainly! Here's a naturalistic English translation of the provided text:
-
----
-
 ### Title: Feature List
 
 ### Description: This document explains the main features offered by this library.

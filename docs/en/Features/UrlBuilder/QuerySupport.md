@@ -1,7 +1,3 @@
-Certainly! Here's a naturalistic English translation of the provided text:
-
----
-
 ## Basic Usage
 
 The minimum requirements are as follows:

@@ -1,6 +1,4 @@
-Certainly! Here's the text translated into natural-sounding English:
-
----
+# Integrating Ant Blazor
 
 ## Prerequisites
 

@@ -1,12 +1,3 @@
-Certainly! Here's the text translated into naturalistic English:
-
----
-
-title: Getting Started
-description: This guide explains the basic usage of BlazorPathHelper.
-
----
-
 # Getting Started
 ## Introduction
 Install [BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/) in your Blazor project.
