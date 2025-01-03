@@ -7,14 +7,14 @@ title: 生成されたコードを表示する
 
 ```xml title="project.csproj"
 <PropertyGroup>
-	<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 </PropertyGroup>
 ```
 
 ## 閲覧
 生成されたファイルは`Dependencies`>`Analyzer`>`BlazorPathHelper.Generator`の下に表示されます。
 
-![generator-source-location](../image/generator-code-view.png)
+![generator-source-location](generator-code-view.png)
 
 例えば、URLビルダーを定義した`WebPaths.cs`を作成した場合、以下のようなファイルが生成されます。
 

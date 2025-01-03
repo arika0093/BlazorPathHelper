@@ -100,8 +100,8 @@ public partial class WebPaths
 
 ## 実行結果
 
-<img src="../image/sample-fluentui.gif" style="width:400px;">
+<img src="sample-fluentui.gif" style="width:400px;">
 
 
 ## ソースコード
-実装例は [Example.FluentUI](https://github.com/arika0093/BlazorPathHelper/examples/Example.FluentUI/) で利用できます。
+実装例は [Example.FluentUI](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.FluentUI/) で利用できます。

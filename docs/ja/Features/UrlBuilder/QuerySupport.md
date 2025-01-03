@@ -25,7 +25,7 @@ public record QueryRecord(string query = "hello", int page = 0, bool? opt = null
 !!! warning "注意！"
 
     `QueryRecord`クラスは、`.cs`ファイルに記述してください。
-		SourceGeneratorの仕様上、`.razor`ファイルに記述することはできません。
+    SourceGeneratorの仕様上、`.razor`ファイルに記述することはできません。
 
 !!! note "推奨: パラメータの初期値を明確にする"
 
@@ -78,7 +78,7 @@ public static string CounterWithQuery(QueryRecord __query)
     上記の定義の通り、実際にはクラス自体を復元しているわけではなく、一度プロパティを抽出しています。
     そのため、現在入れ子プロパティはサポートされていません。  
 
-	
+  
 ## クエリ名を変更する
 
 `#!csharp [Query<QueryRecord>]`属性を指定した場合、クエリ名は`QueryRecord`のプロパティ名がそのまま使用されます。
@@ -120,4 +120,5 @@ public partial class WebPaths
 | ---------------------------------------- | ----------------------------- |
 | `#!csharp record QueryClass(string[] arr)`   | `#!csharp "/?arr=foo&arr=bar&arr=buz"`|
 
-`IEnumerable`や`List`などはBlazor側がそもそも対応していないため、サポートされていません。
+`!#csharp string[]`の他にも、`!#csharp int[]`や`!#csharp bool[]`なども対応しています。
+`IEnumerable`や`List`などはBlazor側が対応していないため、サポートされていません。

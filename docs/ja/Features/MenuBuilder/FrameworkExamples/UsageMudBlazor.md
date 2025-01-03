@@ -92,7 +92,7 @@ public partial class WebPaths
 
 ## 実行結果
 
-<img src="../image/sample-mudblazor.gif" style="width:400px;">
+<img src="sample-mudblazor.gif" style="width:400px;">
 
 ## 注意事項
 
@@ -100,4 +100,4 @@ public partial class WebPaths
 これはMudBlazorがサブメニューを持つ要素にリンクを設定するAPIを用意していないためです。
 
 ## ソースコード
-実装例は [Example.MudBlazor](https://github.com/arika0093/BlazorPathHelper/examples/Example.MudBlazor/) で利用できます。
+実装例は [Example.MudBlazor](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.MudBlazor/) で利用できます。

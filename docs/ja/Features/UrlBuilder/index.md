@@ -80,31 +80,31 @@ using BlazorPathHelper;
 [BlazorPath]
 public partial class WebPaths
 {
-	// string
-	public const string WithString = "/string/{val}";
-	// nullable string
-	public const string WithStringNullable = "/string-null/{val?}";
-	// bool
-	public const string WithBool = "/bool/{val:bool}";
-	// datetime
-	public const string WithDate = "/datetime/{val:datetime}";
-	// decimal
-	public const string WithDecimal = "/decimal/{val:decimal}";
-	// double
-	public const string WithDouble = "/double/{val:double}";
-	// float
-	public const string WithFloat = "/float/{val:float}";
-	// guid
-	public const string WithGuid = "/guid/{val:guid}";
-	// int
-	public const string WithInt = "/int/{val:int}";
-	// long
-	public const string WithLong = "/long/{val:long}";
-	// multiple pattern
-	public const string WithMultiple = "/multi/{val1:int}/{val2:int}";
-	// super multiple pattern
-	public const string WithSuperMultiple = "/something/{val1:string}/{val2:int}/{val3:double?}";
-	// catch all pattern
-	public const string WithCatchAll = "/catch-all/{*rest}";
+  // string
+  public const string WithString = "/string/{val}";
+  // nullable string
+  public const string WithStringNullable = "/string-null/{val?}";
+  // bool
+  public const string WithBool = "/bool/{val:bool}";
+  // datetime
+  public const string WithDate = "/datetime/{val:datetime}";
+  // decimal
+  public const string WithDecimal = "/decimal/{val:decimal}";
+  // double
+  public const string WithDouble = "/double/{val:double}";
+  // float
+  public const string WithFloat = "/float/{val:float}";
+  // guid
+  public const string WithGuid = "/guid/{val:guid}";
+  // int
+  public const string WithInt = "/int/{val:int}";
+  // long
+  public const string WithLong = "/long/{val:long}";
+  // multiple pattern
+  public const string WithMultiple = "/multi/{val1:int}/{val2:int}";
+  // super multiple pattern
+  public const string WithSuperMultiple = "/something/{val1:string}/{val2:int}/{val3:double?}";
+  // catch all pattern
+  public const string WithCatchAll = "/catch-all/{*rest}";
 }
 ```

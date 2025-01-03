@@ -123,7 +123,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 
 ## 実行結果
 
-<img src="../image/sample-antblazor.gif" style="width:400px;">
+<img src="sample-antblazor.gif" style="width:400px;">
 
 
 ## 注意事項
@@ -132,4 +132,4 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 これはAntBlazorがサブメニューを持つ要素にリンクを設定するAPIを用意していないためです。
 
 ## ソースコード
-実装例は [Example.AntBlazor.Standard](https://github.com/arika0093/BlazorPathHelper/examples/Example.AntBlazor.Standard/) および [Example.AntBlazor.Pro](https://github.com/arika0093/BlazorPathHelper/examples/Example.AntBlazor.Pro/) で利用できます。
+実装例は [Example.AntBlazor.Standard](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Standard/) および [Example.AntBlazor.Pro](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.AntBlazor.Pro/) で利用できます。
