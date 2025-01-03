@@ -30,13 +30,7 @@ internal class ParseQueryRecordFactory
     public static ParseQueryRecord CreateFromSymbol(ISymbol symbol)
     {
         var name = symbol.Name;
-        // [SupplyParameterFromQuery(Name = "short")] -> short
-        var supplyParameterAttr = symbol.GetAttributes()
-            .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute");
-        var shortName = supplyParameterAttr?.NamedArguments
-            .FirstOrDefault(pair => pair.Key == "Name").Value.Value?.ToString();
-        // if shortName is null, use property name.
-        var urlName = shortName ?? name;
+        var urlName = ExtractQueryUrlNameFromAttribute(symbol);
 
         // check has initializer
         EqualsValueClauseSyntax? clauseSyntax = null;
@@ -72,5 +66,30 @@ internal class ParseQueryRecordFactory
             InitialValue = clauseSyntax,
             IsNullable = isNullable
         };
+    }
+
+    private static string ExtractQueryUrlNameFromAttribute(ISymbol symbol)
+    {
+        string? shortName = null;
+        // [SupplyParameterFromQuery(Name = "short")] -> short
+        var supplyParameterAttr = symbol.GetAttributes()
+            .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute");
+        // [QueryName("short")] -> short
+        var queryNameAttr = symbol.GetAttributes()
+            .FirstOrDefault(a => a.AttributeClass?.Name == "QueryNameAttribute");
+
+        if (supplyParameterAttr != null)
+        {
+            shortName = supplyParameterAttr?.NamedArguments
+                .FirstOrDefault(pair => pair.Key == "Name").Value.Value?.ToString();
+        }
+        else if (queryNameAttr != null)
+        {
+            shortName = queryNameAttr?.ConstructorArguments
+                .FirstOrDefault().Value?.ToString();
+        }
+        // if shortName is null, use property name.
+        var urlName = shortName ?? symbol.Name;
+        return urlName;
     }
 }

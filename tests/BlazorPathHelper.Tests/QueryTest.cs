@@ -17,6 +17,8 @@ public record Query4
 {
     [SupplyParameterFromQuery(Name = "short")]
     public required string CustomTest { get; set; }
+    [QueryName("short2")]
+    public required string CustomTest2 { get; set; }
 }
 // field pattern
 public record Query5
@@ -80,8 +82,9 @@ public class QueryTest
     [Fact]
     public void QueryTest4()
     {
-        DefinitionForQuery.Helper.QueryTest4(new() { CustomTest = "hello" })
-            .Should().Be("/query-test/4?short=hello");
+        Query4 q4 = new() { CustomTest = "hello", CustomTest2 = "world" };
+        DefinitionForQuery.Helper.QueryTest4(q4)
+            .Should().Be("/query-test/4?short=hello&short2=world");
     }
 
     [Fact]
