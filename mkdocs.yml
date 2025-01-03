@@ -80,7 +80,7 @@ plugins:
         default: true
         name: English
         build: true
-      - locale: zh-CN
+      - locale: zh
         name: 简体中文
         build: true
         nav_translations:

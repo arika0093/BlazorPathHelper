@@ -27,5 +27,5 @@ jobs:
         with:
           apikey: ${{ secrets.OPENAI_API_KEY }}
           inputFiles: ${{ steps.changed_files.outputs.files }}
-          outputFiles: 'docs/en/**/*.md docs/zh-CN/**/*.md'
+          outputFiles: 'docs/en/**/*.md docs/zh/**/*.md'
           languages: 'English Chinese'

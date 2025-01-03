@@ -19,7 +19,7 @@ This library **automatically** generates the following contents.
 See Documentation for more information.
 * [English](https://arika0093.github.io/BlazorPathHelper/)
 * [日本語](https://arika0093.github.io/BlazorPathHelper/ja/)
-* [简体中文](https://arika0093.github.io/BlazorPathHelper/zh-CN/)
+* [简体中文](https://arika0093.github.io/BlazorPathHelper/zh/)
 
 ## Getting Started
 ### Installation
