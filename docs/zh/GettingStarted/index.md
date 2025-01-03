@@ -1,5 +1,3 @@
-以下是将给定文本翻译成自然中文的版本：
-
 # 尝试使用
 ## 引言
 在Blazor项目中安装[BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/)。

@@ -1,5 +1,3 @@
-以下是将给定文本翻译成自然中文的版本：
-
 ## 前提条件
 
 使用[官方模板](https://mudblazor.com/getting-started/installation#using-templates)创建项目。
