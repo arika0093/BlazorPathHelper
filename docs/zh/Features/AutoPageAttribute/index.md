@@ -111,13 +111,13 @@ public partial class WebPaths
 
 public record QueryRecord
 {
-  [SupplyParameterFromQuery(Name = "q")]
+  [QueryName("q")]
   public string Query { get; init; } = "hello";
 
-  [SupplyParameterFromQuery(Name = "p")]
+  [QueryName("p")]
   public int Page { get; init; } = 0;
 
-  [SupplyParameterFromQuery(Name = "o")]
+  [QueryName("o")]
   public bool? Opt { get; init; }
 }
 ```
