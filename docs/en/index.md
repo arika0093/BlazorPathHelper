@@ -1,12 +1,7 @@
 ---
-title: Top Page
-description: BlazorPathHelper is a library that helps manage URL paths in a Blazor project.
----
 
-# Top Page
-`BlazorPathHelper` is a library that helps manage URL paths in a Blazor project.
-To get started, see [Getting Started](./GettingStarted/index.md).
+# Home Page
+
+`BlazorPathHelper` is a library designed to assist with managing URL paths within Blazor projects. To get started, please refer to [Getting Started](./GettingStarted/index.md).
 
 ![sample](../assets/sample.gif)
-
-
