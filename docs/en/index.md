@@ -5,6 +5,6 @@
 !!! tip "Translations Available"
 
     The documentation is available in the following languages:
-    [English](/BlazorPathHelper/) | [Japanese](/BlazorPathHelper/ja/) | [Simplified Chinese](/BlazorPathHelper/zh/)
+    [English](./) | [Japanese](./ja/) | [Simplified Chinese](./zh/)
 
 ![sample](../assets/sample.gif)

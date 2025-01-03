@@ -5,6 +5,6 @@
 !!! tip "翻译可用"
 
     文档提供以下语言版本：
-    [English](/BlazorPathHelper/) | [日本語](/BlazorPathHelper/ja/) | [简体中文](/BlazorPathHelper/zh/)
+    [English](../) | [日本語](../ja/) | [简体中文](../zh/)
 
 ![示例](../assets/sample.gif)
