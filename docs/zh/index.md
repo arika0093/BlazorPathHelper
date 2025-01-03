@@ -5,6 +5,6 @@
 !!! tip "翻译可用"
 
     文档提供以下语言版本：
-    [English](../) | [日本語](../ja/) | [简体中文](../zh/)
+    [English](../index.html) | [日本語](../ja/index.html) | [简体中文](../zh/index.html)
 
 ![示例](../assets/sample.gif)
