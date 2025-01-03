@@ -92,7 +92,7 @@ public partial class WebPaths
 
 ## 実行結果
 
-<img src="../../../../assets/sample-mudblazor.gif" style="width:400px;">
+![](../../../../assets/sample-mudblazor.gif){: style="width: 400px;" }
 
 ## 注意事項
 

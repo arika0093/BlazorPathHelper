@@ -89,7 +89,7 @@ Add the menu component to `MainLayout.razor`.
 
 ## Result
 
-<img src="../../../../assets/sample-mudblazor.gif" style="width:400px;">
+![](../../../../assets/sample-mudblazor.gif){: style="width: 400px;" }
 
 ## Notes
 

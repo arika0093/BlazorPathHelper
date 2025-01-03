@@ -95,7 +95,7 @@ Add the menu display component to `MainLayout.razor`.
 
 ## Execution Result
 
-<img src="../../../../assets/sample-fluentui.gif" style="width:400px;">
+![](../../../../assets/sample-fluentui.gif){: style="width: 400px;" }
 
 ## Source Code
 

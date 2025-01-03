@@ -123,7 +123,7 @@ private MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
 
 ## 実行結果
 
-<img src="../../../../assets/sample-antblazor.gif" style="width:400px;">
+![](../../../../assets/sample-antblazor.gif){: style="width: 400px;" }
 
 
 ## 注意事項

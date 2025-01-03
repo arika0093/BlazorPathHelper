@@ -97,7 +97,7 @@ Add the menu display component to `MainLayout.razor`.
 
 ## Execution Result
 
-<img src="../../../../assets/sample-plain.gif" style="width:400px;">
+![](../../../../assets/sample-plain.gif){: style="width: 400px;" }
 
 ## Source Code
 

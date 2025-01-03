@@ -99,9 +99,6 @@ plugins:
           Menu Customization: メニュー項目カスタマイズ
           Framework Examples: 各フレームワーク例
           Plain: Blazorテンプレート
-          Fluent UI: Fluent UI
-          AntBlazor: AntBlazor
-          MudBlazor: MudBlazor
           Reference: リファレンス
           API: API
   # pip install mkdocs-git-revision-date-localized-plugin
@@ -113,6 +110,3 @@ extra_javascript:
   - ./assets/javascripts/highlight.js
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/night-owl.min.css
-  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/unikitty-dark.min.css
-  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css
-  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css

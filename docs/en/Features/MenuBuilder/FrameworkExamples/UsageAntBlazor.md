@@ -120,7 +120,7 @@ Add a component to display the menu in `MainLayout.razor`.
 
 ## Result
 
-<img src="../../../../assets/sample-antblazor.gif" style="width:400px;">
+![](../../../../assets/sample-antblazor.gif){: style="width: 400px;" }
 
 ## Notes
 

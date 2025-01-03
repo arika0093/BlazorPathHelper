@@ -100,7 +100,7 @@ public partial class WebPaths
 
 ## 実行結果
 
-<img src="../../../../assets/sample-fluentui.gif" style="width:400px;">
+![](../../../../assets/sample-fluentui.gif){: style="width: 400px;" }
 
 
 ## ソースコード

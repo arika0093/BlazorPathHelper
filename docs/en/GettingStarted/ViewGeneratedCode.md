@@ -12,7 +12,7 @@ To view the automatically generated code, add the following attribute to your `.
 ## Viewing the Files
 The generated files will appear under `Dependencies` > `Analyzer` > `BlazorPathHelper.Generator`.
 
-![generator-source-location](generator-code-view.png)
+![generator-source-location](../../assets/generator-code-view.png)
 
 For example, if you create a `WebPaths.cs` file to define a URL builder, a file like the following will be generated:
 

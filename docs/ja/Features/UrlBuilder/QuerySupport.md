@@ -120,5 +120,5 @@ public partial class WebPaths
 | ---------------------------------------- | ----------------------------- |
 | `#!csharp record QueryClass(string[] arr)`   | `#!csharp "/?arr=foo&arr=bar&arr=buz"`|
 
-`!#csharp string[]`の他にも、`!#csharp int[]`や`!#csharp bool[]`なども対応しています。
+`#!csharp string[]`の他にも、`#!csharp int[]`や`#!csharp bool[]`なども対応しています。
 `IEnumerable`や`List`などはBlazor側が対応していないため、サポートされていません。
