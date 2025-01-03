@@ -1,5 +1,5 @@
-# BlazorPathHelper
+# 主页
 
-`BlazorPathHelper` 是一个专为帮助管理 Blazor 项目中的 URL 路径而设计的库。要开始使用它，请参阅[入门](./GettingStarted/index.md)。
+`BlazorPathHelper` 是一个帮助管理 Blazor 项目中 URL 路径的库。要了解如何引入，请参阅 [开始使用](./GettingStarted/index.md)。
 
-![sample](../assets/sample.gif)
+![示例](../assets/sample.gif)
