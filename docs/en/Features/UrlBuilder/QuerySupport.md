@@ -75,12 +75,12 @@ As you can see from the generated code above, each property of the `QueryRecord`
 
 ## Changing Query Names
 
-When you specify the `#!csharp [Query<QueryRecord>]` attribute, the query name uses the property name of `QueryRecord` as is. If you want to change the query name, add the `#!csharp [SupplyParameterFromQuery(Name = "shortName")]` attribute. (This is the same as the traditional method of specifying.)
+When you specify the `#!csharp [Query<QueryRecord>]` attribute, the query name uses the property name of `QueryRecord` as is. If you want to change the query name, add the `#!csharp [QueryName("shortName")]` attribute.
 
 ```csharp title="WebPaths.cs"
 public record QueryRecord
 {
-    [SupplyParameterFromQuery(Name = "short")]
+    [QueryName("short")] // or [SupplyParameterFromQuery(Name = "short")]
     public required string SuperLongName { get; set; }
 }
 
