@@ -1,6 +1,6 @@
 # https://github.com/3ru/gpt-translate/
 # usual usage: /gpt-translate docs/ja/**/*.md docs/en/**/*.md english
-name: GPT Translate
+name: GPT Translate with comments on PR
 
 on:
   issue_comment:
@@ -12,7 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - name: Run GPT Translate
         if: |
           contains(github.event.comment.body, '/gpt-translate') || 

@@ -1,0 +1,31 @@
+# https://g-t.vercel.app/docs/examples/commit
+name: GPT Translate per Commit from Japanese
+ 
+on:
+  push:
+    paths:
+      - 'docs/ja/**.md'
+    branches-ignore:
+      - release/**
+  
+jobs:
+  gpt_translate:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository with two latest commits
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+ 
+      - name: get changed files name
+        id: changed_files
+        run: |
+          echo "files=$(git diff --name-only HEAD^ HEAD | grep '\.md$' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+      - name: Run GPT Translate
+        uses: 3ru/gpt-translate@master
+        with:
+          apikey: ${{ secrets.OPENAI_API_KEY }}
+          inputFiles: ${{ steps.changed_files.outputs.files }}
+          outputFiles: 'docs/en/**/*.md'
+          languages: 'English'

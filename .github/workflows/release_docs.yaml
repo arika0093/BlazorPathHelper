@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -35,3 +35,5 @@ jobs:
       - name: Build Docs Website
         run: mike deploy --push --update-aliases ${{ steps.nbgv.outputs.NuGetPackageVersion }} latest
         
+      - name: Set default to latest
+        run: mike set-default latest
