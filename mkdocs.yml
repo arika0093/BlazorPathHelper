@@ -1,0 +1,118 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: BlazorPathHelper
+site_url: https://arika0093.github.io/BlazorPathHelper/
+repo_url: https://github.com/arika0093/BlazorPathHelper
+repo_name: BlazorPathHelper
+theme:
+  name: material
+  language: en
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.action.edit
+    # - navigation.tabs
+    - navigation.indexes
+    - navigation.footer
+    - navigation.tracking
+    - navigation.expand
+    - toc.follow
+  font:
+    code: Jetbrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+nav:
+  - Home: index.md
+  - GettingStarted:
+    - GettingStarted/index.md
+    - ViewGeneratedCode: GettingStarted/ViewGeneratedCode.md
+  - Features:
+    - Features/index.md
+    - URLBuilder:
+      - Features/UrlBuilder/index.md
+      - Query Support: Features/UrlBuilder/QuerySupport.md
+    - AutoPageAttribute:
+      - Features/AutoPageAttribute/index.md
+    - MenuBuilder:
+      - Features/MenuBuilder/index.md
+      - Menu Customization: Features/MenuBuilder/MenuCustomization.md
+      - FrameworkExamples:
+        - Features/MenuBuilder/FrameworkExamples/index.md
+        - Plain: Features/MenuBuilder/FrameworkExamples/UsagePlain.md
+        - Fluent UI: Features/MenuBuilder/FrameworkExamples/UsageFluentUI.md
+        - AntBlazor: Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.md
+        - MudBlazor: Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.md
+extra:
+  version:
+    provider: mike
+markdown_extensions:
+  - abbr:
+  - attr_list:
+  - nl2br:
+  - md_in_html:
+  - admonition:
+  - toc:
+      permalink: true
+  - pymdownx.details:
+  - pymdownx.superfences:
+  - pymdownx.keys:    
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: false
+      auto_title: true
+      linenums: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.inlinehilite:
+  - pymdownx.snippets:
+  - pymdownx.superfences:
+plugins:
+  search:
+  i18n:
+    # pip install mkdocs-static-i18n
+    default_language: en
+    reconfigure_material: true
+    docs_structure: folder
+    languages:
+      - locale: en
+        default: true
+        name: English
+        build: true
+      - locale: ja
+        name: 日本語
+        build: true
+        nav_translations:
+          Introduction: イントロダクション
+          Home: トップページ
+          GettingStarted: 使ってみる
+          ViewGeneratedCode: 生成されたコードの閲覧
+          Features: 機能一覧
+          Features TopPage: 主な機能
+          URLBuilder: URLビルダー
+          URLBuilder Usage: 概要
+          Query Support: クエリサポート
+          AutoPageAttribute: 自動ページ属性
+          MenuBuilder Usage: 概要
+          MenuBuilder: メニュービルダー機能
+          Menu Customization: メニュー項目カスタマイズ
+          FrameworkExamples: 各フレームワーク例
+          Plain: Blazorテンプレート
+          Fluent UI: Fluent UI
+          AntBlazor: AntBlazor
+          MudBlazor: MudBlazor
+          Reference: リファレンス
+          API: API
+  # pip install mkdocs-git-revision-date-localized-plugin
+  git-revision-date-localized:
+    enable_creation_date: true
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js
+  - https://unpkg.com/highlightjs-cshtml-razor/dist/cshtml-razor.min.js
+  - ./assets/javascripts/highlight.js
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/night-owl.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/base16/unikitty-dark.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css
