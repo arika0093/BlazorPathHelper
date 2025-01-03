@@ -122,6 +122,7 @@ plugins:
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js
   - https://unpkg.com/highlightjs-cshtml-razor/dist/cshtml-razor.min.js
-  - ./assets/javascripts/highlight.js
+  - ./assets/js/highlight.js
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/night-owl.min.css
+  - ./assets/css/custom.css

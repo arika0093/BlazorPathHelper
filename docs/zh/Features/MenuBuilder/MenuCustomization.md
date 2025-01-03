@@ -13,7 +13,7 @@ public partial class WebPaths
 }
 ```
 
-!!! 提示 "还需要在菜单端进行实现"
+!!! tip "还需要在菜单端进行实现"
 
     这只是数据端的更新方法，实际上还需要在菜单端实现以显示`Description`。
 
