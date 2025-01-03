@@ -60,7 +60,7 @@ public partial class WebPaths
     <SubMenu Key=@menuItem.Key>
       <TitleTemplate>
         <!-- Iconはobject?型であるため、toStringで使用します -->
-        <Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+        <Icon Type=@(menuItem.Icon?.ToString()) Theme="IconThemeType.Outline" />
         <span>@menuItem.Name</span>
       </TitleTemplate>
       <ChildContent>
@@ -73,7 +73,7 @@ public partial class WebPaths
   {
     <!-- menuItem.Path はメニューアイテムのURLパスを表します -->
     <MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
-      <Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+      <Icon Type=@(menuItem.Icon?.ToString()) Theme="IconThemeType.Outline" />
       <span>@menuItem.Name</span> 
     </MenuItem>    
   }

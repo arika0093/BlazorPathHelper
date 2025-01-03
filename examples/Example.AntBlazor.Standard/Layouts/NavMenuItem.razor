@@ -6,7 +6,7 @@
 	{
 		<SubMenu Key=@menuItem.Key>
 			<TitleTemplate>
-				<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+				<Icon Type=@(menuItem.Icon?.ToString()) Theme="IconThemeType.Outline" />
 				<span>@menuItem.Name</span>
 			</TitleTemplate>
 			<ChildContent>
@@ -17,7 +17,7 @@
 	else
 	{
 		<MenuItem RouterLink="@menuItem.Path" Key=@menuItem.Key>
-			<Icon Type=@(menuItem.Icon?.ToString()) Theme="outline" />
+			<Icon Type=@(menuItem.Icon?.ToString()) Theme="IconThemeType.Outline" />
 			<span>@menuItem.Name</span> 
 		</MenuItem>    
 	}
