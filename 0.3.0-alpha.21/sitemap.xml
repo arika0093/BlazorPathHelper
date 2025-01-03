@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/AutoPageAttribute/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/AutoPageAttribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/AutoPageAttribute/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/MenuCustomization/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/MenuCustomization/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/MenuCustomization/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/FrameworkExamples/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageFluentUI/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageFluentUI/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsagePlain/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/MenuBuilder/FrameworkExamples/UsagePlain/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/MenuBuilder/FrameworkExamples/UsagePlain/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/UrlBuilder/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/UrlBuilder/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/UrlBuilder/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/UrlBuilder/QuerySupport/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/Features/UrlBuilder/QuerySupport/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/Features/UrlBuilder/QuerySupport/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/GettingStarted/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/GettingStarted/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/GettingStarted/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/GettingStarted/ViewGeneratedCode/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/GettingStarted/ViewGeneratedCode/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21ja/GettingStarted/ViewGeneratedCode/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/AutoPageAttribute/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/AutoPageAttribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/AutoPageAttribute/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/MenuCustomization/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/MenuCustomization/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/MenuCustomization/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/FrameworkExamples/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/FrameworkExamples/UsageAntBlazor/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/FrameworkExamples/UsageFluentUI/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/FrameworkExamples/UsageMudBlazor/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsagePlain/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/MenuBuilder/FrameworkExamples/UsagePlain/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/MenuBuilder/FrameworkExamples/UsagePlain/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/UrlBuilder/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/UrlBuilder/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/UrlBuilder/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/UrlBuilder/QuerySupport/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/Features/UrlBuilder/QuerySupport/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21Features/UrlBuilder/QuerySupport/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/GettingStarted/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/GettingStarted/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21GettingStarted/"/>
+    </url>
+    <url>
+        <loc>https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/GettingStarted/ViewGeneratedCode/</loc>
+        <lastmod>2025-01-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21/ja/GettingStarted/ViewGeneratedCode/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://arika0093.github.io/BlazorPathHelper/0.3.0-alpha.21GettingStarted/ViewGeneratedCode/"/>
+    </url>
+</urlset>
