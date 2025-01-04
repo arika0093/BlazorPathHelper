@@ -134,7 +134,7 @@ public partial class WebPaths
 }
 ```
 
-## メニュー項目の多言語対応(i10n)を行う
+## メニュー項目の多言語対応(l10n)を行う
 
 まずはリソースを作成します。今回は`Resources`フォルダに以下の内容で`Localize.resx`を作成します。
 
@@ -160,14 +160,16 @@ public partial class WebPaths
 
 リソースキーが渡されるので、表示側でそのキーを利用して表示します。
 
-```csharp title="Menu.razor"
-@inject IStringLocalizer<Localize> Localizer
+```csharp title="NavMenuItem.razor"
+@inject IStringLocalizer<Localize> Loc
 @foreach(var menuItem in WebPaths.MenuItem)
 {
   <a href="@menuItem.Path">
-    @Localizer[menuItem.Name]
+    @Loc[menuItem.Name]
   </a>
 }
 ```
 
-実装例は #TODO を参照してください。
+![](../../../assets/sample-l10n.gif){: style="width: 500px;" }
+
+実装例は [Example.Localization](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.Localization/) を参照してください。
