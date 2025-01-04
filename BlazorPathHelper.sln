@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.AntBlazor.Standard"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.MudBlazor", "examples\Example.MudBlazor\Example.MudBlazor.csproj", "{711B0C92-16E7-4C47-8AF7-1C89060D2C3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Localization", "examples\Example.Localization\Example.Localization.csproj", "{EACA2125-D882-4931-B343-CFF229422853}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,8 +65,15 @@ Global
 		{711B0C92-16E7-4C47-8AF7-1C89060D2C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{711B0C92-16E7-4C47-8AF7-1C89060D2C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{711B0C92-16E7-4C47-8AF7-1C89060D2C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EACA2125-D882-4931-B343-CFF229422853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACA2125-D882-4931-B343-CFF229422853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACA2125-D882-4931-B343-CFF229422853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACA2125-D882-4931-B343-CFF229422853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_MoveToResources = {"Items":[{"Extensions":".cs,.vb","Patterns":"$Namespace.$File.$Key|$File.$Key|StringResourceKey.$Key|$Namespace.StringResourceKey.$Key|nameof($File.$Key)|nameof($File.$Key), ResourceType = typeof($File)|ErrorMessageResourceType = typeof($File), ErrorMessageResourceName = nameof($File.$Key)"},{"Extensions":".cshtml,.vbhtml","Patterns":"@$Namespace.$File.$Key|@$File.$Key|@StringResourceKey.$Key|@$Namespace.StringResourceKey.$Key"},{"Extensions":".cpp,.c,.hxx,.h","Patterns":"$File::$Key"},{"Extensions":".aspx,.ascx","Patterns":"<%$ Resources:$File,$Key %>|<%= $File.$Key %>|<%= $Namespace.$File.$Key %>"},{"Extensions":".xaml","Patterns":"\"{x:Static properties:$File.$Key}\""},{"Extensions":".ts","Patterns":"resources.$Key"},{"Extensions":".html","Patterns":"{{ resources.$Key }}"}]}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
 ﻿using BlazorPathHelper;
-using Example.Plain.Pages;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable ClassNeverInstantiated.Global

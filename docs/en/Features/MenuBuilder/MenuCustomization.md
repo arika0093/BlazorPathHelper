@@ -133,7 +133,7 @@ public partial class WebPaths
 }
 ```
 
-## Implementing Multilingual Support (i10n) for Menu Items
+## Implementing Multilingual Support (l10n) for Menu Items
 
 First, create a resource file. In this example, create `Localize.resx` in the `Resources` folder with the following content:
 
@@ -160,13 +160,15 @@ public partial class WebPaths
 The resource key is passed, so use it for display on the UI side.
 
 ```csharp title="Menu.razor"
-@inject IStringLocalizer<Localize> Localizer
+@inject IStringLocalizer<Localize> Loc
 @foreach(var menuItem in WebPaths.MenuItem)
 {
   <a href="@menuItem.Path">
-    @Localizer[menuItem.Name]
+    @Loc[menuItem.Name]
   </a>
 }
 ```
 
-For implementation examples, refer to #TODO.
+![](../../../assets/sample-l10n.gif){: style="width: 500px;" }
+
+For implementation examples, refer to [Example.Localization](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.Localization/).

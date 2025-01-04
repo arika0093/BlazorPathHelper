@@ -176,7 +176,7 @@ public partial class WebPaths
 | GroupLevel                 | (自動生成)                       | メニューの階層レベル。一番上が0。                        | ー                                 |
 | GroupIndex                 | (自動生成)                       | 子メニュー内でのインデックス(数字)                       | ー                                 |
 | Path                       | (自動生成)                       | メニューのリンク先                                | `const string`変数の値                |
-| Name                       | `Name` または第一引数               | メニューの表示名。リソースのキー名を指定することでi10nの対応可能。      | 変数名                               |
+| Name                       | `Name` または第一引数               | メニューの表示名。リソースのキー名を指定することでl10nの対応可能。      | 変数名                               |
 | Description                | `Description`                | メニューの説明文                                 | NULL                              |
 | Icon                       | `Icon` または ジェネリクスで指定(クラスの場合) | メニューのアイコン                                | NULL                              |
 | Children                   | (自動生成)                       | メニューの子要素                                 | 空の配列                              |

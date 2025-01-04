@@ -1,0 +1,18 @@
+﻿@page "/{*Url:nonfile}"
+@using System.Globalization
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<p>Current URL is /@Url</p>
+
+<CultureSelector />
+
+@code
+{
+    [Parameter] 
+    public string Url { get; set; } = "";
+}

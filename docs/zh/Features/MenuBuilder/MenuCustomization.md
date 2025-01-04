@@ -135,7 +135,7 @@ public partial class WebPaths
 }
 ```
 
-## 实现菜单项的多语言支持(i10n)
+## 实现菜单项的多语言支持(l10n)
 
 首先创建资源。在`Resources`文件夹中创建`Localize.resx`，内容如下：
 
@@ -162,13 +162,15 @@ public partial class WebPaths
 资源键会被传递，因此在显示端可以利用该键进行显示。
 
 ```csharp title="Menu.razor"
-@inject IStringLocalizer<Localize> Localizer
+@inject IStringLocalizer<Localize> Loc
 @foreach(var menuItem in WebPaths.MenuItem)
 {
   <a href="@menuItem.Path">
-    @Localizer[menuItem.Name]
+    @Loc[menuItem.Name]
   </a>
 }
 ```
 
-有关实现示例，请参阅#TODO。
+![](../../../assets/sample-l10n.gif){: style="width: 500px;" }
+
+有关实现示例，请参阅 [Example.Localization](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.Localization/)。

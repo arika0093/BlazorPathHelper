@@ -1,0 +1,40 @@
+﻿@* https://learn.microsoft.com/ja-jp/aspnet/core/blazor/globalization-localization?view=aspnetcore-9.0#dynamically-set-the-client-side-culture-by-user-preference *@
+@using System.Globalization
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<p>
+    <label>
+        Select your locale:
+        <select @bind="_selectedCulture" @bind:after="ApplySelectedCultureAsync">
+            @foreach (var culture in _supportedCultures)
+            {
+                <option value="@culture">@culture.DisplayName</option>
+            }
+        </select>
+    </label>
+</p>
+
+@code
+{
+    private CultureInfo? _selectedCulture;
+    private readonly CultureInfo[] _supportedCultures = [
+        new("en-US"),
+        new("zh-CN"),
+        new("ja-JP"),
+    ];
+
+    protected override void OnInitialized()
+    {
+        _selectedCulture = CultureInfo.CurrentCulture;
+    }
+
+    private async Task ApplySelectedCultureAsync()
+    {
+        if (!Equals(CultureInfo.CurrentCulture, _selectedCulture))
+        {
+            await JS.InvokeVoidAsync("blazorCulture.set", _selectedCulture!.Name);
+            Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+        }
+    }
+}

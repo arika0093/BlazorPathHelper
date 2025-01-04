@@ -1,0 +1,44 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Home" xml:space="preserve">
+        <value>Home</value>
+    </data>
+	<data name="HomePage" xml:space="preserve">
+		<value>Home Page</value>
+	</data>
+	<data name="Sample1" xml:space="preserve">
+		<value>Sample 1</value>
+	</data>
+	<data name="Sample1C1" xml:space="preserve">
+		<value>Sample1C1</value>
+	</data>
+	<data name="Sample1C2" xml:space="preserve">
+		<value>Sample1C2</value>
+	</data>
+	<data name="Sample1C2C1" xml:space="preserve">
+		<value>Sample1C2C1</value>
+	</data>
+	<data name="Sample1Child1" xml:space="preserve">
+		<value>Sample 1 Child-Item 1</value>
+	</data>
+	<data name="Sample1Child2" xml:space="preserve">
+		<value>Sample 1 Child-Item 2</value>
+	</data>
+	<data name="Sample1Child2Sub1" xml:space="preserve">
+		<value>Sample 1 Child-Item 2 &gt; SubItem 1</value>
+	</data>
+	<data name="Sample1Page" xml:space="preserve">
+		<value>Sample 1 Page</value>
+	</data>
+</root>
