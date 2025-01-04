@@ -42,7 +42,7 @@
       <EmbeddedResource Update="Resource\Localize.ja-JP.resx">
         <DependentUpon>Localize.resx</DependentUpon>
       </EmbeddedResource>
-      <EmbeddedResource Update="Resource\Localize.zh-cn.resx">
+      <EmbeddedResource Update="Resource\Localize.zh-CN.resx">
         <DependentUpon>Localize.resx</DependentUpon>
       </EmbeddedResource>
     </ItemGroup>
