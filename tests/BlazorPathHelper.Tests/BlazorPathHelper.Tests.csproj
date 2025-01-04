@@ -36,13 +36,4 @@
       </EmbeddedResource>
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Update="Resources\Localize.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Localize.resx</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
-
 </Project>
