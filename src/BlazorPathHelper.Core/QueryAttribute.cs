@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CS9113
+using System;
 
 namespace BlazorPathHelper;
 
