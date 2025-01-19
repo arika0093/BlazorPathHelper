@@ -132,11 +132,11 @@ Now, the URL builder for `CounterWithQuery` can receive queries.
 ```csharp
 public record QueryRecord
 {
-  [SupplyParameterFromQuery(Name = "q")] // -> URL key is "q"
+  [QueryName("q")] // -> URL key is "q"
   public string query { get; set; } = "hello";
-  [SupplyParameterFromQuery(Name = "p")]
+  [QueryName("p")]
   public int page { get; set; } = 0;
-  [SupplyParameterFromQuery(Name = "o")]
+  [QueryName("o")]
   public bool? opt { get; set; } = null;
 }
 // -> /counter/query?q=hello&p=0&o=true
