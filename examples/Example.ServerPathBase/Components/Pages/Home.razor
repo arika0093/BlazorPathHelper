@@ -1,0 +1,18 @@
+﻿<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button @onclick="JumpToSample3">Jump to Sample3 with Value</button>
+
+@inject NavigationManager NavigationManager
+@code {
+    private void JumpToSample3()
+    {
+        var random = Random.Shared.Next(1, 1000);
+        NavigationManager.NavigateTo(
+            WebPaths.Helper.Sample3Arg(random)
+        );
+    }
+}
