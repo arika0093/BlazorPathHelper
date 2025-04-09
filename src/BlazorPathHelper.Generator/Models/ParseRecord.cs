@@ -31,6 +31,11 @@ internal record ParseRecord
     public required string ExportClassName { get; init; }
 
     /// <summary>
+    /// root path of blazor page. e.g. "/sample"
+    /// </summary>
+    public required string PathBaseValue { get; init; }
+
+    /// <summary>
     /// Raw string of path. contains {value:int} like.
     /// </summary>
     public required string PathRawValue { get; init; }

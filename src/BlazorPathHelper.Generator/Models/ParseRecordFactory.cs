@@ -46,6 +46,7 @@ internal static class ParseRecordFactory
 
         var rootNamespace = rootAttrDict.Get(nameof(BlazorPathAttribute.Namespace));
         var rootClassName = rootAttrDict.Get(nameof(BlazorPathAttribute.ClassName));
+        var rootPathBaseValue = rootAttrDict.Get(nameof(BlazorPathAttribute.PathBaseValue)) ?? "";
         var rootFileName = rootSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
             .Replace("global::", "")
             .Replace("<", "_")
@@ -96,6 +97,7 @@ internal static class ParseRecordFactory
             AccessModifier = rootSymbol.DeclaredAccessibility.GetAccessibilityString(),
             ExportClassName = rootClassName ?? rootSymbol.Name,
             VariableName = pathItemSymbol.Name,
+            PathBaseValue = rootPathBaseValue,
             PathRawValue = (string?)pathItemSymbol.ConstantValue ?? string.Empty,
             DisplayName = itemNameFromConstructor ?? itemNameFromProp ?? pathItemSymbol.Name,
             DisplayDescription = itemDescription,

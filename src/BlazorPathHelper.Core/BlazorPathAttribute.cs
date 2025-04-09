@@ -19,4 +19,9 @@ public class BlazorPathAttribute : Attribute
     /// export class name. default: same as defined class name
     /// </summary>
     public string? ClassName { get; set; } = null;
+
+    /// <summary>
+    /// user defined pathbase. e.g. "/sample". default: ""
+    /// </summary>
+    public string PathBaseValue { get; set; } = "";
 }
