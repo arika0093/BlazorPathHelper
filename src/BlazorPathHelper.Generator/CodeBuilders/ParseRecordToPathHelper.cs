@@ -13,6 +13,10 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     /// </summary>
     public IEnumerable<string> BuildPathHelpers()
     {
+        if (record.IsIgnore)
+        {
+            return [];
+        }
         if (record.IsExistQuery)
         {
             return BuildPathHelperWithQuery();
