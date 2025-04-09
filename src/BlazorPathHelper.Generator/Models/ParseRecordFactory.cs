@@ -58,6 +58,7 @@ internal static class ParseRecordFactory
         var pathItemDict = pathItemAttr?.ToDictionary();
         var pathRawValue = pathItemSymbol.ConstantValue?.ToString() ?? "";
         var itemVisible = pathItemDict?.Get(nameof(ItemAttribute.Visible));
+        var itemIgnore = pathItemDict?.Get(nameof(ItemAttribute.Ignore));
         var itemNameFromProp = pathItemDict?.Get(nameof(ItemAttribute.Name));
         var itemNameFromConstructor = pathItemAttr?.ConstructorArguments.FirstOrDefault().Value?.ToString();
         var itemDescription = pathItemDict?.Get(nameof(ItemAttribute.Description));
@@ -66,6 +67,10 @@ internal static class ParseRecordFactory
         // check visibility
         bool? visibleFlag = itemVisible != null
             ? string.Compare(itemVisible, "true", StringComparison.OrdinalIgnoreCase) == 0
+            : null;
+        // check ignore flag
+        bool? ignoreFlag = itemIgnore != null
+            ? string.Compare(itemIgnore, "true", StringComparison.OrdinalIgnoreCase) == 0
             : null;
 
         // parse arguments of url
@@ -104,6 +109,7 @@ internal static class ParseRecordFactory
             Parameters = parseParameters.ToList(),
             GroupPath = itemGroup ?? null,
             ForceDisplayFlag = visibleFlag,
+            IsIgnore = ignoreFlag ?? false,
             Icon = itemIcon,
             IconSymbol = iconTypeSymbol,
             QueryTypeSymbol = queryTypeSymbol,

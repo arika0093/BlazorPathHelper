@@ -167,8 +167,8 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                 
                 {{exportNamespace}}
                 
-                // @page "{{record.PathRawValue}}"
-                [Route("{{record.PathRawValue}}")]
+                // @page "{{record.PathRawValueWithoutPathBase}}"
+                [Route("{{record.PathRawValueWithoutPathBase}}")]
                 {{record.AccessModifier}} partial class {{pageClassName}}
                 {
                     {{string.Join($"{NL}    ", exportCodes)}}

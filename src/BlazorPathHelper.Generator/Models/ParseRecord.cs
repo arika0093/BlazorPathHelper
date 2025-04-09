@@ -31,14 +31,30 @@ internal record ParseRecord
     public required string ExportClassName { get; init; }
 
     /// <summary>
-    /// root path of blazor page. e.g. "/sample"
+    /// root path of blazor page (trimmed last '/'). e.g. "/sample"
     /// </summary>
-    public required string PathBaseValue { get; init; }
+    public required string PathBaseValue
+    {
+        get => _PathBaseValue.TrimEnd('/');
+        init => _PathBaseValue = value;
+    }
+    private string _PathBaseValue = default!;
 
     /// <summary>
-    /// Raw string of path. contains {value:int} like.
+    /// Raw string of path. contains {value:int} like. contained PathBaseValue.
     /// </summary>
-    public required string PathRawValue { get; init; }
+    public required string PathRawValue
+    {
+        // concat PathBase
+        get => GetFullPath(_PathRawValue);
+        init => _PathRawValue = value;
+    }
+    private string _PathRawValue = default!;
+
+    /// <summary>
+    /// Raw string of path. contains {value:int} like. not contained PathBaseValue.
+    /// </summary>
+    public string PathRawValueWithoutPathBase => _PathRawValue;
 
     /// <summary>
     /// name of variable. used for function name of PathHelper.
@@ -69,6 +85,11 @@ internal record ParseRecord
     /// is display to menu or not.
     /// </summary>
     public bool? ForceDisplayFlag { get; set; }
+
+    /// <summary>
+    /// menu item and PathBuilder ignore flag. default: false
+    /// </summary>
+    public bool IsIgnore { get; set; } = false;
 
     /// <summary>
     /// icon symbol of menu item. used for menu item. default: null
@@ -159,4 +180,27 @@ internal record ParseRecord
         var split = PathRawValue.Split('/');
         return string.Join("/", split.Take(split.Length - 1));
     }
+
+    // concat PathBase and PathRawValue/PathFormatterBase
+    private string GetFullPath(string rawPath)
+    {
+        // for example, "/" + "/sample" => "/sample"
+        if (string.IsNullOrEmpty(PathBaseValue))
+        {
+            return rawPath;
+        }
+        // for example, "/sample/" + "/" => "/sample"
+        else if (rawPath == "/" || rawPath == "")
+        {
+            return PathBaseValue;
+        }
+        // for example, "/sample/" + "/foo/bar" => "/sample/foo/bar"
+        else
+        {
+            var rawPathTrim = rawPath.TrimStart('/');
+            return $"{PathBaseValue}/{rawPathTrim}";
+        }
+    }
+
+
 }
