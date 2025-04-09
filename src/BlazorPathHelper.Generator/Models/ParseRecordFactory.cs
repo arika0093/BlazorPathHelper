@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BlazorPathHelper.Utils;
@@ -27,7 +27,17 @@ internal static class ParseRecordFactory
     /// create instance from BlazorPathAttribute and BlazorPathItemAttribute.
     /// </summary>
     /// <param name="rootSymbol">symbol of class with BlazorPathAttribute</param>
-    /// <param name="pathItemSymbol">symbol of `const string`</param>
+    /// <summary>
+    /// Generates a <c>ParseRecord</c> by extracting attribute data from a class symbol and a constant string field symbol.
+    /// </summary>
+    /// <param name="rootSymbol">The class symbol decorated with <c>BlazorPathAttribute</c> from which root-level metadata is extracted.</param>
+    /// <param name="pathItemSymbol">The constant string field symbol decorated with <c>BlazorPathItemAttribute</c> from which path item metadata is extracted.</param>
+    /// <returns>
+    /// A new instance of <c>ParseRecord</c> populated with information such as namespace, class name, path base value, visibility flags, icon data, query details, and page type.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// Thrown if the <c>BlazorPathAttribute</c> is not found on the <paramref name="rootSymbol"/>.
+    /// </exception>
     private static ParseRecord GenerateRecordFromPathAttr(
         INamedTypeSymbol rootSymbol,
         IFieldSymbol pathItemSymbol

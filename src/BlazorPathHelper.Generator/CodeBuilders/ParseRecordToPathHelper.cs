@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using BlazorPathHelper.Models;
 
@@ -10,7 +10,12 @@ internal class ParseRecordToPathHelper(ParseRecord record)
 
     /// <summary>
     /// build path helper function.
+    /// <summary>
+    /// Generates a collection of C# code snippets for path helper methods based on the current parse record settings.
     /// </summary>
+    /// <returns>
+    /// An enumerable of strings representing the generated helper methods. Returns an empty collection if the record is marked as ignored; otherwise, returns query-based, argument-based, or argument-less helper methods as determined by the record’s properties.
+    /// </returns>
     public IEnumerable<string> BuildPathHelpers()
     {
         if (record.IsIgnore)
