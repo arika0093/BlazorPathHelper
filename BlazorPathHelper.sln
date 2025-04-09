@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.MudBlazor", "exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Localization", "examples\Example.Localization\Example.Localization.csproj", "{EACA2125-D882-4931-B343-CFF229422853}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.ServerPathBase", "examples\Example.ServerPathBase\Example.ServerPathBase.csproj", "{1E02AE67-8B38-4F72-91AF-F9D22CFE5961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,11 +71,15 @@ Global
 		{EACA2125-D882-4931-B343-CFF229422853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EACA2125-D882-4931-B343-CFF229422853}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EACA2125-D882-4931-B343-CFF229422853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E02AE67-8B38-4F72-91AF-F9D22CFE5961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E02AE67-8B38-4F72-91AF-F9D22CFE5961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E02AE67-8B38-4F72-91AF-F9D22CFE5961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E02AE67-8B38-4F72-91AF-F9D22CFE5961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_MoveToResources = {"Items":[{"Extensions":".cs,.vb","Patterns":"$Namespace.$File.$Key|$File.$Key|StringResourceKey.$Key|$Namespace.StringResourceKey.$Key|nameof($File.$Key)|nameof($File.$Key), ResourceType = typeof($File)|ErrorMessageResourceType = typeof($File), ErrorMessageResourceName = nameof($File.$Key)"},{"Extensions":".cshtml,.vbhtml","Patterns":"@$Namespace.$File.$Key|@$File.$Key|@StringResourceKey.$Key|@$Namespace.StringResourceKey.$Key"},{"Extensions":".cpp,.c,.hxx,.h","Patterns":"$File::$Key"},{"Extensions":".aspx,.ascx","Patterns":"<%$ Resources:$File,$Key %>|<%= $File.$Key %>|<%= $Namespace.$File.$Key %>"},{"Extensions":".xaml","Patterns":"\"{x:Static properties:$File.$Key}\""},{"Extensions":".ts","Patterns":"resources.$Key"},{"Extensions":".html","Patterns":"{{ resources.$Key }}"}]}
+		SolutionGuid = {36AE79DD-7720-450D-B7DC-4E65CA5F39F2}
 	EndGlobalSection
 EndGlobal

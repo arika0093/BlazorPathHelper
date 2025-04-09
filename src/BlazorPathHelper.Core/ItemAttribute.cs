@@ -16,7 +16,12 @@ public class ItemAttribute(
     /// Menu item visibility. default: true
     /// </summary>
     public bool Visible { get; set; } = true;
-    
+
+    /// <summary>
+    /// Menu item and PathBuilder ignore flag. default: false
+    /// </summary>
+    public bool Ignore { get; set; } = false;
+
     /// <summary>
     /// Menu item display name. default: field/property name
     /// </summary>
