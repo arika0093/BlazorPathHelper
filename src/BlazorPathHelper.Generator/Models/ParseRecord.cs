@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
@@ -161,7 +161,13 @@ internal record ParseRecord
     // are there any query?
     public bool IsExistQuery => QueryRecords.Count > 0;
 
-    // build path string from PathRawValue
+    /// <summary>
+    /// Derives the default group path from the raw path.
+    /// </summary>
+    /// <remarks>
+    /// If the raw path contains a variable placeholder (denoted by '{'), the group path is the portion before the first occurrence of '{'.
+    /// Otherwise, the group path is determined by removing the last segment of the path (i.e., the parent directory).
+    /// </remarks>
     private string BuildDefaultGroupPath()
     {
         // Basically, the parent directory of the path should be used as the key.
@@ -181,7 +187,14 @@ internal record ParseRecord
         return string.Join("/", split.Take(split.Length - 1));
     }
 
-    // concat PathBase and PathRawValue/PathFormatterBase
+    /// <summary>
+    /// Combines the base path with a provided raw path to produce a properly formatted full path.
+    /// </summary>
+    /// <param name="rawPath">The raw path to append. It can be empty, a single slash ("/"), or a relative path starting with a slash.</param>
+    /// <returns>
+    /// The full concatenated path. If no base path is set, returns the raw path; if the raw path is "/" or empty, returns the base path;
+    /// otherwise, appends the trimmed raw path to the base path with a single slash separator.
+    /// </returns>
     private string GetFullPath(string rawPath)
     {
         // for example, "/" + "/sample" => "/sample"
