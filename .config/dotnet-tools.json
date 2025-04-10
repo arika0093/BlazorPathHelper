@@ -8,13 +8,6 @@
         "nbgv"
       ],
       "rollForward": false
-    },
-    "microsoft.dotnet-try": {
-      "version": "1.0.20474.1",
-      "commands": [
-        "dotnet-try"
-      ],
-      "rollForward": false
     }
   }
 }
