@@ -24,10 +24,6 @@ internal static class ParseRecordFactory
     }
 
     /// <summary>
-    /// create instance from BlazorPathAttribute and BlazorPathItemAttribute.
-    /// </summary>
-    /// <param name="rootSymbol">symbol of class with BlazorPathAttribute</param>
-    /// <summary>
     /// Generates a <c>ParseRecord</c> by extracting attribute data from a class symbol and a constant string field symbol.
     /// </summary>
     /// <param name="rootSymbol">The class symbol decorated with <c>BlazorPathAttribute</c> from which root-level metadata is extracted.</param>

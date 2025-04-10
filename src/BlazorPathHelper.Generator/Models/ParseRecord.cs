@@ -167,12 +167,6 @@ internal record ParseRecord
     /// <remarks>
     /// If the raw path contains a variable placeholder (denoted by '{'), the group path is the portion before the first occurrence of '{'.
     /// Otherwise, the group path is determined by removing the last segment of the path (i.e., the parent directory).
-    /// Examples:
-    ///   "/" yields an empty string.
-    ///   "/sample" yields an empty string.
-    ///   "/sample/hoge" yields "/sample".
-    ///   "/sample/{value}" yields "/sample".
-    ///   "/sample/{val1}/{val2}" yields "/sample".
     /// </remarks>
     private string BuildDefaultGroupPath()
     {

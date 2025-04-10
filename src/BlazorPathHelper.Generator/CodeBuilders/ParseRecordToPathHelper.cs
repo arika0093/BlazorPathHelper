@@ -9,8 +9,6 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     private const string QueryVarName = "__query";
 
     /// <summary>
-    /// build path helper function.
-    /// <summary>
     /// Generates a collection of C# code snippets for path helper methods based on the current parse record settings.
     /// </summary>
     /// <returns>
