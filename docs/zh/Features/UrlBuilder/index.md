@@ -29,6 +29,33 @@ public partial class WebPaths
     }
     ```
 
+## 支持指定 `PathBase`
+
+如果需要在子目录下展开应用，可以通过以下设置使生成的 URL 考虑到 PathBase：
+
+```csharp title="WebPaths.cs"
+[BlazorPath(PathBaseValue = PathBase)]
+public partial class WebPaths
+{
+  [Item(Ignore = true)]
+  private const string PathBase = "/subdir";
+  // ...
+}
+```
+
+这里指定的值会直接传递给 [`<base href>`](https://github.com/arika0093/BlazorPathHelper/blob/main/examples/Example.ServerPathBase/Components/App.razor#L7) 和 [`app.UsePathBase()`](https://github.com/arika0093/BlazorPathHelper/blob/main/examples/Example.ServerPathBase/Program.cs#L13)。
+
+```razor title="App.razor"
+<base href="@WebPaths.PathBase" />
+```
+
+```csharp title="Program.cs"
+app.UsePathBase(WebPaths.PathBase);
+```
+
+详情请参阅 [Example.ServerPathBase](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.ServerPathBase)。
+
+
 ## URL定义示例
 [官方文档](https://learn.microsoft.com/ja-jp/aspnet/core/blazor/fundamentals/routing?view=aspnetcore-9.0#route-constraints)中列出的所有URL定义都支持。请参阅该程序的[测试用例](https://github.com/arika0093/BlazorPathHelper/blob/main/tests/BlazorPathHelper.Tests/PathTestWithArgs.cs)。
 
