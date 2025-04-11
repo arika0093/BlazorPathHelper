@@ -2,14 +2,6 @@
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - release/**
-    paths:
-      - '**.csproj'
-      - '**.cs'
-      - '**.yaml'
         
 jobs:
   release:

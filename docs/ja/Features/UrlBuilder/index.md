@@ -30,6 +30,31 @@ public partial class WebPaths
     }
     ```
 
+## `PathBase`の指定に対応する
+サブディレクトリ以下に展開を行う場合、生成されるURLがPathBaseを考慮できるよう以下のように設定します。
+
+```csharp title="WebPaths.cs"
+[BlazorPath(PathBaseValue = PathBase)]
+public partial class WebPaths
+{
+    [Item(Ignore = true)]
+    private const string PathBase = "/subdir";
+    // ...
+}
+```
+
+ここで指定した値をそのまま[`<base href>`](https://github.com/arika0093/BlazorPathHelper/blob/main/examples/Example.ServerPathBase/Components/App.razor#L7)および[`app.UsePathBase()`](https://github.com/arika0093/BlazorPathHelper/blob/main/examples/Example.ServerPathBase/Program.cs#L13)に渡します。
+
+```razor title="App.razor"
+<base href="@WebPaths.PathBase" />
+```
+
+```csharp title="Program.cs"
+app.UsePathBase(WebPaths.PathBase);
+```
+
+詳細は[Example.ServerPathBase](https://github.com/arika0093/BlazorPathHelper/tree/main/examples/Example.ServerPathBase)を参照してください。
+
 ## URL定義の凡例
 [公式ドキュメント](https://learn.microsoft.com/ja-jp/aspnet/core/blazor/fundamentals/routing?view=aspnetcore-9.0#route-constraints)に記載されているURL定義は全て対応しています。
 このプログラムの[テストケース](https://github.com/arika0093/BlazorPathHelper/blob/main/tests/BlazorPathHelper.Tests/PathTestWithArgs.cs)も参照してください。
