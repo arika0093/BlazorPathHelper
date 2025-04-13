@@ -28,6 +28,14 @@ Install [BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/) in 
 ```bash
 dotnet add package BlazorPathHelper
 ```
+
+Alternatively, automatic setup can also be performed. For more details, refer to [this guide](https://arika0093.github.io/BlazorPathHelper/latest/GettingStarted).
+
+```bash
+dotnet tool install --global BlazorPathHelper.Migration --prerelease
+dotnet bph-migration
+```
+
 ### Minimum URL Builder
 Create a `WebPaths.cs` file.
 
