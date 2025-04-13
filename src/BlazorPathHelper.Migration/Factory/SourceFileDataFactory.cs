@@ -9,6 +9,16 @@ internal class SourceFileDataFactory
     /// </summary>
     public IEnumerable<SourceFileData> FindSources(string projectDir)
     {
+        if (string.IsNullOrWhiteSpace(projectDir))
+        {
+            throw new ArgumentException("Project directory cannot be null or empty", nameof(projectDir));
+        }
+        
+        if (!Directory.Exists(projectDir))
+        {
+            throw new DirectoryNotFoundException($"Project directory not found: {projectDir}");
+        }
+        
         return FindRazorFiles(projectDir);
     }
 
