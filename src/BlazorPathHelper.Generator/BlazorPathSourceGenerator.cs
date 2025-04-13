@@ -146,6 +146,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
     /// Iterates over parse records with a non-null page type and constructs a partial class definition with a route derived from the record's path (excluding the path base).
     /// The generated class includes namespace, parameter, and query code segments assembled from the provided Razor structures. If a namespace ambiguity is detected during generation, a diagnostic error is reported.
     /// </remarks>
+    /// <param name="context">The source production context used to add the generated Razor class source.</param>
     /// <param name="records">List of parsed records containing Razor page attribute data; only records with a valid page type are processed.</param>
     /// <param name="structures">Immutable array of parsed Razor structures providing additional context needed for code generation.</param>
     private static void ExportRazorClassCode(
