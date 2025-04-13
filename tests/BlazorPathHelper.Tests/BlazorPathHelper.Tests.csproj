@@ -7,6 +7,17 @@
         <RootNamespace>BlazorPathHelper.Tests</RootNamespace>
     </PropertyGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+		</ProjectReference>
+		<ProjectReference Include="..\..\src\BlazorPathHelper.Generator\BlazorPathHelper.Generator.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
     <ItemGroup>
       <EmbeddedResource Update="Resources\Localize.resx">
         <Generator>ResXFileCodeGenerator</Generator>
