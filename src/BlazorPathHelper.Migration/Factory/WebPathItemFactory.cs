@@ -1,9 +1,14 @@
-using BlazorPathHelper.Migration.Models;
+﻿using BlazorPathHelper.Migration.Models;
+using Microsoft.Extensions.Logging;
+using Sharprompt;
 using System.Text.RegularExpressions;
+using ZLogger;
 
 namespace BlazorPathHelper.Migration.Factory;
 
-internal partial class WebPathItemFactory
+internal partial class WebPathItemFactory(
+    ILogger<WebPathItemFactory> logger
+)
 {
     /// <summary>
     /// Generates a WebPathItemStructure from the given source file data.
@@ -58,17 +63,20 @@ internal partial class WebPathItemFactory
         {
             var pstr = pageAttrMatches.FirstOrDefault()?.Groups[1].Value;
             if (string.IsNullOrEmpty(pstr))
-        {
-            yield break;
+            {
+                yield break;
             }
             pageString = pstr;
         }
+        // parse query parameters (SupplyParameterFromQuery)
+        var queryParameters = GetWebPathQueryStructures(source, args);
 
         var rst = new WebPathItemStructure {
             Source = source,
             Path = pageString,
             VariableName = className,
             ComponentFullName = fullClassName,
+            QueryParameters = [.. queryParameters],
         };
         yield return rst;
     }
@@ -88,9 +96,44 @@ internal partial class WebPathItemFactory
         return namespaceName;
     }
 
+    private static IEnumerable<WebPathQueryStructure> GetWebPathQueryStructures(
+        SourceFileData source,
+        CommandLineParsedArguments args)
+    {
+        var matches = QueryBuilderRegex().Matches(source.FileContent);
+        foreach (Match match in matches)
+        {
+            var queryName = match.Groups[1].Value;
+            var queryType = match.Groups[2].Value;
+            var queryVariableName = match.Groups[3].Value;
+            var defaultValue = match.Groups[4].Value;
+            // Check if the query variable name is empty
+            if (string.IsNullOrEmpty(queryVariableName))
+            {
+                continue;
+            }
+            yield return new WebPathQueryStructure
+            {
+                QueryName = queryName,
+                Type = queryType,
+                VariableName = queryVariableName,
+                DefaultValue = defaultValue,
+            };
+        }
+    }
+
+    // Group 1: Razor Page Attribute String
     // https://regex101.com/r/vVBxis/1
     [GeneratedRegex(@"@page\s+""(.*?)""", RegexOptions.IgnoreCase, "ja-JP")]
     private static partial Regex RazorPageAttrRegex();
+
+    // Group 1: Query Variable Name in URL
+    // Group 2: Query Variable Type
+    // Group 3: Query Variable Name in C#
+    // Group 4: Default Value
+    // https://regex101.com/r/AWrD52/1
+    [GeneratedRegex(@"\[\s*SupplyParameterFromQuery(?:Attribute)?\s*(?:\(Name\s*=\s*""(.+)""\))?\]\s+public\s+(.+?)\s+([^\s]+)\s*(?:{\s*get\s*;\s*(?:set|init)\s*;\s*})?(?:\s*=\s*([^\s;]+))?")]
+    private static partial Regex QueryBuilderRegex();
 
     [GeneratedRegex(@"^[ -/:-@[-´{-~]*$")]
     private static partial Regex SpecialCharacterRegex();

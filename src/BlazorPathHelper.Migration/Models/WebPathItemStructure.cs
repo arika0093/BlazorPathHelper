@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis.CSharp;
+﻿using Microsoft.CodeAnalysis.CSharp;
 
 namespace BlazorPathHelper.Migration.Models;
 
@@ -39,23 +39,15 @@ internal class WebPathItemStructure
         return ComponentFullName.Replace(".", "_");
     }
 
-    /// <summary>
-    /// Generates a string representation of the web path item structure.
-    /// </summary>
-    public override string ToString()
+    private string UsableVariableName(string variableName)
     {
-        return $"Path: {Path}, " +
-               $"VariableName: {VariableName}, " +
-               $"ComponentFullName: {ComponentFullName}, " +
-               $"Accessibility: {Accessibility}, " +
-               $"QueryParameters: [{string.Join(", ", QueryParameters.Select(q => q.Name))}]";
+        // remove special characters
+        var usableVariableName = variableName
+            .Replace(" ", "_")
+            .Replace("-", "_")
+            .Replace(".", "_");
+        // remove leading and trailing underscores
+        usableVariableName = usableVariableName.Trim('_');
+        return usableVariableName;
     }
-
-}
-
-internal class WebPathQueryStructure
-{
-    public required string Name { get; init; }
-    public required string Type { get; init; }
-    public string? DefaultValue { get; init; }
 }

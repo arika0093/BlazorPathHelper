@@ -46,6 +46,7 @@ internal class WebPathsFileExporter(
 
         // Create a new field declaration for each web path
         var updatedClass = classDeclaration;
+        List<MemberDeclarationSyntax> newQueryRecords = [];
         foreach (var webpath in webPaths)
         {
             // if exist variable name, skip
@@ -72,11 +73,88 @@ internal class WebPathsFileExporter(
                 .WithModifiers(SyntaxFactory.TokenList(
                     SyntaxFactory.Token(webpath.Accessibility),
                     SyntaxFactory.Token(SyntaxKind.ConstKeyword)));
+
+            // export query parameters
+            if (webpath.HasQueryParameters)
+            {
+                // add public record {variableName}Query
+                // {
+                //   [QueryName("{queryName}")] public {Type} {variableName} {get; init;} = {defaultValue};
+                //   ...
+                // }
+                var queryClassName = $"{variableName}Query";
+                var queryRecord = SyntaxFactory.RecordDeclaration(
+                    SyntaxFactory.Token(SyntaxKind.RecordKeyword), queryClassName)
+                    .WithModifiers(SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                    .WithParameterList(SyntaxFactory.ParameterList()) // Add empty constructor
+                    .WithOpenBraceToken(SyntaxFactory.Token(SyntaxKind.OpenBraceToken))
+                    .WithCloseBraceToken(SyntaxFactory.Token(SyntaxKind.CloseBraceToken));
+                var queryMembers = new List<MemberDeclarationSyntax>();
+                foreach (var query in webpath.QueryParameters)
+                {
+                    var queryMember = SyntaxFactory.PropertyDeclaration(
+                        SyntaxFactory.ParseTypeName(query.Type), query.VariableName)
+                        .WithModifiers(SyntaxFactory.TokenList(
+                            SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                        .WithAccessorList(SyntaxFactory.AccessorList(
+                            SyntaxFactory.List(
+                            [
+                                SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
+                                SyntaxFactory.AccessorDeclaration(SyntaxKind.InitAccessorDeclaration)
+                                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
+                            ])));
+                    // if queryName is not null or empty, add to attribute
+                    if (!string.IsNullOrEmpty(query.QueryName))
+                    {
+                        var queryNameAttr = SyntaxFactory.Attribute(
+                            SyntaxFactory.ParseName("QueryName"))
+                            .WithArgumentList(SyntaxFactory.AttributeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.AttributeArgument(
+                                        SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
+                                            SyntaxFactory.Literal(query.QueryName))))));
+                        queryMember = queryMember.WithAttributeLists(
+                            SyntaxFactory.SingletonList(
+                                SyntaxFactory.AttributeList(
+                                    SyntaxFactory.SingletonSeparatedList(queryNameAttr))));
+                    }
+
+                    // if default value is not null or empty, add to property
+                    if (!string.IsNullOrEmpty(query.DefaultValue))
+                    {
+                        queryMember = queryMember.WithInitializer(
+                            SyntaxFactory.EqualsValueClause(
+                                SyntaxFactory.ParseExpression(query.DefaultValue)))
+                            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                    }
+
+                    queryMembers.Add(queryMember);
+                }
+                // add query members to record
+                queryRecord = queryRecord.AddMembers([.. queryMembers]);
+                newQueryRecords.Add(queryRecord);
+                // ... and newField add attribute with generics [Query]
+                var queryAttr = SyntaxFactory.Attribute(
+                    SyntaxFactory.ParseName($"Query<{queryClassName}>"));
+                newField = newField.WithAttributeLists(
+                    SyntaxFactory.SingletonList(
+                        SyntaxFactory.AttributeList(
+                            SyntaxFactory.SingletonSeparatedList(queryAttr))));
+            }
             // add
             updatedClass = updatedClass.AddMembers(newField);
         }
+        // replace webpath class with updated class
+        root = root.ReplaceNode(classDeclaration, updatedClass);
+        // add new query records to class
+        var updatedRoot = ((CompilationUnitSyntax)root);
+        foreach (var queryRecord in newQueryRecords)
+        {
+            updatedRoot = updatedRoot.AddMembers(queryRecord);
+        }
         // to string
-        var updatedRoot = root.ReplaceNode(classDeclaration, updatedClass);
         var formattedCode = updatedRoot.NormalizeWhitespace().ToFullString();
         return formattedCode;
     }
@@ -163,7 +241,7 @@ internal class WebPathsFileExporter(
             else
             {
                 File.WriteAllText(filePath, newContent);
-                logger.ZLogInformation($"Replaced @page attribute in {fileName}.");
+                logger.ZLogDebug($"Replaced @page attribute in {fileName}.");
             }
         }
     }

@@ -1,4 +1,4 @@
-using BlazorPathHelper.Migration.Builder;
+﻿using BlazorPathHelper.Migration.Builder;
 using BlazorPathHelper.Migration.Factory;
 using BlazorPathHelper.Migration.Helpers;
 using BlazorPathHelper.Migration.Models;
@@ -24,7 +24,6 @@ internal class MigrationApp(
     /// Analyzes Razor components/pages in the specified project and generates code usable with BlazorPathHelper.
     /// </summary>
     /// <param name="projects">-p, The directory containing the .csproj file or the path to the `.csproj` file. If not specified, a selection form will be displayed.</param>
-    /// <param name="replacePageAttrString">-r, Whether to replace the PageAttribute string. If not specified, confirmation will be prompted.</param>
     /// <param name="outputClassName">-c, The name of the generated class.</param>
     /// <param name="outputPath">-o, Specifies the output destination for the generated code.</param>
     /// <param name="forceExport">--force, Whether to overwrite the file if it already exists in the output destination. If not specified, confirmation will be prompted.</param>
@@ -32,7 +31,6 @@ internal class MigrationApp(
     [Command("")]
     public async Task<int> Migration(
         string[]? projects = null,
-        bool? replacePageAttrString = null,
         string outputClassName = "WebPaths",
         string outputPath = "./",
         bool forceExport = false,
@@ -44,10 +42,10 @@ internal class MigrationApp(
         var selectedProjects = convertedProjects.Length > 0
             ? convertedProjects
             : projectSelectHelper.SelectProjectsFromCurrentDirs();
-        var isReplacePageAttributeString = replacePageAttrString ??
-            Prompt.Confirm("Replace @page attribute string to generated variable ?", true);
-        //var isQueryBuilderSupport = queryBuilderSupport ??
-        //    Prompt.Confirm("Generate [Query] attributes from [SupportQueryBuilder] values ?", false);
+        var isReplacePageAttributeString = 
+            Prompt.Confirm("Replace @page attribute string to generated variable?", false);
+        var isQueryBuilderSupport =
+            Prompt.Confirm("Generate Query Url Builder from [SupplyParameterFromQuery] values?", true);
         foreach (var project in selectedProjects)
         {
             var args = new CommandLineParsedArguments()
@@ -59,7 +57,7 @@ internal class MigrationApp(
                 DisableInteractiveMode = false,
                 IsDryRun = dryRun,
                 IsReplacePageAttributeString = isReplacePageAttributeString,
-                QueryBuilderSupport = false, // isQueryBuilderSupport
+                QueryBuilderSupport = isQueryBuilderSupport,
             };
 
             if(!gitStatusHelper.IsGitStatusClean(project) &&
