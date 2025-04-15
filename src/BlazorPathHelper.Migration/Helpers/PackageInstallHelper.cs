@@ -66,6 +66,11 @@ internal class PackageInstallHelper(
         Console.CancelKeyPress -= canceled;
         logger.ZLogInformation($"Install Process was finished.");
 
+        if (process != null)
+        {
+            var stdout = await process.StandardOutput.ReadToEndAsync();
+            logger.ZLogTrace($"{stdout}");
+        }
         if (process?.ExitCode == 0)
         {
             logger.ZLogInformation($"Successfully installed!");
