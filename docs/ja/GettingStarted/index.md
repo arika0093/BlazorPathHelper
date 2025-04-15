@@ -6,7 +6,7 @@ Blazorプロジェクトに[BlazorPathHelper](https://www.nuget.org/packages/Bla
 dotnet add package BlazorPathHelper
 ```
 
-また、自動セットアップを行うことも可能です。詳細については、[こちらのガイド](https://bph.eclairs.cc/latest/GettingStarted/AutoInstall)を参照してください。
+また、自動セットアップを行うことも可能です。詳細については、[こちらのガイド](./AutoInstall.md)を参照してください。
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease

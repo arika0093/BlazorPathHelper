@@ -6,7 +6,7 @@
 dotnet add package BlazorPathHelper
 ```
 
-或者，也可以执行自动设置。有关详细信息，请参阅[此指南](https://bph.eclairs.cc/latest/GettingStarted/AutoInstall)。
+或者，也可以执行自动设置。有关详细信息，请参阅[此指南](./AutoInstall.md)。
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
