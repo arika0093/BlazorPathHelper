@@ -1,35 +1,5 @@
 [
   {
-    "version": "0.5.0-alpha.13",
-    "title": "0.5.0-alpha.13",
-    "aliases": []
-  },
-  {
-    "version": "0.5.0-alpha.12",
-    "title": "0.5.0-alpha.12",
-    "aliases": []
-  },
-  {
-    "version": "0.5.0-alpha.11",
-    "title": "0.5.0-alpha.11",
-    "aliases": []
-  },
-  {
-    "version": "0.5.0-alpha.8",
-    "title": "0.5.0-alpha.8",
-    "aliases": []
-  },
-  {
-    "version": "0.5.0-alpha.6",
-    "title": "0.5.0-alpha.6",
-    "aliases": []
-  },
-  {
-    "version": "0.5.0-alpha.5",
-    "title": "0.5.0-alpha.5",
-    "aliases": []
-  },
-  {
     "version": "0.4.2",
     "title": "0.4.2",
     "aliases": [
@@ -39,26 +9,6 @@
   {
     "version": "0.4.1",
     "title": "0.4.1",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-alpha.7",
-    "title": "0.4.0-alpha.7",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-alpha.6",
-    "title": "0.4.0-alpha.6",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-alpha.5",
-    "title": "0.4.0-alpha.5",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-alpha.3",
-    "title": "0.4.0-alpha.3",
     "aliases": []
   },
   {
@@ -79,61 +29,6 @@
   {
     "version": "0.3.1",
     "title": "0.3.1",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.40",
-    "title": "0.3.0-alpha.40",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.36",
-    "title": "0.3.0-alpha.36",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.35",
-    "title": "0.3.0-alpha.35",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.34",
-    "title": "0.3.0-alpha.34",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.33",
-    "title": "0.3.0-alpha.33",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.32",
-    "title": "0.3.0-alpha.32",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.31",
-    "title": "0.3.0-alpha.31",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.23",
-    "title": "0.3.0-alpha.23",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.22",
-    "title": "0.3.0-alpha.22",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.21",
-    "title": "0.3.0-alpha.21",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0-alpha.20",
-    "title": "0.3.0-alpha.20",
     "aliases": []
   }
 ]

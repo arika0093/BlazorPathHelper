@@ -1,3 +1,0 @@
-﻿document$.subscribe(() => {
-    hljs.highlightAll();
-})
