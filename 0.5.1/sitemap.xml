@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/AutoPageAttribute/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/AutoPageAttribute/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/MenuCustomization.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/MenuCustomization.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsagePlain.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/UrlBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/UrlBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/Features/UrlBuilder/QuerySupport.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/UrlBuilder/QuerySupport.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/GettingStarted/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/GettingStarted/AutoInstall.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/AutoInstall.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/GettingStarted/ViewGeneratedCode.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1/GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/ViewGeneratedCode.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/AutoPageAttribute/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/AutoPageAttribute/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/MenuCustomization.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/MenuCustomization.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsagePlain.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/UrlBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/UrlBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/Features/UrlBuilder/QuerySupport.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/Features/UrlBuilder/QuerySupport.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/GettingStarted/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/GettingStarted/AutoInstall.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/AutoInstall.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/zh/GettingStarted/ViewGeneratedCode.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1/zh/GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1ja/GettingStarted/ViewGeneratedCode.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/AutoPageAttribute/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/AutoPageAttribute/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/AutoPageAttribute/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/MenuCustomization.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/MenuCustomization.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/MenuCustomization.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageAntBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageFluentUI.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsageMudBlazor.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsagePlain.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/MenuBuilder/FrameworkExamples/UsagePlain.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/UrlBuilder/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/UrlBuilder/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/UrlBuilder/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/Features/UrlBuilder/QuerySupport.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1Features/UrlBuilder/QuerySupport.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/Features/UrlBuilder/QuerySupport.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/GettingStarted/index.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/index.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/index.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/GettingStarted/AutoInstall.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/AutoInstall.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/AutoInstall.html"/>
+    </url>
+    <url>
+        <loc>https://bph.eclairs.cc/0.5.1/ja/GettingStarted/ViewGeneratedCode.html</loc>
+        <lastmod>2025-04-15</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://bph.eclairs.cc/0.5.1/ja/GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://bph.eclairs.cc/0.5.1GettingStarted/ViewGeneratedCode.html"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://bph.eclairs.cc/0.5.1zh/GettingStarted/ViewGeneratedCode.html"/>
+    </url>
+</urlset>
