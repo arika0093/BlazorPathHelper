@@ -39,8 +39,8 @@ jobs:
       - name: Build Docs Website
         run: mike deploy --push ${{ steps.nbgv.outputs.NuGetPackageVersion }} 
 
-      - name: Set default to dev
-        run: mike set-default dev
+      - name: Mark current deployment as dev
+        run: mike set dev --push
 
       - name: Delete Old Prerelease Versions
-        run: mike remove --push --delete-remote --delete-local --no-prompt $(mike list | grep -v latest | grep -v dev | grep alpha) 
+        run: mike remove --push $(mike list | grep -v latest | grep -v dev | grep alpha) 
