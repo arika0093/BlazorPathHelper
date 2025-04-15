@@ -33,6 +33,7 @@ nav:
     - Features/index.md
     - URLBuilder:
       - Features/UrlBuilder/index.md
+      - Auto Migration: Features/UrlBuilder/AutoInstall.md
       - Query Support: Features/UrlBuilder/QuerySupport.md
     - Auto Page Attribute:
       - Features/AutoPageAttribute/index.md
@@ -86,6 +87,7 @@ plugins:
         nav_translations:
           Home: 主页
           Getting Started: 快速开始
+          Auto Migration: 自动迁移
           View Generated Code: 查看生成的代码
           Features: 功能
           Features TopPage: 主要功能
@@ -104,6 +106,7 @@ plugins:
         nav_translations:
           Home: トップページ
           Getting Started: 使ってみる
+          Auto Migration: 自動導入
           View Generated Code: 生成されたコードの閲覧
           Features: 機能一覧
           Features TopPage: 主な機能
