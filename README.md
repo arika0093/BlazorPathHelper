@@ -17,9 +17,9 @@ This library **automatically** generates the following contents.
 
 ## Documentation
 See Documentation for more information.
-* [English](https://arika0093.github.io/BlazorPathHelper/latest/)
-* [日本語](https://arika0093.github.io/BlazorPathHelper/latest/ja/)
-* [简体中文](https://arika0093.github.io/BlazorPathHelper/latest/zh/)
+* [English](https://bph.eclairs.cc/latest/)
+* [日本語](https://bph.eclairs.cc/latest/ja/)
+* [简体中文](https://bph.eclairs.cc/latest/zh/)
 
 ## Getting Started
 ### Installation
@@ -29,7 +29,7 @@ Install [BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/) in 
 dotnet add package BlazorPathHelper
 ```
 
-Alternatively, automatic setup can also be performed. For more details, refer to [this guide](https://arika0093.github.io/BlazorPathHelper/latest/GettingStarted).
+Alternatively, automatic setup can also be performed. For more details, refer to [this guide](https://bph.eclairs.cc/latest/GettingStarted).
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
@@ -413,5 +413,5 @@ public partial class WebPaths
 }
 ```
 
-See [documentation](https://arika0093.github.io/BlazorPathHelper/latest/Features/MenuBuilder/MenuCustomization.html) for more information.
+See [documentation](https://bph.eclairs.cc/latest/Features/MenuBuilder/MenuCustomization.html) for more information.
 

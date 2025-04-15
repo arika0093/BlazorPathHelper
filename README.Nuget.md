@@ -13,4 +13,4 @@ This library **automatically** generates the following contents.
 * Menu structure data
   * Supports customizing menu display (icon, description, l10n, etc.)
 
-See [README](https://github.com/arika0093/BlazorPathHelper/blob/main/README.md) and [Documentation](https://arika0093.github.io/BlazorPathHelper/latest/) for more information.
+See [README](https://github.com/arika0093/BlazorPathHelper/blob/main/README.md) and [Documentation](https://bph.eclairs.cc/latest/) for more information.

@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: BlazorPathHelper
-site_url: https://arika0093.github.io/BlazorPathHelper/
+site_url: https://bph.eclairs.cc/
 repo_url: https://github.com/arika0093/BlazorPathHelper
 repo_name: BlazorPathHelper
 use_directory_urls: false
