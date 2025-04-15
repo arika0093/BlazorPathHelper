@@ -10,7 +10,7 @@ dotnet add package BlazorPathHelper
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
-dotnet bph-migration
+bph-migration
 ```
 
 ## URL生成器

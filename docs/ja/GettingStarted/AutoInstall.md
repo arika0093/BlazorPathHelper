@@ -3,10 +3,11 @@
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
+bph-migration
 # または
 # dotnet new tool-manifest
 # dotnet tool install BlazorPathHelper.Migration --prerelease
-dotnet bph-migration
+# dotnet bph-migration
 ```
 
 このツールは以下のことを行います。

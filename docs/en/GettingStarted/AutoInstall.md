@@ -3,10 +3,11 @@ You can easily install BlazorPathHelper into a specified project by running the 
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
+bph-migration
 # Or
 # dotnet new tool-manifest
 # dotnet tool install BlazorPathHelper.Migration --prerelease
-dotnet bph-migration
+# dotnet bph-migration
 ```
 
 This tool performs the following tasks:

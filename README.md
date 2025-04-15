@@ -33,7 +33,7 @@ Alternatively, automatic setup can also be performed. For more details, refer to
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
-dotnet bph-migration
+bph-migration
 ```
 
 ### Minimum URL Builder
