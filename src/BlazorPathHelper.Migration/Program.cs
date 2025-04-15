@@ -9,7 +9,11 @@ using ZLogger;
 var app = ConsoleApp.Create()
     .ConfigureLogging(config => {
         config.ClearProviders();
+#if DEBUG
         config.SetMinimumLevel(LogLevel.Debug);
+#else
+        config.SetMinimumLevel(LogLevel.Information);
+#endif
         config.AddZLoggerConsole(options => {
             options.IncludeScopes = true;
             options.UsePlainTextFormatter(formatter => {
