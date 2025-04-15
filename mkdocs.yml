@@ -2,6 +2,7 @@
 site_name: BlazorPathHelper
 site_url: https://bph.eclairs.cc/
 repo_url: https://github.com/arika0093/BlazorPathHelper
+edit_uri: edit/main/docs/
 repo_name: BlazorPathHelper
 use_directory_urls: false
 theme:
