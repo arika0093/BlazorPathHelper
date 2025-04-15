@@ -32,17 +32,11 @@ internal class PackageInstallHelper(
             Arguments = $"add package {PackageName}",
             RedirectStandardError = true,
             RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true,
             WorkingDirectory = projectDirectory,
         };
-
-        using var process = Process.Start(processStartInfo);
-        if (process == null)
-        {
-            logger.ZLogError($"Failed to start process to install.");
-            return false;
-        }
-
-        await process.WaitForExitAsync();
+        var process = await StartProcessWithCancellation(processStartInfo);
 
         if (process?.ExitCode == 0)
         {
@@ -54,5 +48,33 @@ internal class PackageInstallHelper(
             logger.ZLogError($"Failed to install. try manually run `dotnet add package {PackageName}`.");
             return false;
         }
+    }
+
+    private async Task<Process?> StartProcessWithCancellation(ProcessStartInfo processStartInfo)
+    {
+        using var process = new Process
+        {
+            StartInfo = processStartInfo,
+        };
+        process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
+        process.ErrorDataReceived += (sender, e) => Console.WriteLine(e.Data);
+
+        void canceled(object? sender, ConsoleCancelEventArgs e)
+        {
+            if (!process.HasExited)
+            {
+                process.Kill();
+                logger.ZLogInformation($"Process was terminated by Ctrl+C.");
+            }
+            e.Cancel = true;
+        }
+
+        Console.CancelKeyPress += canceled;
+        logger.ZLogInformation($"Install Process can be canceled by Ctrl+C.");
+        process.Start();
+        await process.WaitForExitAsync();
+        Console.CancelKeyPress -= canceled;
+        logger.ZLogInformation($"Install Process was finished.");
+        return process;
     }
 }
