@@ -37,3 +37,6 @@ jobs:
         
       - name: Set default to latest
         run: mike set-default latest
+        
+      - name: Delete Old Prerelease Versions
+        run: mike delete --push $(mike list | grep -v latest | grep -v dev | grep alpha) 
