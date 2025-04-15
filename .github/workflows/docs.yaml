@@ -40,4 +40,4 @@ jobs:
         run: mike deploy --push --update-aliases ${{ steps.nbgv.outputs.NuGetPackageVersion }} dev
 
       - name: Delete Old Prerelease Versions
-        run: mike remove --push $(mike list | grep -v latest | grep -v dev | grep alpha) 
+        run: mike delete --push $(mike list | grep -v latest | grep -v dev | grep alpha) 
