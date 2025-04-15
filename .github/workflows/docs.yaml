@@ -37,10 +37,7 @@ jobs:
         id: nbgv
 
       - name: Build Docs Website
-        run: mike deploy --push ${{ steps.nbgv.outputs.NuGetPackageVersion }} 
-
-      - name: Mark current deployment as dev
-        run: mike set dev --push
+        run: mike deploy --push --update-aliases ${{ steps.nbgv.outputs.NuGetPackageVersion }} dev
 
       - name: Delete Old Prerelease Versions
         run: mike remove --push $(mike list | grep -v latest | grep -v dev | grep alpha) 
