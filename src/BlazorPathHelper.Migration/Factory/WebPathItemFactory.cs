@@ -1,4 +1,4 @@
-﻿using BlazorPathHelper.Migration.Models;
+using BlazorPathHelper.Migration.Models;
 using System.Text.RegularExpressions;
 
 namespace BlazorPathHelper.Migration.Factory;
@@ -39,12 +39,29 @@ internal partial class WebPathItemFactory
             ? $"{namespaceName}.{className}"
             : className;
         // @page "/test" -> test
+        string pageString = string.Empty;
         var extractPageAttributeRegex = RazorPageAttrRegex();
-        var pageAttrMatch = extractPageAttributeRegex.Match(source.FileContent);
-        var pageString = pageAttrMatch.Groups[1].Value;
-        if(string.IsNullOrEmpty(pageString))
+        var pageAttrMatches = extractPageAttributeRegex.Matches(source.FileContent);
+        if(pageAttrMatches.Count >= 2)
+        {
+            logger.ZLogWarning($"Multiple @page attributes found in {source.FilePath}");
+            var selectedPageAttrMatch = Prompt.Select(new SelectOptions<Match>()
+            {
+                Message = $"Select @page attribute to use",
+                Items = pageAttrMatches,
+                DefaultValue = pageAttrMatches[0],
+                TextSelector = (match) => match.Groups[1].Value,
+            });
+            pageString = selectedPageAttrMatch.Groups[1].Value;
+        }
+        else
+        {
+            var pstr = pageAttrMatches.FirstOrDefault()?.Groups[1].Value;
+            if (string.IsNullOrEmpty(pstr))
         {
             yield break;
+            }
+            pageString = pstr;
         }
 
         var rst = new WebPathItemStructure {

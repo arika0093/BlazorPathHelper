@@ -1,4 +1,4 @@
-﻿using BlazorPathHelper.Migration.Builder;
+using BlazorPathHelper.Migration.Builder;
 using BlazorPathHelper.Migration.Factory;
 using BlazorPathHelper.Migration.Helpers;
 using BlazorPathHelper.Migration.Models;
@@ -75,7 +75,8 @@ internal class MigrationApp(
             var sources = sourceFileDataFactory.FindSources(args.ProjectPath);
             var webPathItems = sources
                 .SelectMany(source => webPathItemFactory.GenerateWebPathItem(source, args))
-                .OrderBy(w => w.Path);
+                .OrderBy(w => w.Path)
+                .ToList();
             // generate code
             var webPathsFile = webPathsFileBuilder.ExtendFileContent(webPathItems, args);
             // export code
