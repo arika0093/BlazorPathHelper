@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/examples/">
+    <Project Path="examples/Example.AntBlazor.Pro/Example.AntBlazor.Pro.csproj" />
+    <Project Path="examples/Example.AntBlazor.Standard/Example.AntBlazor.Standard.csproj" />
+    <Project Path="examples/Example.FluentUI/Example.FluentUI.csproj" />
+    <Project Path="examples/Example.Localization/Example.Localization.csproj" />
+    <Project Path="examples/Example.MudBlazor/Example.MudBlazor.csproj" />
+    <Project Path="examples/Example.Plain/Example.Plain.csproj" />
+    <Project Path="examples/Example.ServerPathBase/Example.ServerPathBase.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src/Directory.Build.props" />
+    <Project Path="src/BlazorPathHelper.Core/BlazorPathHelper.Core.csproj" />
+    <Project Path="src/BlazorPathHelper.Generator/BlazorPathHelper.Generator.csproj" />
+    <Project Path="src/BlazorPathHelper.Migration/BlazorPathHelper.Migration.csproj" />
+    <Project Path="src/BlazorPathHelper/BlazorPathHelper.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <File Path="tests/Directory.Build.props" />
+    <Project Path="tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj" />
+  </Folder>
+</Solution>
