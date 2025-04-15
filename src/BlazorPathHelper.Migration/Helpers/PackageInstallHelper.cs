@@ -36,7 +36,35 @@ internal class PackageInstallHelper(
             CreateNoWindow = true,
             WorkingDirectory = projectDirectory,
         };
-        var process = await StartProcessWithCancellation(processStartInfo);
+        return await StartProcessWithCancellation(processStartInfo);
+    }
+
+    /// <summary>
+    /// Starts a process with cancellation support.
+    /// </summary>
+    private async Task<bool> StartProcessWithCancellation(ProcessStartInfo processStartInfo)
+    {
+        using var process = new Process
+        {
+            StartInfo = processStartInfo,
+        };
+
+        void canceled(object? sender, ConsoleCancelEventArgs e)
+        {
+            if (!process.HasExited)
+            {
+                process.Kill();
+                logger.ZLogInformation($"Process was terminated.");
+            }
+            e.Cancel = true;
+        }
+
+        Console.CancelKeyPress += canceled;
+        logger.ZLogInformation($"Install Process can be canceled by Ctrl+C.");
+        process.Start();
+        await process.WaitForExitAsync();
+        Console.CancelKeyPress -= canceled;
+        logger.ZLogInformation($"Install Process was finished.");
 
         if (process?.ExitCode == 0)
         {
@@ -48,33 +76,5 @@ internal class PackageInstallHelper(
             logger.ZLogError($"Failed to install. try manually run `dotnet add package {PackageName}`.");
             return false;
         }
-    }
-
-    private async Task<Process?> StartProcessWithCancellation(ProcessStartInfo processStartInfo)
-    {
-        using var process = new Process
-        {
-            StartInfo = processStartInfo,
-        };
-        process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
-        process.ErrorDataReceived += (sender, e) => Console.WriteLine(e.Data);
-
-        void canceled(object? sender, ConsoleCancelEventArgs e)
-        {
-            if (!process.HasExited)
-            {
-                process.Kill();
-                logger.ZLogInformation($"Process was terminated by Ctrl+C.");
-            }
-            e.Cancel = true;
-        }
-
-        Console.CancelKeyPress += canceled;
-        logger.ZLogInformation($"Install Process can be canceled by Ctrl+C.");
-        process.Start();
-        await process.WaitForExitAsync();
-        Console.CancelKeyPress -= canceled;
-        logger.ZLogInformation($"Install Process was finished.");
-        return process;
     }
 }
