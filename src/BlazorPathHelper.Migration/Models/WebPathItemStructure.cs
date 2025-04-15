@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace BlazorPathHelper.Migration.Models;
 
@@ -6,8 +6,13 @@ internal class WebPathItemStructure
 {
     public required SourceFileData Source { get; init; }
     public required string Path { get; init; }
-    public required string VariableName { get; init; }
+    public required string VariableName { 
+        get => _variableName;
+        init => _variableName = UsableVariableName(value);
+    }
     public required string ComponentFullName { get; init; }
+
+    private string _variableName = string.Empty;
 
     public SyntaxKind Accessibility { get; init; } = SyntaxKind.PublicKeyword;
     public List<WebPathQueryStructure> QueryParameters { get; init; } = [];
