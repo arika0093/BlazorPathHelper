@@ -14,9 +14,9 @@ This tool performs the following tasks:
 * Searches for `*.csproj` files under the execution directory and displays options for selection.
 * Installs the latest version of `BlazorPathHelper` into the selected project.
 * Searches for `.razor` files under the project directory, reads the values of `@page` attributes, and generates a `WebPaths.cs` file.
-  * Currently, only `.razor` files are targeted.
+    * Currently, only `.razor` files are targeted.
 * (Optional) Replaces the values of `@page` attributes with the generated `const string` variables.
-  * This makes URL management easier.
+    * This makes URL management easier.
 
 !!! warning "Caution!"
 

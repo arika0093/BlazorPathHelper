@@ -28,12 +28,12 @@ nav:
   - Home: index.md
   - Getting Started:
     - GettingStarted/index.md
+    - Auto Migration: GettingStarted/AutoInstall.md
     - View Generated Code: GettingStarted/ViewGeneratedCode.md
   - Features:
     - Features/index.md
     - URLBuilder:
       - Features/UrlBuilder/index.md
-      - Auto Migration: Features/UrlBuilder/AutoInstall.md
       - Query Support: Features/UrlBuilder/QuerySupport.md
     - Auto Page Attribute:
       - Features/AutoPageAttribute/index.md

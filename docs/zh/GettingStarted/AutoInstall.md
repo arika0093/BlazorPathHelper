@@ -14,9 +14,9 @@ dotnet bph-migration
 * 搜索当前目录下的`*.csproj`文件，并显示选择列表。
 * 将最新版的`BlazorPathHelper`安装到选定的项目中。
 * 搜索项目下的`.razor`文件，读取`@page`属性的值，并生成`WebPaths.cs`文件。
-  * 当前仅支持`.razor`文件。
+    * 当前仅支持`.razor`文件。
 * （可选）将`@page`属性的值替换为生成的`const string`变量。
-  * 这样可以更方便地管理URL。
+    * 这样可以更方便地管理URL。
 
 !!! warning "注意！"
 
