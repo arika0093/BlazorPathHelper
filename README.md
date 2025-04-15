@@ -29,7 +29,7 @@ Install [BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/) in 
 dotnet add package BlazorPathHelper
 ```
 
-Alternatively, automatic setup can also be performed. For more details, refer to [this guide](https://bph.eclairs.cc/latest/GettingStarted/AutoInstall).
+Alternatively, automatic setup can also be performed. For more details, refer to [this guide](https://bph.eclairs.cc/dev/GettingStarted/AutoInstall).
 
 ```bash
 dotnet tool install --global BlazorPathHelper.Migration --prerelease
