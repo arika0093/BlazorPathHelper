@@ -7,9 +7,6 @@ on:
       - '**.csproj'
       - '**.cs'
       - '**.yaml'
-    branches-ignore:
-      - main
-      - release/**
 
 jobs:
   build:
