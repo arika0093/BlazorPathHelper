@@ -49,7 +49,7 @@ internal static class ParseParameterRecordFactory
             VariableName = variable.TrimStart('*'),
             Type = ConvertType(typeString),
             IsNullable = isNullable,
-            IsCatchAll = variable[0] == '*'
+            IsCatchAll = variable[0] == '*',
         };
     }
 
@@ -63,7 +63,7 @@ internal static class ParseParameterRecordFactory
             "nonfile" => "string",
             "" => "string",
             null => "string",
-            _ => type
+            _ => type,
         };
     }
 }

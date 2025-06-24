@@ -144,7 +144,7 @@ internal record ParseRecord
     {
         get
         {
-            // replace e.g. {val1}/{val2} -> {0}/{1}   
+            // replace e.g. {val1}/{val2} -> {0}/{1}
             var count = 0;
             return Regex.Replace(PathRawValue, @"{[^}]+}", (_) => $"{{{count++}}}");
         }
@@ -155,7 +155,7 @@ internal record ParseRecord
     /// </summary>
     public bool IsRoot => GroupPath == "";
 
-    // are there any arguments?    
+    // are there any arguments?
     public bool IsRequireArgs => Parameters.Count > 0;
 
     // are there any query?
@@ -177,7 +177,7 @@ internal record ParseRecord
         // e.g. /sample -> ""
         // e.g. /sample/hoge -> /sample
         // e.g. /sample/{value} -> /sample
-        // e.g. /sample/{val1}/{val2} -> /sample        
+        // e.g. /sample/{val1}/{val2} -> /sample
         if (PathRawValue.Contains('{'))
         {
             return PathRawValue[..PathRawValue.IndexOf('{')];
@@ -214,6 +214,4 @@ internal record ParseRecord
             return $"{PathBaseValue}/{rawPathTrim}";
         }
     }
-
-
 }

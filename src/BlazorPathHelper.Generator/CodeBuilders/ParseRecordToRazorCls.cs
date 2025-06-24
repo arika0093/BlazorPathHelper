@@ -7,7 +7,10 @@ using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.CodeBuilders;
 
-internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRazorStructure> structures)
+internal class ParseRecordToRazorCls(
+    ParseRecord record,
+    ImmutableArray<ParseRazorStructure> structures
+)
 {
     // symbol of the page class
     public ITypeSymbol PageType => record.PageTypeSymbol!;
@@ -32,7 +35,9 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
             // search for the namespace from the Razor side
             // first. search by FullClassName or PartialClassName
             var searchRazorInfo = structures
-                .Where(s => s.FullClassName == PageFullClassName || s.PartialClassName == PageFullClassName)
+                .Where(s =>
+                    s.FullClassName == PageFullClassName || s.PartialClassName == PageFullClassName
+                )
                 .ToList();
             if (searchRazorInfo.Count == 0)
             {
@@ -93,6 +98,6 @@ internal class ParseRecordToRazorCls(ParseRecord record, ImmutableArray<ParseRaz
 // exception for ambiguous namespace
 internal class NamespaceAmbiguousException(string baseClass, string[] replaceStrings)
     : Exception(
-        $"You must replace '{baseClass}' -> " +
-        $"{string.Join(" or ", replaceStrings.Select(r => $"'{r}'"))}"
+        $"You must replace '{baseClass}' -> "
+            + $"{string.Join(" or ", replaceStrings.Select(r => $"'{r}'"))}"
     );

@@ -39,13 +39,18 @@ internal class MigrationApp(
     {
         // parse command line arguments
         var convertedProjects = projectSelectHelper.ConvertProjectFileToDirectory(projects);
-        var selectedProjects = convertedProjects.Length > 0
-            ? convertedProjects
-            : projectSelectHelper.SelectProjectsFromCurrentDirs();
-        var isReplacePageAttributeString = 
-            Prompt.Confirm("Replace @page attribute string to generated variable?", false);
-        var isQueryBuilderSupport =
-            Prompt.Confirm("Generate Query Url Builder from [SupplyParameterFromQuery] values?", true);
+        var selectedProjects =
+            convertedProjects.Length > 0
+                ? convertedProjects
+                : projectSelectHelper.SelectProjectsFromCurrentDirs();
+        var isReplacePageAttributeString = Prompt.Confirm(
+            "Replace @page attribute string to generated variable?",
+            false
+        );
+        var isQueryBuilderSupport = Prompt.Confirm(
+            "Generate Query Url Builder from [SupplyParameterFromQuery] values?",
+            true
+        );
         foreach (var project in selectedProjects)
         {
             var args = new CommandLineParsedArguments()
@@ -60,8 +65,10 @@ internal class MigrationApp(
                 QueryBuilderSupport = isQueryBuilderSupport,
             };
 
-            if(!gitStatusHelper.IsGitStatusClean(project) &&
-                !Prompt.Confirm($"Git status is not clean. Do you want to continue ?", false))
+            if (
+                !gitStatusHelper.IsGitStatusClean(project)
+                && !Prompt.Confirm($"Git status is not clean. Do you want to continue ?", false)
+            )
             {
                 logger.ZLogInformation($"Aborting migration.");
                 return 1; // error

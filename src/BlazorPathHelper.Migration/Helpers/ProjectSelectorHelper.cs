@@ -4,9 +4,7 @@ using ZLogger;
 
 namespace BlazorPathHelper.Migration.Helpers;
 
-internal class ProjectSelectorHelper(
-    ILogger<ProjectSelectorHelper> logger
-)
+internal class ProjectSelectorHelper(ILogger<ProjectSelectorHelper> logger)
 {
     /// <summary>
     /// Convert project file paths to directory paths.
@@ -64,14 +62,16 @@ internal class ProjectSelectorHelper(
             logger.ZLogError($"No csproj files found in the directory.");
             return [];
         }
-        var selects = Prompt.MultiSelect(new MultiSelectOptions<FileLocation>()
-        {
-            Message = "Select csproj files to migrate",
-            PageSize = 10,
-            Items = csprojDirs,
-            Minimum = 1,
-            TextSelector = x => $"{x.FileName} ({x.RelativePath(rootDir)})",
-        });
+        var selects = Prompt.MultiSelect(
+            new MultiSelectOptions<FileLocation>()
+            {
+                Message = "Select csproj files to migrate",
+                PageSize = 10,
+                Items = csprojDirs,
+                Minimum = 1,
+                TextSelector = x => $"{x.FileName} ({x.RelativePath(rootDir)})",
+            }
+        );
         if (selects == null || !selects.Any())
         {
             logger.ZLogError($"No csproj files selected.");
@@ -85,7 +85,11 @@ internal class ProjectSelectorHelper(
     /// </summary>
     private static FileLocation[]? ExtractCsprojDirectories(string rootDir)
     {
-        var csprojFiles = Directory.EnumerateFiles(rootDir, "*.csproj", SearchOption.AllDirectories);
+        var csprojFiles = Directory.EnumerateFiles(
+            rootDir,
+            "*.csproj",
+            SearchOption.AllDirectories
+        );
         if (csprojFiles == null || !csprojFiles.Any())
         {
             return null;
@@ -100,5 +104,6 @@ internal record FileLocation(string CsProjPath)
     public string FilePath => Path.GetFullPath(CsProjPath) ?? string.Empty;
     public string FileName => Path.GetFileName(CsProjPath) ?? string.Empty;
     public string Directory => Path.GetDirectoryName(CsProjPath) ?? string.Empty;
+
     public string RelativePath(string path) => Path.GetRelativePath(path, Directory);
 }

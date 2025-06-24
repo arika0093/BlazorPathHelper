@@ -8,24 +8,27 @@ namespace Example.AntBlazor.Pro.Layouts
     {
         private MenuDataItem[] _menuData = [];
 
-        [Inject] private ReuseTabsService TabService { get; set; } = default!;
+        [Inject]
+        private ReuseTabsService TabService { get; set; } = default!;
 
         protected override void OnInitialized()
         {
             _menuData = ConverterMenuDataItem(WebPaths.MenuItem);
         }
-        
+
         private static MenuDataItem[] ConverterMenuDataItem(BlazorPathMenuItem[] items)
         {
-            return items.Select(item => new MenuDataItem
-            {
-                Path = item.Path,
-                Name = item.Name,
-                Key = item.Key,
-                Icon = item.Icon?.ToString(),
-                Children = item.Children.Length > 0
-                    ? ConverterMenuDataItem(item.Children) : null
-            }).ToArray();
+            return items
+                .Select(item => new MenuDataItem
+                {
+                    Path = item.Path,
+                    Name = item.Name,
+                    Key = item.Key,
+                    Icon = item.Icon?.ToString(),
+                    Children =
+                        item.Children.Length > 0 ? ConverterMenuDataItem(item.Children) : null,
+                })
+                .ToArray();
         }
 
         void Reload()
@@ -33,8 +36,6 @@ namespace Example.AntBlazor.Pro.Layouts
             TabService.ReloadPage();
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace BlazorPathHelper.Migration.Models;
 
-
 /// <summary>
 /// This record stores the parsed results of the command-line arguments.
 /// </summary>
@@ -24,7 +23,7 @@ internal record CommandLineParsedArguments
     /// <summary>
     /// The name of the generated class.
     /// </summary>
-    public required string OutputClassName { get; init; } 
+    public required string OutputClassName { get; init; }
 
     /// <summary>
     /// The output directory for the generated code.
@@ -49,20 +48,20 @@ internal record CommandLineParsedArguments
     /// <summary>
     /// The full path to the output file.
     /// </summary>
-    public string OutputFileFullPath
-        => Path.Combine(ProjectPath, OutputDir, $"{OutputClassName}.cs");
+    public string OutputFileFullPath =>
+        Path.Combine(ProjectPath, OutputDir, $"{OutputClassName}.cs");
 
     /// <summary>
     /// Returns a string representation of the command-line arguments.
     /// </summary>
     public override string ToString()
     {
-        return $"ProjectPath: {ProjectPath}, " +
-               $"IsReplacePageAttributeString: {IsReplacePageAttributeString}, " +
-               $"QueryBuilderSupport: {QueryBuilderSupport}, " +
-               $"OutputPath: {OutputDir}, " +
-               $"ForceExport: {ForceExport}, " +
-               $"DisableInteractiveMode: {DisableInteractiveMode}, " +
-               $"IsDryRun: {IsDryRun}";
+        return $"ProjectPath: {ProjectPath}, "
+            + $"IsReplacePageAttributeString: {IsReplacePageAttributeString}, "
+            + $"QueryBuilderSupport: {QueryBuilderSupport}, "
+            + $"OutputPath: {OutputDir}, "
+            + $"ForceExport: {ForceExport}, "
+            + $"DisableInteractiveMode: {DisableInteractiveMode}, "
+            + $"IsDryRun: {IsDryRun}";
     }
 }

@@ -1,5 +1,5 @@
-﻿using Xunit;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace BlazorPathHelper.Tests;
 
@@ -30,22 +30,16 @@ public class PathTestWithPathBase
     [Fact]
     public void TestPathBase1()
     {
-        DefinitionWithPathBase1.Helper.Home()
-            .Should().Be($"/example");
-        DefinitionWithPathBase1.Helper.Sample1()
-            .Should().Be($"/example/sample1");
-        DefinitionWithPathBase1.Helper.Sample2(123)
-            .Should().Be($"/example/sample2/123");
+        DefinitionWithPathBase1.Helper.Home().Should().Be($"/example");
+        DefinitionWithPathBase1.Helper.Sample1().Should().Be($"/example/sample1");
+        DefinitionWithPathBase1.Helper.Sample2(123).Should().Be($"/example/sample2/123");
     }
 
     [Fact]
     public void TestPathBase2()
     {
-        DefinitionWithPathBase2.Helper.Home()
-            .Should().Be($"/example");
-        DefinitionWithPathBase2.Helper.Sample1()
-            .Should().Be($"/example/sample1");
-        DefinitionWithPathBase2.Helper.Sample2(123)
-            .Should().Be($"/example/sample2/123");
+        DefinitionWithPathBase2.Helper.Home().Should().Be($"/example");
+        DefinitionWithPathBase2.Helper.Sample1().Should().Be($"/example/sample1");
+        DefinitionWithPathBase2.Helper.Sample2(123).Should().Be($"/example/sample2/123");
     }
 }

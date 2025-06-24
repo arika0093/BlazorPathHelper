@@ -9,8 +9,8 @@ internal static class RoslynAttributeDataToValue
     // get symbol value from attribute data
     public static object? GetSymbol(this AttributeData attributeData, string key)
     {
-        return attributeData.NamedArguments
-            .Where(arg => arg.Key == key)
+        return attributeData
+            .NamedArguments.Where(arg => arg.Key == key)
             .Select(arg => arg.Value.Value)
             .FirstOrDefault();
     }
@@ -18,7 +18,10 @@ internal static class RoslynAttributeDataToValue
     // get multiple values from attribute data
     public static Dictionary<string, string?> ToDictionary(this AttributeData attributeData)
     {
-        return attributeData.NamedArguments.ToDictionary(arg => arg.Key, arg => arg.Value.Value?.ToString());
+        return attributeData.NamedArguments.ToDictionary(
+            arg => arg.Key,
+            arg => arg.Value.Value?.ToString()
+        );
     }
 }
 

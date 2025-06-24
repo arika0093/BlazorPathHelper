@@ -28,7 +28,10 @@ internal static class ParseRecordTreeStructureFactory
     /// <param name="allRecords">List of all available records</param>
     /// <param name="rootRecord">The root record to create tree from</param>
     /// <returns></returns>
-    private static ParseRecordTreeStructure CreateTreeRecord(List<ParseRecord> allRecords, ParseRecord rootRecord)
+    private static ParseRecordTreeStructure CreateTreeRecord(
+        List<ParseRecord> allRecords,
+        ParseRecord rootRecord
+    )
     {
         var rootIndex = allRecords.FindIndex(r => r.PathRawValue == rootRecord.PathRawValue);
         var childItems = allRecords
@@ -42,7 +45,7 @@ internal static class ParseRecordTreeStructureFactory
         {
             Index = rootIndex,
             Record = rootRecord,
-            ChildItems = childItems
+            ChildItems = childItems,
         };
     }
 }

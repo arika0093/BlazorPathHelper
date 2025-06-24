@@ -33,5 +33,5 @@ public partial class WebPaths
     public const string Sample3 = "/sample3";
 
     [Page<Sample3Value>]
-    public const string Sample3Arg = "/sample3/{value:int}" ; 
+    public const string Sample3Arg = "/sample3/{value:int}";
 }

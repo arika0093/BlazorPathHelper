@@ -13,13 +13,21 @@ internal class ParseQueryRecordFactory
     public static List<ParseQueryRecord> CreateFromType(ITypeSymbol symbol)
     {
         // get members of property or field.
-        var membersOfProperty = symbol.GetMembers()
+        var membersOfProperty = symbol
+            .GetMembers()
             .OfType<IPropertySymbol>()
-            .Where(m => m.IsDefinition && m is { IsReadOnly: false, DeclaredAccessibility: Accessibility.Public })
+            .Where(m =>
+                m.IsDefinition
+                && m is { IsReadOnly: false, DeclaredAccessibility: Accessibility.Public }
+            )
             .ToList();
-        var membersOfField = symbol.GetMembers()
+        var membersOfField = symbol
+            .GetMembers()
             .OfType<IFieldSymbol>()
-            .Where(m => m.IsDefinition && m is { IsReadOnly: false, DeclaredAccessibility: Accessibility.Public })
+            .Where(m =>
+                m.IsDefinition
+                && m is { IsReadOnly: false, DeclaredAccessibility: Accessibility.Public }
+            )
             .ToList();
         var members = membersOfProperty.OfType<ISymbol>().Concat(membersOfField).ToList();
         // create ParseQueryRecords.
@@ -48,9 +56,11 @@ internal class ParseQueryRecordFactory
         // check is nullable
         var isNullable = symbol switch
         {
-            IFieldSymbol fieldSymbol => fieldSymbol.NullableAnnotation == NullableAnnotation.Annotated,
-            IPropertySymbol propertySymbol => propertySymbol.NullableAnnotation == NullableAnnotation.Annotated,
-            _ => throw new ArgumentException("symbol is not field or property.")
+            IFieldSymbol fieldSymbol => fieldSymbol.NullableAnnotation
+                == NullableAnnotation.Annotated,
+            IPropertySymbol propertySymbol => propertySymbol.NullableAnnotation
+                == NullableAnnotation.Annotated,
+            _ => throw new ArgumentException("symbol is not field or property."),
         };
 
         return new ParseQueryRecord()
@@ -60,11 +70,11 @@ internal class ParseQueryRecordFactory
             {
                 IFieldSymbol fieldSymbol => fieldSymbol.Type,
                 IPropertySymbol propertySymbol => propertySymbol.Type,
-                _ => throw new ArgumentException("symbol is not field or property.")
+                _ => throw new ArgumentException("symbol is not field or property."),
             },
             Name = name,
             InitialValue = clauseSyntax,
-            IsNullable = isNullable
+            IsNullable = isNullable,
         };
     }
 
@@ -72,21 +82,23 @@ internal class ParseQueryRecordFactory
     {
         string? shortName = null;
         // [SupplyParameterFromQuery(Name = "short")] -> short
-        var supplyParameterAttr = symbol.GetAttributes()
+        var supplyParameterAttr = symbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "SupplyParameterFromQueryAttribute");
         // [QueryName("short")] -> short
-        var queryNameAttr = symbol.GetAttributes()
+        var queryNameAttr = symbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "QueryNameAttribute");
 
         if (supplyParameterAttr != null)
         {
-            shortName = supplyParameterAttr?.NamedArguments
-                .FirstOrDefault(pair => pair.Key == "Name").Value.Value?.ToString();
+            shortName = supplyParameterAttr
+                ?.NamedArguments.FirstOrDefault(pair => pair.Key == "Name")
+                .Value.Value?.ToString();
         }
         else if (queryNameAttr != null)
         {
-            shortName = queryNameAttr?.ConstructorArguments
-                .FirstOrDefault().Value?.ToString();
+            shortName = queryNameAttr?.ConstructorArguments.FirstOrDefault().Value?.ToString();
         }
         // if shortName is null, use property name.
         var urlName = shortName ?? symbol.Name;

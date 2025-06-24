@@ -7,7 +7,11 @@ namespace BlazorPathHelper;
 /// Attribute to customize the generated builder method
 /// </summary>
 /// <typeparam name="TQuery">Query Type</typeparam>
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+[AttributeUsage(
+    AttributeTargets.Field | AttributeTargets.Property,
+    Inherited = false,
+    AllowMultiple = false
+)]
 public class QueryAttribute<TQuery> : Attribute;
 
 /// <summary>

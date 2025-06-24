@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
 namespace BlazorPathHelper.Utils;
+
 internal static class RoslynGeneratorUtilities
 {
     // get namespace string for use in code generation
@@ -50,7 +51,8 @@ internal static class RoslynGeneratorUtilities
         var lowerCaseNextToNumber = new Regex("(?<=[0-9])[a-z]");
         var upperCaseInside = new Regex("(?<=[A-Z])[A-Z]+?((?=[A-Z][a-z])|(?=[0-9]))");
 
-        var pascalCase = invalidCharsRgx.Replace(whiteSpace.Replace(name, "_"), string.Empty)
+        var pascalCase = invalidCharsRgx
+            .Replace(whiteSpace.Replace(name, "_"), string.Empty)
             .Split(['_'], StringSplitOptions.RemoveEmptyEntries)
             .Select(w => startsWithLowerCaseChar.Replace(w, m => m.Value.ToUpper()))
             .Select(w => firstCharFollowedByUpperCasesOnly.Replace(w, m => m.Value.ToLower()))
@@ -79,7 +81,7 @@ internal static class RoslynGeneratorUtilities
             Accessibility.Public => "public",
             Accessibility.ProtectedAndInternal => "protected internal",
             Accessibility.ProtectedOrInternal => "protected internal",
-            _ => "public"
+            _ => "public",
         };
     }
 }

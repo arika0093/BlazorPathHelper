@@ -14,7 +14,7 @@ public class BlazorPathAttribute : Attribute
     /// export namespace. default: project root namespace
     /// </summary>
     public string? Namespace { get; set; } = null;
-    
+
     /// <summary>
     /// export class name. default: same as defined class name
     /// </summary>

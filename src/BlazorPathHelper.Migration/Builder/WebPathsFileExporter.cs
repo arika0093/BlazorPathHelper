@@ -1,12 +1,12 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 using BlazorPathHelper.Migration.Helpers;
 using BlazorPathHelper.Migration.Models;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using Sharprompt;
-using System.Text;
-using System.Text.RegularExpressions;
 using ZLogger;
 
 namespace BlazorPathHelper.Migration.Builder;
@@ -14,23 +14,24 @@ namespace BlazorPathHelper.Migration.Builder;
 /// <summary>
 /// This class is responsible for exporting the generated web paths to a file.
 /// </summary>
-internal class WebPathsFileExporter(
-    ILogger<WebPathsFileExporter> logger
-)
+internal class WebPathsFileExporter(ILogger<WebPathsFileExporter> logger)
 {
     /// <summary>
     /// Extends the content of the generated file with additional web paths.
     /// </summary>
     public string ExtendFileContent(
         IEnumerable<WebPathItemStructure> webPaths,
-        CommandLineParsedArguments args)
+        CommandLineParsedArguments args
+    )
     {
         var content = "";
         var outputFile = args.OutputFileFullPath;
         if (Path.Exists(outputFile))
         {
             content = File.ReadAllText(outputFile);
-        } else {
+        }
+        else
+        {
             content = PlainWebPathFileContent(args);
         }
         var syntaxTree = CSharpSyntaxTree.ParseText(content);
@@ -40,7 +41,8 @@ internal class WebPathsFileExporter(
         var classDeclaration = root.DescendantNodes()
             .OfType<ClassDeclarationSyntax>()
             .FirstOrDefault();
-        if (classDeclaration == null) {
+        if (classDeclaration == null)
+        {
             throw new InvalidOperationException("No class declaration found in the file.");
         }
 
@@ -51,10 +53,11 @@ internal class WebPathsFileExporter(
         {
             // if exist variable name, skip
             var variableName = webpath.NoConflictVariableName(webPaths);
-            var existingField = classDeclaration.Members
-                .OfType<FieldDeclarationSyntax>()
-                .FirstOrDefault(f => f.Declaration.Variables
-                    .Any(v => v.Identifier.Text == variableName));
+            var existingField = classDeclaration
+                .Members.OfType<FieldDeclarationSyntax>()
+                .FirstOrDefault(f =>
+                    f.Declaration.Variables.Any(v => v.Identifier.Text == variableName)
+                );
             if (existingField != null)
             {
                 logger.ZLogTrace($"Field {variableName} already exists. Skipping.");
@@ -62,17 +65,35 @@ internal class WebPathsFileExporter(
             }
             // Create a new field declaration
             // e.g. public const string Sample = "/sample";
-            var newField = SyntaxFactory.FieldDeclaration(
-                SyntaxFactory.VariableDeclaration(
-                    SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.StringKeyword)))
-                .WithVariables(SyntaxFactory.SingletonSeparatedList(
-                    SyntaxFactory.VariableDeclarator(variableName)
-                        .WithInitializer(SyntaxFactory.EqualsValueClause(
-                            SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
-                                SyntaxFactory.Literal(webpath.Path)))))))
-                .WithModifiers(SyntaxFactory.TokenList(
-                    SyntaxFactory.Token(webpath.Accessibility),
-                    SyntaxFactory.Token(SyntaxKind.ConstKeyword)));
+            var newField = SyntaxFactory
+                .FieldDeclaration(
+                    SyntaxFactory
+                        .VariableDeclaration(
+                            SyntaxFactory.PredefinedType(
+                                SyntaxFactory.Token(SyntaxKind.StringKeyword)
+                            )
+                        )
+                        .WithVariables(
+                            SyntaxFactory.SingletonSeparatedList(
+                                SyntaxFactory
+                                    .VariableDeclarator(variableName)
+                                    .WithInitializer(
+                                        SyntaxFactory.EqualsValueClause(
+                                            SyntaxFactory.LiteralExpression(
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(webpath.Path)
+                                            )
+                                        )
+                                    )
+                            )
+                        )
+                )
+                .WithModifiers(
+                    SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(webpath.Accessibility),
+                        SyntaxFactory.Token(SyntaxKind.ConstKeyword)
+                    )
+                );
 
             // export query parameters
             if (webpath.HasQueryParameters)
@@ -83,50 +104,81 @@ internal class WebPathsFileExporter(
                 //   ...
                 // }
                 var queryClassName = $"{variableName}Query";
-                var queryRecord = SyntaxFactory.RecordDeclaration(
-                    SyntaxFactory.Token(SyntaxKind.RecordKeyword), queryClassName)
-                    .WithModifiers(SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                var queryRecord = SyntaxFactory
+                    .RecordDeclaration(
+                        SyntaxFactory.Token(SyntaxKind.RecordKeyword),
+                        queryClassName
+                    )
+                    .WithModifiers(
+                        SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+                    )
                     .WithParameterList(SyntaxFactory.ParameterList()) // Add empty constructor
                     .WithOpenBraceToken(SyntaxFactory.Token(SyntaxKind.OpenBraceToken))
                     .WithCloseBraceToken(SyntaxFactory.Token(SyntaxKind.CloseBraceToken));
                 var queryMembers = new List<MemberDeclarationSyntax>();
                 foreach (var query in webpath.QueryParameters)
                 {
-                    var queryMember = SyntaxFactory.PropertyDeclaration(
-                        SyntaxFactory.ParseTypeName(query.Type), query.VariableName)
-                        .WithModifiers(SyntaxFactory.TokenList(
-                            SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
-                        .WithAccessorList(SyntaxFactory.AccessorList(
-                            SyntaxFactory.List(
-                            [
-                                SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
-                                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
-                                SyntaxFactory.AccessorDeclaration(SyntaxKind.InitAccessorDeclaration)
-                                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)),
-                            ])));
+                    var queryMember = SyntaxFactory
+                        .PropertyDeclaration(
+                            SyntaxFactory.ParseTypeName(query.Type),
+                            query.VariableName
+                        )
+                        .WithModifiers(
+                            SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+                        )
+                        .WithAccessorList(
+                            SyntaxFactory.AccessorList(
+                                SyntaxFactory.List(
+                                    [
+                                        SyntaxFactory
+                                            .AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                                            .WithSemicolonToken(
+                                                SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+                                            ),
+                                        SyntaxFactory
+                                            .AccessorDeclaration(SyntaxKind.InitAccessorDeclaration)
+                                            .WithSemicolonToken(
+                                                SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+                                            ),
+                                    ]
+                                )
+                            )
+                        );
                     // if queryName is not null or empty, add to attribute
                     if (!string.IsNullOrEmpty(query.QueryName))
                     {
-                        var queryNameAttr = SyntaxFactory.Attribute(
-                            SyntaxFactory.ParseName("QueryName"))
-                            .WithArgumentList(SyntaxFactory.AttributeArgumentList(
-                                SyntaxFactory.SingletonSeparatedList(
-                                    SyntaxFactory.AttributeArgument(
-                                        SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
-                                            SyntaxFactory.Literal(query.QueryName))))));
+                        var queryNameAttr = SyntaxFactory
+                            .Attribute(SyntaxFactory.ParseName("QueryName"))
+                            .WithArgumentList(
+                                SyntaxFactory.AttributeArgumentList(
+                                    SyntaxFactory.SingletonSeparatedList(
+                                        SyntaxFactory.AttributeArgument(
+                                            SyntaxFactory.LiteralExpression(
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(query.QueryName)
+                                            )
+                                        )
+                                    )
+                                )
+                            );
                         queryMember = queryMember.WithAttributeLists(
                             SyntaxFactory.SingletonList(
                                 SyntaxFactory.AttributeList(
-                                    SyntaxFactory.SingletonSeparatedList(queryNameAttr))));
+                                    SyntaxFactory.SingletonSeparatedList(queryNameAttr)
+                                )
+                            )
+                        );
                     }
 
                     // if default value is not null or empty, add to property
                     if (!string.IsNullOrEmpty(query.DefaultValue))
                     {
-                        queryMember = queryMember.WithInitializer(
-                            SyntaxFactory.EqualsValueClause(
-                                SyntaxFactory.ParseExpression(query.DefaultValue)))
+                        queryMember = queryMember
+                            .WithInitializer(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.ParseExpression(query.DefaultValue)
+                                )
+                            )
                             .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
                     }
 
@@ -137,11 +189,13 @@ internal class WebPathsFileExporter(
                 newQueryRecords.Add(queryRecord);
                 // ... and newField add attribute with generics [Query]
                 var queryAttr = SyntaxFactory.Attribute(
-                    SyntaxFactory.ParseName($"Query<{queryClassName}>"));
+                    SyntaxFactory.ParseName($"Query<{queryClassName}>")
+                );
                 newField = newField.WithAttributeLists(
                     SyntaxFactory.SingletonList(
-                        SyntaxFactory.AttributeList(
-                            SyntaxFactory.SingletonSeparatedList(queryAttr))));
+                        SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(queryAttr))
+                    )
+                );
             }
             // add
             updatedClass = updatedClass.AddMembers(newField);
@@ -162,27 +216,24 @@ internal class WebPathsFileExporter(
     /// <summary>
     /// Generates the content of the web paths file in plain format.
     /// </summary>
-    private string PlainWebPathFileContent(
-        CommandLineParsedArguments args)
+    private string PlainWebPathFileContent(CommandLineParsedArguments args)
     {
         return $$"""
-        #pragma warning disable CA1050
+            #pragma warning disable CA1050
 
-        using BlazorPathHelper;
+            using BlazorPathHelper;
 
-        [BlazorPath]
-        public partial class {{args.OutputClassName}}
-        {
-        }
-        """;
+            [BlazorPath]
+            public partial class {{args.OutputClassName}}
+            {
+            }
+            """;
     }
 
     /// <summary>
     /// Exports the generated file to the specified path.
     /// </summary>
-    public void ExportGeneratedWebPathsFile(
-        string contents,
-        CommandLineParsedArguments args)
+    public void ExportGeneratedWebPathsFile(string contents, CommandLineParsedArguments args)
     {
         var outputPath = args.OutputFileFullPath;
         var outputFileName = Path.GetFileName(outputPath);
@@ -190,14 +241,15 @@ internal class WebPathsFileExporter(
         {
             var isOverwrite = Prompt.Confirm(
                 $"File {outputFileName} already exists. Do you want to overwrite it?",
-                false);
+                false
+            );
             if (!isOverwrite)
             {
                 logger.LogInformation($"File {outputFileName} already exists. Skipping export.");
                 return;
             }
         }
-        if(args.IsDryRun)
+        if (args.IsDryRun)
         {
             logger.ZLogDebug($"Dry run: Exporting to {outputFileName}.");
             return;
@@ -214,7 +266,7 @@ internal class WebPathsFileExporter(
         CommandLineParsedArguments args
     )
     {
-        if(!args.IsReplacePageAttributeString)
+        if (!args.IsReplacePageAttributeString)
         {
             logger.ZLogInformation($"Skipping @page attribute replacement.");
             return;

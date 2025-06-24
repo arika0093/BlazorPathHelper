@@ -3,9 +3,7 @@ using ZLogger;
 
 namespace BlazorPathHelper.Migration.Helpers;
 
-internal class CheckGitStatusHelper(
-    ILogger<CheckGitStatusHelper> logger
-)
+internal class CheckGitStatusHelper(ILogger<CheckGitStatusHelper> logger)
 {
     /// <summary>
     /// Checks if the current git status is clean (no uncommitted changes).
@@ -16,14 +14,18 @@ internal class CheckGitStatusHelper(
         {
             if (!RunGitCommand(targetDir, "rev-parse --is-inside-work-tree").Contains("true"))
             {
-                logger.ZLogWarning($"current directory is not a git repository. recommend to use git repository to rollback changes.");
+                logger.ZLogWarning(
+                    $"current directory is not a git repository. recommend to use git repository to rollback changes."
+                );
                 return false;
             }
             var gitStatus = RunGitCommand(targetDir, "status --porcelain");
             var isClean = string.IsNullOrWhiteSpace(gitStatus);
             if (!isClean)
             {
-                logger.ZLogWarning($"Git status is not clean. Please commit or stash your changes.");
+                logger.ZLogWarning(
+                    $"Git status is not clean. Please commit or stash your changes."
+                );
             }
             return isClean;
         }

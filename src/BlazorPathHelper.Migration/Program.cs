@@ -6,23 +6,31 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ZLogger;
 
-var app = ConsoleApp.Create()
-    .ConfigureLogging(config => {
+var app = ConsoleApp
+    .Create()
+    .ConfigureLogging(config =>
+    {
         config.ClearProviders();
 #if DEBUG
         config.SetMinimumLevel(LogLevel.Debug);
 #else
         config.SetMinimumLevel(LogLevel.Information);
 #endif
-        config.AddZLoggerConsole(options => {
+        config.AddZLoggerConsole(options =>
+        {
             options.IncludeScopes = true;
-            options.UsePlainTextFormatter(formatter => {
-                formatter.SetPrefixFormatter($"{0:local-timeonly} [{1:short}] ",
-                    (in MessageTemplate template, in LogInfo info) => template.Format(info.Timestamp, info.LogLevel));
+            options.UsePlainTextFormatter(formatter =>
+            {
+                formatter.SetPrefixFormatter(
+                    $"{0:local-timeonly} [{1:short}] ",
+                    (in MessageTemplate template, in LogInfo info) =>
+                        template.Format(info.Timestamp, info.LogLevel)
+                );
             });
         });
     })
-    .ConfigureServices(services => {
+    .ConfigureServices(services =>
+    {
         services.AddSingleton<ProjectSelectorHelper>();
         services.AddSingleton<PackageInstallHelper>();
         services.AddSingleton<CheckGitStatusHelper>();

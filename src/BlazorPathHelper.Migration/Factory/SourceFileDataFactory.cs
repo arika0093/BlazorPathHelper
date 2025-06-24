@@ -11,21 +11,25 @@ internal class SourceFileDataFactory
     {
         if (string.IsNullOrWhiteSpace(projectDir))
         {
-            throw new ArgumentException("Project directory cannot be null or empty", nameof(projectDir));
+            throw new ArgumentException(
+                "Project directory cannot be null or empty",
+                nameof(projectDir)
+            );
         }
-        
+
         if (!Directory.Exists(projectDir))
         {
             throw new DirectoryNotFoundException($"Project directory not found: {projectDir}");
         }
-        
+
         return FindRazorFiles(projectDir);
     }
 
     // find and read all razor files in the project directory
     private IEnumerable<SourceFileData> FindRazorFiles(string projectDir)
     {
-        var razorFiles = Directory.EnumerateFiles(projectDir, "*.razor", SearchOption.AllDirectories)
+        var razorFiles = Directory
+            .EnumerateFiles(projectDir, "*.razor", SearchOption.AllDirectories)
             .Where(file => !file.EndsWith(".g.cs") && !file.EndsWith(".g.i.cs"));
         foreach (var file in razorFiles)
         {
@@ -33,7 +37,7 @@ internal class SourceFileDataFactory
             {
                 FileType = ParsedFileType.Razor,
                 FilePath = file,
-                FileContent = File.ReadAllText(file)
+                FileContent = File.ReadAllText(file),
             };
         }
     }

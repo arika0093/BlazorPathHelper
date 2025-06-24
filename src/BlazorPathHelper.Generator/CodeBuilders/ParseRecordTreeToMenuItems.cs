@@ -22,42 +22,46 @@ internal class ParseRecordTreeToMenuItems(ParseRecordTreeStructure ts)
         var sb = new StringBuilder();
         sb.Append(
             $$"""
-              {{tab}}new BlazorPathMenuItem(){ 
-              {{tab}}    Index = {{ts.Index}},
-              {{tab}}    GroupKey = "{{ts.Record.GroupPath}}",
-              {{tab}}    GroupIndex = {{groupIndex}},
-              {{tab}}    GroupLevel = {{groupLevel}},
-              {{tab}}    Name = "{{ts.Record.DisplayName}}",
-              {{tab}}    Path = "{{ts.Record.PathRawValue}}",
-              """);
+            {{tab}}new BlazorPathMenuItem(){ 
+            {{tab}}    Index = {{ts.Index}},
+            {{tab}}    GroupKey = "{{ts.Record.GroupPath}}",
+            {{tab}}    GroupIndex = {{groupIndex}},
+            {{tab}}    GroupLevel = {{groupLevel}},
+            {{tab}}    Name = "{{ts.Record.DisplayName}}",
+            {{tab}}    Path = "{{ts.Record.PathRawValue}}",
+            """
+        );
 
         // export description
         if (!string.IsNullOrEmpty(ts.Record.DisplayDescription))
         {
-            sb.Append(
-                $"{nl}{tab}    Description = \"{ts.Record.DisplayDescription}\",");
+            sb.Append($"{nl}{tab}    Description = \"{ts.Record.DisplayDescription}\",");
         }
         // export icon
         if (ts.Record.Icon != null)
         {
-            sb.Append(
-                $"{nl}{tab}    Icon = {ts.Record.Icon},");
+            sb.Append($"{nl}{tab}    Icon = {ts.Record.Icon},");
         }
         // export children
-        var childMenuItems = ts.ChildItems.Select((c, i) =>
-        {
-            var builder = new ParseRecordTreeToMenuItems(c);
-            return builder.ExportMenuCode(i, groupLevel + 1);
-        }).ToList();
+        var childMenuItems = ts
+            .ChildItems.Select(
+                (c, i) =>
+                {
+                    var builder = new ParseRecordTreeToMenuItems(c);
+                    return builder.ExportMenuCode(i, groupLevel + 1);
+                }
+            )
+            .ToList();
         if (childMenuItems.Any())
         {
             sb.Append(
                 $"""
 
-                 {tab}    Children = [
-                 {string.Join($",{nl}", childMenuItems)}
-                 {tab}    ]
-                 """);
+                {tab}    Children = [
+                {string.Join($",{nl}", childMenuItems)}
+                {tab}    ]
+                """
+            );
         }
         sb.Append($"{nl}{tab}}}");
 

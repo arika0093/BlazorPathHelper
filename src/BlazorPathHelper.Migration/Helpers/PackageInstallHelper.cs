@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 using ZLogger;
+
 namespace BlazorPathHelper.Migration.Helpers;
 
-internal class PackageInstallHelper(
-    ILogger<PackageInstallHelper> logger
-)
+internal class PackageInstallHelper(ILogger<PackageInstallHelper> logger)
 {
     private const string PackageName = "BlazorPathHelper";
 
@@ -14,7 +13,8 @@ internal class PackageInstallHelper(
     /// </summary>
     public async Task<bool> InstallBlazorPathHelperToProject(string projectDir)
     {
-        var projectFile = Directory.EnumerateFiles(projectDir, "*.csproj", SearchOption.TopDirectoryOnly)
+        var projectFile = Directory
+            .EnumerateFiles(projectDir, "*.csproj", SearchOption.TopDirectoryOnly)
             .FirstOrDefault();
         if (projectFile == null)
         {
@@ -44,10 +44,7 @@ internal class PackageInstallHelper(
     /// </summary>
     private async Task<bool> StartProcessWithCancellation(ProcessStartInfo processStartInfo)
     {
-        using var process = new Process
-        {
-            StartInfo = processStartInfo,
-        };
+        using var process = new Process { StartInfo = processStartInfo };
 
         void canceled(object? sender, ConsoleCancelEventArgs e)
         {
@@ -78,7 +75,9 @@ internal class PackageInstallHelper(
         }
         else
         {
-            logger.ZLogError($"Failed to install. try manually run `dotnet add package {PackageName}`.");
+            logger.ZLogError(
+                $"Failed to install. try manually run `dotnet add package {PackageName}`."
+            );
             return false;
         }
     }

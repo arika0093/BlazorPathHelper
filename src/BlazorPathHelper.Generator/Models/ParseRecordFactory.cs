@@ -14,7 +14,8 @@ internal static class ParseRecordFactory
     /// <param name="rootSymbol">symbol of class with BlazorPathAttribute</param>
     public static List<ParseRecord> GenerateRecordsFromPathAttr(INamedTypeSymbol rootSymbol)
     {
-        return rootSymbol.GetMembers()
+        return rootSymbol
+            .GetMembers()
             .OfType<IFieldSymbol>()
             // extract "const string" field with BlazorPathItemAttribute
             .Where(f => f.IsConst && f.Type.SpecialType == SpecialType.System_String)
@@ -40,7 +41,8 @@ internal static class ParseRecordFactory
     )
     {
         // get member value of BlazorPathAttribute
-        var rootAttrDict = rootSymbol.GetAttributes()
+        var rootAttrDict = rootSymbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == nameof(BlazorPathAttribute))
             ?.ToDictionary();
         // This sequence is only called for classes with the BlazorPathAttribute attribute,
@@ -53,40 +55,50 @@ internal static class ParseRecordFactory
         var rootNamespace = rootAttrDict.Get(nameof(BlazorPathAttribute.Namespace));
         var rootClassName = rootAttrDict.Get(nameof(BlazorPathAttribute.ClassName));
         var rootPathBaseValue = rootAttrDict.Get(nameof(BlazorPathAttribute.PathBaseValue)) ?? "";
-        var rootFileName = rootSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+        var rootFileName = rootSymbol
+            .ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
             .Replace("global::", "")
             .Replace("<", "_")
             .Replace(">", "_");
 
         // get member value of BlazorPathItemAttribute
-        var pathItemAttr = pathItemSymbol.GetAttributes()
+        var pathItemAttr = pathItemSymbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == nameof(ItemAttribute));
         var pathItemDict = pathItemAttr?.ToDictionary();
         var pathRawValue = pathItemSymbol.ConstantValue?.ToString() ?? "";
         var itemVisible = pathItemDict?.Get(nameof(ItemAttribute.Visible));
         var itemIgnore = pathItemDict?.Get(nameof(ItemAttribute.Ignore));
         var itemNameFromProp = pathItemDict?.Get(nameof(ItemAttribute.Name));
-        var itemNameFromConstructor = pathItemAttr?.ConstructorArguments.FirstOrDefault().Value?.ToString();
+        var itemNameFromConstructor = pathItemAttr
+            ?.ConstructorArguments.FirstOrDefault()
+            .Value?.ToString();
         var itemDescription = pathItemDict?.Get(nameof(ItemAttribute.Description));
         var itemGroup = pathItemDict?.Get(nameof(ItemAttribute.Group));
 
         // check visibility
-        bool? visibleFlag = itemVisible != null
-            ? string.Compare(itemVisible, "true", StringComparison.OrdinalIgnoreCase) == 0
-            : null;
+        bool? visibleFlag =
+            itemVisible != null
+                ? string.Compare(itemVisible, "true", StringComparison.OrdinalIgnoreCase) == 0
+                : null;
         // check ignore flag
-        bool? ignoreFlag = itemIgnore != null
-            ? string.Compare(itemIgnore, "true", StringComparison.OrdinalIgnoreCase) == 0
-            : null;
+        bool? ignoreFlag =
+            itemIgnore != null
+                ? string.Compare(itemIgnore, "true", StringComparison.OrdinalIgnoreCase) == 0
+                : null;
 
         // parse arguments of url
         var parseParameters = ParseParameterRecordFactory.CreateFromPath(pathRawValue);
 
         // get Blazor Page Type
         // PageAttribute<Page> and Page
-        ExtractPageTypeSymbol(pathItemSymbol, out var blazorPageTypeSymbol, out var pageAttributeLocation);
+        ExtractPageTypeSymbol(
+            pathItemSymbol,
+            out var blazorPageTypeSymbol,
+            out var pageAttributeLocation
+        );
 
-        // icon is specified by generic or string. 
+        // icon is specified by generic or string.
         // BlazorPathItemAttribute<Icon> -> new Icon()
         // BlazorPathItemAttribute(Icon = typeof(Icon)) -> new Icon()
         // BlazorPathItemAttribute(Icon = "icon-home") -> "icon-home"
@@ -104,7 +116,9 @@ internal static class ParseRecordFactory
         return new()
         {
             BaseFileName = rootFileName,
-            Namespace = rootNamespace ?? RoslynGeneratorUtilities.GetNamespace(rootSymbol.ContainingNamespace),
+            Namespace =
+                rootNamespace
+                ?? RoslynGeneratorUtilities.GetNamespace(rootSymbol.ContainingNamespace),
             AccessModifier = rootSymbol.DeclaredAccessibility.GetAccessibilityString(),
             ExportClassName = rootClassName ?? rootSymbol.Name,
             VariableName = pathItemSymbol.Name,
@@ -121,15 +135,18 @@ internal static class ParseRecordFactory
             QueryTypeSymbol = queryTypeSymbol,
             QueryRecords = queryRecords,
             PageTypeSymbol = blazorPageTypeSymbol,
-            PageAttributeLocation = pageAttributeLocation
+            PageAttributeLocation = pageAttributeLocation,
         };
     }
 
     /// <summary>
     /// extract icon data from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractItemIconData(AttributeData? pathItemAttr,
-        out string itemIcon, out ITypeSymbol? iconTypeSymbol)
+    private static void ExtractItemIconData(
+        AttributeData? pathItemAttr,
+        out string itemIcon,
+        out ITypeSymbol? iconTypeSymbol
+    )
     {
         itemIcon = "null";
         iconTypeSymbol = null;
@@ -156,19 +173,24 @@ internal static class ParseRecordFactory
         // if icon is specified, generate code.
         if (iconTypeSymbol != null)
         {
-            itemIcon = iconTypeSymbol.SpecialType == SpecialType.System_String
-                ? $"""" """{iconTypeSymbol.Name}""" """"
-                : $"new {iconTypeSymbol}()";
+            itemIcon =
+                iconTypeSymbol.SpecialType == SpecialType.System_String
+                    ? $"""" """{iconTypeSymbol.Name}""" """"
+                    : $"new {iconTypeSymbol}()";
         }
     }
 
     /// <summary>
     /// extract query type symbol from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractQueryTypeSymbol(IFieldSymbol pathItemSymbol, out ITypeSymbol? queryTypeSymbol)
+    private static void ExtractQueryTypeSymbol(
+        IFieldSymbol pathItemSymbol,
+        out ITypeSymbol? queryTypeSymbol
+    )
     {
         queryTypeSymbol = null;
-        var pathQueryAttr = pathItemSymbol.GetAttributes()
+        var pathQueryAttr = pathItemSymbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "QueryAttribute");
         if (pathQueryAttr is { AttributeClass.IsGenericType: true })
         {
@@ -179,20 +201,25 @@ internal static class ParseRecordFactory
     /// <summary>
     /// extract page type symbol from AttributeData of BlazorPathItemAttribute.
     /// </summary>
-    private static void ExtractPageTypeSymbol(IFieldSymbol pathItemSymbol,
-        out ITypeSymbol? blazorPageTypeSymbol, out Location? pageAttributeLocation)
+    private static void ExtractPageTypeSymbol(
+        IFieldSymbol pathItemSymbol,
+        out ITypeSymbol? blazorPageTypeSymbol,
+        out Location? pageAttributeLocation
+    )
     {
         blazorPageTypeSymbol = null;
         pageAttributeLocation = null;
-        var pathPageAttr = pathItemSymbol.GetAttributes()
+        var pathPageAttr = pathItemSymbol
+            .GetAttributes()
             .FirstOrDefault(a => a.AttributeClass?.Name == "PageAttribute");
         if (pathPageAttr is { AttributeClass.IsGenericType: true })
         {
-           blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
+            blazorPageTypeSymbol = pathPageAttr.AttributeClass.TypeArguments[0]; // TPage
         }
 
         var reference = pathPageAttr?.ApplicationSyntaxReference;
-        if (reference == null) return;
+        if (reference == null)
+            return;
         // get location of PageAttribute
         var span = reference.Span;
         var syntaxTree = reference.SyntaxTree;

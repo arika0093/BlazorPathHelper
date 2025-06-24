@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorPathHelper;
 
@@ -17,7 +17,8 @@ public static class BlazorPathHelperUtility
     /// <param name="childrenSelector">child selector</param>
     /// <typeparam name="T">type of the array</typeparam>
     /// <returns>flattened array</returns>
-    public static T[] ToFlatten<T>(this T[] items, Func<T, T[]> childrenSelector) where T : BlazorPathMenuItem
+    public static T[] ToFlatten<T>(this T[] items, Func<T, T[]> childrenSelector)
+        where T : BlazorPathMenuItem
     {
         return items
             .SelectMany(i => childrenSelector(i).ToFlatten(childrenSelector).Prepend(i))
@@ -45,7 +46,7 @@ public static class BlazorPathHelperUtility
         return items switch
         {
             null => [(valName, null)],
-            _ => items.SelectMany(item => ToEscapedStrings(valName, item)).ToArray()
+            _ => items.SelectMany(item => ToEscapedStrings(valName, item)).ToArray(),
         };
     }
 
@@ -57,7 +58,7 @@ public static class BlazorPathHelperUtility
         return item switch
         {
             null => [(valName, null)],
-            _ => [(valName, Uri.EscapeDataString(ToStringForUrl(item)))]
+            _ => [(valName, Uri.EscapeDataString(ToStringForUrl(item)))],
         };
     }
 
@@ -69,7 +70,7 @@ public static class BlazorPathHelperUtility
         return item switch
         {
             DateTime dt => ToStringForUrlDateTime(dt),
-            _ => item?.ToString() ?? string.Empty
+            _ => item?.ToString() ?? string.Empty,
         };
     }
 
@@ -78,7 +79,8 @@ public static class BlazorPathHelperUtility
     /// </summary>
     public static string ToStringForUrlDateTime(DateTime? item)
     {
-        return item.HasValue ? item.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") : string.Empty;
+        return item.HasValue
+            ? item.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+            : string.Empty;
     }
-
 }

@@ -1,5 +1,4 @@
-﻿
-// ReSharper disable StringLiteralTypo
+﻿// ReSharper disable StringLiteralTypo
 
 using System.Collections.Generic;
 
@@ -54,5 +53,5 @@ internal record ParseRazorStructure
     /// * full class name: "Example.FluentUI.Foo.Bar.Test"
     /// => "Foo.Bar.Test"
     /// </remarks>
-    public string PartialClassName => FullClassName.Replace(DefaultNamespace,"").Trim('.');
+    public string PartialClassName => FullClassName.Replace(DefaultNamespace, "").Trim('.');
 }

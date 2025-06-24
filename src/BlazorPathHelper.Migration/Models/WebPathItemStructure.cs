@@ -6,7 +6,8 @@ internal class WebPathItemStructure
 {
     public required SourceFileData Source { get; init; }
     public required string Path { get; init; }
-    public required string VariableName { 
+    public required string VariableName
+    {
         get => _variableName;
         init => _variableName = UsableVariableName(value);
     }
@@ -23,8 +24,7 @@ internal class WebPathItemStructure
     /// <summary>
     /// Generates a variable name for the web path item, ensuring no conflicts with existing variable names.
     /// </summary>
-    public string NoConflictVariableName(
-        IEnumerable<WebPathItemStructure> webPaths)
+    public string NoConflictVariableName(IEnumerable<WebPathItemStructure> webPaths)
     {
         // find same variablename from webpaths
         var sameVariableName = webPaths
@@ -42,10 +42,7 @@ internal class WebPathItemStructure
     private string UsableVariableName(string variableName)
     {
         // remove special characters
-        var usableVariableName = variableName
-            .Replace(" ", "_")
-            .Replace("-", "_")
-            .Replace(".", "_");
+        var usableVariableName = variableName.Replace(" ", "_").Replace("-", "_").Replace(".", "_");
         // remove leading and trailing underscores
         usableVariableName = usableVariableName.Trim('_');
         return usableVariableName;

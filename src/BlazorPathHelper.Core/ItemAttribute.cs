@@ -7,10 +7,12 @@ namespace BlazorPathHelper;
 /// Attribute to customize the generated menu items
 /// </summary>
 /// <param name="name">Display name</param>
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class ItemAttribute(
-    string? name = null
-) : Attribute
+[AttributeUsage(
+    AttributeTargets.Field | AttributeTargets.Property,
+    Inherited = false,
+    AllowMultiple = false
+)]
+public class ItemAttribute(string? name = null) : Attribute
 {
     /// <summary>
     /// Menu item visibility. default: true
@@ -26,17 +28,16 @@ public class ItemAttribute(
     /// Menu item display name. default: field/property name
     /// </summary>
     public string? Name { get; set; } = name;
-    
+
     /// <summary>
     /// Menu item display description. default: null
     /// </summary>
     public string? Description { get; set; }
-    
+
     /// <summary>
     /// Menu item Icon-Property. default: null
     /// </summary>
     public object? Icon { get; set; }
-
 
     /// <summary>
     /// Menu item group. default: defined URL parent path (e.g. /a/b -> /a)
@@ -49,8 +50,10 @@ public class ItemAttribute(
 /// </summary>
 /// <typeparam name="TIcon">Customize Icon Type</typeparam>
 /// <param name="name">Display name</param>
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class ItemAttribute<TIcon>(
-    string? name = null
-) : ItemAttribute(name)
+[AttributeUsage(
+    AttributeTargets.Field | AttributeTargets.Property,
+    Inherited = false,
+    AllowMultiple = false
+)]
+public class ItemAttribute<TIcon>(string? name = null) : ItemAttribute(name)
     where TIcon : new();

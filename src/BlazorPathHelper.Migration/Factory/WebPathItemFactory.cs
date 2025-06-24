@@ -1,27 +1,28 @@
-﻿using BlazorPathHelper.Migration.Models;
+﻿using System.Text.RegularExpressions;
+using BlazorPathHelper.Migration.Models;
 using Microsoft.Extensions.Logging;
 using Sharprompt;
-using System.Text.RegularExpressions;
 using ZLogger;
 
 namespace BlazorPathHelper.Migration.Factory;
 
-internal partial class WebPathItemFactory(
-    ILogger<WebPathItemFactory> logger
-)
+internal partial class WebPathItemFactory(ILogger<WebPathItemFactory> logger)
 {
     /// <summary>
     /// Generates a WebPathItemStructure from the given source file data.
     /// </summary>
     public IEnumerable<WebPathItemStructure> GenerateWebPathItem(
         SourceFileData source,
-        CommandLineParsedArguments args)
+        CommandLineParsedArguments args
+    )
     {
         return source.FileType switch
         {
             ParsedFileType.Razor => GenerateWebPathItemFromRazor(source, args),
             // ParsedFileType.Csharp => GenerateWebPathItemFromCsharp(source, args),
-            _ => throw new NotImplementedException($"File type {source.FileType} is not supported.")
+            _ => throw new NotImplementedException(
+                $"File type {source.FileType} is not supported."
+            ),
         };
     }
 
@@ -30,7 +31,8 @@ internal partial class WebPathItemFactory(
     /// </summary>
     private IEnumerable<WebPathItemStructure> GenerateWebPathItemFromRazor(
         SourceFileData source,
-        CommandLineParsedArguments args)
+        CommandLineParsedArguments args
+    )
     {
         // className be equal to the file name
         // e.g. Sample.razor -> Sample
@@ -47,16 +49,18 @@ internal partial class WebPathItemFactory(
         string pageString = string.Empty;
         var extractPageAttributeRegex = RazorPageAttrRegex();
         var pageAttrMatches = extractPageAttributeRegex.Matches(source.FileContent);
-        if(pageAttrMatches.Count >= 2)
+        if (pageAttrMatches.Count >= 2)
         {
             logger.ZLogWarning($"Multiple @page attributes found in {source.FilePath}");
-            var selectedPageAttrMatch = Prompt.Select(new SelectOptions<Match>()
-            {
-                Message = $"Select @page attribute to use",
-                Items = pageAttrMatches,
-                DefaultValue = pageAttrMatches[0],
-                TextSelector = (match) => match.Groups[1].Value,
-            });
+            var selectedPageAttrMatch = Prompt.Select(
+                new SelectOptions<Match>()
+                {
+                    Message = $"Select @page attribute to use",
+                    Items = pageAttrMatches,
+                    DefaultValue = pageAttrMatches[0],
+                    TextSelector = (match) => match.Groups[1].Value,
+                }
+            );
             pageString = selectedPageAttrMatch.Groups[1].Value;
         }
         else
@@ -71,7 +75,8 @@ internal partial class WebPathItemFactory(
         // parse query parameters (SupplyParameterFromQuery)
         var queryParameters = GetWebPathQueryStructures(source, args);
 
-        var rst = new WebPathItemStructure {
+        var rst = new WebPathItemStructure
+        {
             Source = source,
             Path = pageString,
             VariableName = className,
@@ -98,7 +103,8 @@ internal partial class WebPathItemFactory(
 
     private static IEnumerable<WebPathQueryStructure> GetWebPathQueryStructures(
         SourceFileData source,
-        CommandLineParsedArguments args)
+        CommandLineParsedArguments args
+    )
     {
         var matches = QueryBuilderRegex().Matches(source.FileContent);
         foreach (Match match in matches)
@@ -132,7 +138,9 @@ internal partial class WebPathItemFactory(
     // Group 3: Query Variable Name in C#
     // Group 4: Default Value
     // https://regex101.com/r/AWrD52/1
-    [GeneratedRegex(@"\[\s*SupplyParameterFromQuery(?:Attribute)?\s*(?:\(Name\s*=\s*""(.+)""\))?\]\s+public\s+(.+?)\s+([^\s]+)\s*(?:{\s*get\s*;\s*(?:set|init)\s*;\s*})?(?:\s*=\s*([^\s;]+))?")]
+    [GeneratedRegex(
+        @"\[\s*SupplyParameterFromQuery(?:Attribute)?\s*(?:\(Name\s*=\s*""(.+)""\))?\]\s+public\s+(.+?)\s+([^\s]+)\s*(?:{\s*get\s*;\s*(?:set|init)\s*;\s*})?(?:\s*=\s*([^\s;]+))?"
+    )]
     private static partial Regex QueryBuilderRegex();
 
     [GeneratedRegex(@"^[ -/:-@[-´{-~]*$")]

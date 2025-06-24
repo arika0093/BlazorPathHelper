@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Threading;
 using BlazorPathHelper.Tests.Resources;
-using Xunit;
 using FluentAssertions;
+using Xunit;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -22,6 +23,7 @@ internal partial class DefinitionWithAttr
     // Specify page name and icon (CSS class)
     [Item("SampleA", Icon = "fas fa-cog")]
     public const string Sample = "/sample";
+
     [Item("SampleA-1", Icon = "fas fa-star")]
     public const string SampleChild = "/sample/child";
 
@@ -40,7 +42,7 @@ internal partial class DefinitionWithAttr
     // Child pages will also appear in the menu
     [Item("SampleB-1")]
     public const string SuperInnerItemChild = "/hoge/fuga/piyo/child";
-    
+
     // Use the generic type to specify the icon class
     [Item<IconFromClass>("SampleC1")]
     public const string SampleC1 = "/sample-c1";
@@ -48,6 +50,7 @@ internal partial class DefinitionWithAttr
     // For multilingual support, use nameof to specify resource keys and IStringLocalizer in components
     [Item(nameof(Localize.Sample))]
     public const string SampleLocalize = "/sample-l10n";
+
     [Item(nameof(Localize.Sample), Description = nameof(Localize.SampleDesc))]
     public const string SampleLocalizeWithDesc = "/sample-l10n-plus";
 }
@@ -60,7 +63,7 @@ public class PathTestWithAttr
         var menuItem = DefinitionWithAttr.MenuItem;
         menuItem.Should().NotContain(item => item.Path == DefinitionWithAttr.Index);
     }
-    
+
     [Fact]
     public void HasIconClass()
     {
@@ -84,7 +87,7 @@ public class PathTestWithAttr
         var sampleA2Item = menuItem.First(item => item.Path == DefinitionWithAttr.SampleWithDesc);
         sampleA2Item.Description.Should().Be("Description of the A-2 page");
     }
-    
+
     [Fact]
     public void HasGroupedItem()
     {
@@ -92,18 +95,20 @@ public class PathTestWithAttr
         var sampleA3Item = menuItem.First(item => item.Path == DefinitionWithAttr.SampleChild3);
         sampleA3Item.GroupKey.Should().Be(DefinitionWithAttr.Sample);
     }
-    
+
     [Fact]
     public void HasTopLevelItem()
     {
         var menuItem = DefinitionWithAttr.MenuItemFlatten;
         var sampleBItem = menuItem.First(item => item.Path == DefinitionWithAttr.SuperInnerItem);
-        var sampleB1Item = menuItem.First(item => item.Path == DefinitionWithAttr.SuperInnerItemChild);
+        var sampleB1Item = menuItem.First(item =>
+            item.Path == DefinitionWithAttr.SuperInnerItemChild
+        );
         sampleBItem.GroupKey.Should().Be("");
         sampleBItem.Children.Should().NotBeEmpty();
         sampleBItem.Children.Should().Contain(sampleB1Item);
     }
-    
+
     [Fact]
     public void HasIconClassFromGenericType()
     {
@@ -117,7 +122,9 @@ public class PathTestWithAttr
     {
         var menuItem = DefinitionWithAttr.MenuItemFlatten;
         var l10n = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalize);
-        var l10nDesc = menuItem.First(item => item.Path == DefinitionWithAttr.SampleLocalizeWithDesc);
+        var l10nDesc = menuItem.First(item =>
+            item.Path == DefinitionWithAttr.SampleLocalizeWithDesc
+        );
         l10n.Name.Should().Be(nameof(Localize.Sample));
         l10nDesc.Description.Should().Be(nameof(Localize.SampleDesc));
     }

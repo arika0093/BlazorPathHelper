@@ -75,10 +75,10 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     }
 
     // e.g. "int val1, int val2"
-    private string GetBuilderVals(string[]? optionals = null)
-        => string.Join(", ", record.Parameters.Select(a => a.VariableString).Concat(optionals ?? []));
+    private string GetBuilderVals(string[]? optionals = null) =>
+        string.Join(", ", record.Parameters.Select(a => a.VariableString).Concat(optionals ?? []));
 
     // e.g. "val1, val2"
-    private string GetBuilderArgs(string[]? optionals = null)
-        => string.Join(", ", record.Parameters.Select(a => a.ArgDefinition).Concat(optionals ?? []));
+    private string GetBuilderArgs(string[]? optionals = null) =>
+        string.Join(", ", record.Parameters.Select(a => a.ArgDefinition).Concat(optionals ?? []));
 }

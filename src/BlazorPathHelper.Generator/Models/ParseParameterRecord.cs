@@ -48,7 +48,8 @@ internal record ParseParameterRecord
     /// e.g. {value1} -> "string value1"
     /// e.g. {value2:int?} -> "int? value2 = null"
     /// </summary>
-    public string ArgDefinition => $"{TypeDefinition} {VariableName}{(IsNullable ? " = null" : "")}";
+    public string ArgDefinition =>
+        $"{TypeDefinition} {VariableName}{(IsNullable ? " = null" : "")}";
 
     /// <summary>
     /// argument definition for builder method.

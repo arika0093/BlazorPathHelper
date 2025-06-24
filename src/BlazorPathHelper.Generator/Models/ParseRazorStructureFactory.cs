@@ -16,71 +16,86 @@ internal static class ParseRazorStructureFactory
     /// parse razor files and return ParseRazorStructure.
     /// </summary>
     public static IncrementalValueProvider<ImmutableArray<ParseRazorStructure>> ParseRazorFiles(
-        IncrementalGeneratorInitializationContext context)
+        IncrementalGeneratorInitializationContext context
+    )
     {
-        return context.AdditionalTextsProvider
+        return context
+            .AdditionalTextsProvider
             // open all razor files.
             .Where(static i =>
-                i.Path.EndsWith(".razor", StringComparison.OrdinalIgnoreCase) ||
-                i.Path.EndsWith(".cshtml", StringComparison.OrdinalIgnoreCase))
+                i.Path.EndsWith(".razor", StringComparison.OrdinalIgnoreCase)
+                || i.Path.EndsWith(".cshtml", StringComparison.OrdinalIgnoreCase)
+            )
             // and concat project information (for get namespace and project directory)
             .Combine(context.AnalyzerConfigOptionsProvider)
             // parse razor file and get information.
-            .Select((pair, _) =>
-            {
-                var globalOpt = pair.Right.GlobalOptions;
-                globalOpt.TryGetValue("build_property.rootnamespace", out var projectNamespace);
-                globalOpt.TryGetValue("build_property.projectdir", out var projectDirectory);
-                return new
+            .Select(
+                (pair, _) =>
                 {
-                    Text = pair.Left,
-                    ProjectDirectory = projectDirectory!,
-                    ProjectNamespace = projectNamespace!,
-                };
-            })
-            // create ParseRazorStructure.
-            .Select((p, _) =>
-            {
-                var filePath = p.Text.Path;
-                var fileName = Path.GetFileNameWithoutExtension(filePath);
-                var source = p.Text.GetText();
-                // get default namespace.
-                // (There is a possibility that it is slow to compile razor files, so guess from file name and project namespace.)
-                var relativeNs = GetRelativeNamespace(p.ProjectDirectory, filePath, p.ProjectNamespace);
-                // get namespace from source use regex
-                // (it is pseudo-extracted with regular expressions.)
-                var nsRegex = new Regex(@"@namespace\s+(?<namespace>[\w\.]+)");
-                var nsMatch = nsRegex.Match(source?.ToString() ?? "");
-                var ns = nsMatch.Success ? nsMatch.Groups["namespace"].Value : relativeNs;
-                // get @page or Route["..."] from source use regex
-                // see: https://regex101.com/r/8t229K/2
-                List<string> pagePaths = [];
-                var pageRegex = new Regex(@"@page\s+""(.+)""|@attribute\s+\[.*Route(?:Attribute)?\(""(.+)""\)\]");
-                var pageMatch = pageRegex.Matches(source?.ToString() ?? "");
-                if(pageMatch.Count > 0)
-                {
-                    foreach (Match match in pageMatch)
+                    var globalOpt = pair.Right.GlobalOptions;
+                    globalOpt.TryGetValue("build_property.rootnamespace", out var projectNamespace);
+                    globalOpt.TryGetValue("build_property.projectdir", out var projectDirectory);
+                    return new
                     {
-                        // get page path from match
-                        var pagePath = match.Groups[1].Success ? match.Groups[1].Value : match.Groups[2].Value;
-                        // add to list
-                        if (!string.IsNullOrWhiteSpace(pagePath))
+                        Text = pair.Left,
+                        ProjectDirectory = projectDirectory!,
+                        ProjectNamespace = projectNamespace!,
+                    };
+                }
+            )
+            // create ParseRazorStructure.
+            .Select(
+                (p, _) =>
+                {
+                    var filePath = p.Text.Path;
+                    var fileName = Path.GetFileNameWithoutExtension(filePath);
+                    var source = p.Text.GetText();
+                    // get default namespace.
+                    // (There is a possibility that it is slow to compile razor files, so guess from file name and project namespace.)
+                    var relativeNs = GetRelativeNamespace(
+                        p.ProjectDirectory,
+                        filePath,
+                        p.ProjectNamespace
+                    );
+                    // get namespace from source use regex
+                    // (it is pseudo-extracted with regular expressions.)
+                    var nsRegex = new Regex(@"@namespace\s+(?<namespace>[\w\.]+)");
+                    var nsMatch = nsRegex.Match(source?.ToString() ?? "");
+                    var ns = nsMatch.Success ? nsMatch.Groups["namespace"].Value : relativeNs;
+                    // get @page or Route["..."] from source use regex
+                    // see: https://regex101.com/r/8t229K/2
+                    List<string> pagePaths = [];
+                    var pageRegex = new Regex(
+                        @"@page\s+""(.+)""|@attribute\s+\[.*Route(?:Attribute)?\(""(.+)""\)\]"
+                    );
+                    var pageMatch = pageRegex.Matches(source?.ToString() ?? "");
+                    if (pageMatch.Count > 0)
+                    {
+                        foreach (Match match in pageMatch)
                         {
-                            pagePaths.Add(pagePath);
+                            // get page path from match
+                            var pagePath = match.Groups[1].Success
+                                ? match.Groups[1].Value
+                                : match.Groups[2].Value;
+                            // add to list
+                            if (!string.IsNullOrWhiteSpace(pagePath))
+                            {
+                                pagePaths.Add(pagePath);
+                            }
                         }
                     }
-                }
 
-                return new ParseRazorStructure()
-                {
-                    ProjectDirectory = p.ProjectDirectory,
-                    DefaultNamespace = p.ProjectNamespace,
-                    FullPath = filePath,
-                    PageClassName = fileName,
-                    PagePaths = pagePaths,
-                    Namespace = ns,
-                };
-            })
+                    return new ParseRazorStructure()
+                    {
+                        ProjectDirectory = p.ProjectDirectory,
+                        DefaultNamespace = p.ProjectNamespace,
+                        FullPath = filePath,
+                        PageClassName = fileName,
+                        PagePaths = pagePaths,
+                        Namespace = ns,
+                    };
+                }
+            )
             .Collect();
     }
 
