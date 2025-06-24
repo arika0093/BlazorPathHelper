@@ -1,29 +1,33 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
-    "profiles": {
-      "Debug:Tests": {
-          "commandName": "DebugRoslynComponent",
-          "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
-      },
-      "Debug:Example.Plain": {
-          "commandName": "DebugRoslynComponent",
-          "targetProject": "../../examples/Example.Plain/Example.Plain.csproj"
-      },
-      "Debug:Example.FluentUI": {
-        "commandName": "DebugRoslynComponent",
-        "targetProject": "../../examples/Example.FluentUI/Example.FluentUI.csproj"
-      },
-      "Debug:Example.MudBlazor": {
-          "commandName": "DebugRoslynComponent",
-          "targetProject": "../../examples/Example.MudBlazor/Example.MudBlazor.csproj"
-      },
-      "Debug:Example.AntBlazor.Standard": {
-        "commandName": "DebugRoslynComponent",
-        "targetProject": "../../examples/Example.AntBlazor.Standard/Example.AntBlazor.Standard.csproj"
-      },
-      "Debug:Example.AntBlazor.Pro": {
-        "commandName": "DebugRoslynComponent",
-        "targetProject": "../../examples/Example.AntBlazor.Pro/Example.AntBlazor.Pro.csproj"
-      }
+  "profiles": {
+    "Debug:Tests": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../tests/BlazorPathHelper.Tests/BlazorPathHelper.Tests.csproj"
+    },
+    "Debug:Example.Plain": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.Plain/Example.Plain.csproj"
+    },
+    "Debug:Example.FluentUI": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.FluentUI/Example.FluentUI.csproj"
+    },
+    "Debug:Example.MudBlazor": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.MudBlazor/Example.MudBlazor.csproj"
+    },
+    "Debug:Example.AntBlazor.Standard": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.AntBlazor.Standard/Example.AntBlazor.Standard.csproj"
+    },
+    "Debug:Example.AntBlazor.Pro": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.AntBlazor.Pro/Example.AntBlazor.Pro.csproj"
+    },
+    "Debug:Example.Localization": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "../../examples/Example.Localization/Example.Localization.csproj"
     }
+  }
 }
