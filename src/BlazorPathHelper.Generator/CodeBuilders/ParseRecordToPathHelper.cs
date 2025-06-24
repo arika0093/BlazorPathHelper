@@ -37,14 +37,14 @@ internal class ParseRecordToPathHelper(ParseRecordForPathHelper record)
     private IEnumerable<string> BuildPathHelperWithoutArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}() => \"{record.PathRawValue}\";";
+        yield return $"public static string {record.FunctionName}() => \"{record.PathRawValue}\";";
     }
 
     // e.g. public static string Sample(int val1, int val2) => string.Format("/sample/{0}/{1}", val1, val2);
     private IEnumerable<string> BuildPathHelperWithArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs()})";
+        yield return $"public static string {record.FunctionName}({GetBuilderArgs()})";
         yield return $"    => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
     }
 
@@ -72,7 +72,7 @@ internal class ParseRecordToPathHelper(ParseRecordForPathHelper record)
         string[] queryValue = [$"BuildQuery([{string.Join(",", eachQueryVals)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs(queryArg)})";
+        yield return $"public static string {record.FunctionName}({GetBuilderArgs(queryArg)})";
         yield return $"    => string.Format(\"{record.PathFormatterBase + memberQueryString}\", {GetBuilderVals(queryValue)});";
     }
 
@@ -88,10 +88,8 @@ internal class ParseRecordToPathHelper(ParseRecordForPathHelper record)
 internal record ParseRecordForPathHelper
 {
     public required bool IsIgnore { get; init; }
-    public required bool IsExistQuery { get; init; }
-    public required bool IsRequireArgs { get; init; }
     public required string PathRawValue { get; init; }
-    public required string VariableName { get; init; }
+    public required string FunctionName { get; init; }
     public required List<ParseParameterRecord> Parameters { get; init; }
     public required ITypeSymbol? QueryTypeSymbol { get; init; }
     public required List<ParseQueryRecord> QueryRecords { get; init; }
@@ -108,4 +106,7 @@ internal record ParseRecordForPathHelper
             return Regex.Replace(PathRawValue, @"{[^}]+}", (_) => $"{{{count++}}}");
         }
     }
+
+    public bool IsExistQuery => QueryRecords.Count > 0;
+    public bool IsRequireArgs => Parameters.Count > 0;
 }
