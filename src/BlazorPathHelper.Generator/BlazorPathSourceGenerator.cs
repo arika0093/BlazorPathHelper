@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Reflection.Metadata;
 using BlazorPathHelper.CodeBuilders;
 using BlazorPathHelper.Models;
 using BlazorPathHelper.Utils;
@@ -70,7 +71,17 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
             var exportNamespace = fr.Namespace is not null ? $"namespace {fr.Namespace};" : "";
             var builderCodes = recordsOfCls.SelectMany(r =>
             {
-                var builder = new ParseRecordToPathHelper(r);
+                var builder = new ParseRecordToPathHelper(new ()
+                {
+                    IsIgnore = r.IsIgnore,
+                    IsExistQuery = r.IsExistQuery,
+                    IsRequireArgs = r.IsRequireArgs,
+                    PathRawValue = r.PathRawValue,
+                    VariableName = r.VariableName,
+                    Parameters = r.Parameters,
+                    QueryTypeSymbol = r.QueryTypeSymbol,
+                    QueryRecords = r.QueryRecords,
+                });
                 return builder.BuildPathHelpers();
             });
             var code = $$"""

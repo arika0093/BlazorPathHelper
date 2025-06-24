@@ -138,19 +138,6 @@ internal record ParseRecord
     public bool IsDisplay => ForceDisplayFlag ?? !(IsRequireArgs || IsExistQuery);
 
     /// <summary>
-    /// get string for string.Format. e.g. /sample/{0}/{1}
-    /// </summary>
-    public string PathFormatterBase
-    {
-        get
-        {
-            // replace e.g. {val1}/{val2} -> {0}/{1}
-            var count = 0;
-            return Regex.Replace(PathRawValue, @"{[^}]+}", (_) => $"{{{count++}}}");
-        }
-    }
-
-    /// <summary>
     /// get is root menu path or not.
     /// </summary>
     public bool IsRoot => GroupPath == "";

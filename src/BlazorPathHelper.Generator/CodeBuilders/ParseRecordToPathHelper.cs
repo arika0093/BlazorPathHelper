@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using BlazorPathHelper.Models;
+using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.CodeBuilders;
 
-internal class ParseRecordToPathHelper(ParseRecord record)
+internal class ParseRecordToPathHelper(ParseRecordForPathHelper record)
 {
     private const string QueryVarName = "__query";
 
@@ -81,4 +83,29 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     // e.g. "val1, val2"
     private string GetBuilderArgs(string[]? optionals = null) =>
         string.Join(", ", record.Parameters.Select(a => a.ArgDefinition).Concat(optionals ?? []));
+}
+
+internal record ParseRecordForPathHelper
+{
+    public required bool IsIgnore { get; init; }
+    public required bool IsExistQuery { get; init; }
+    public required bool IsRequireArgs { get; init; }
+    public required string PathRawValue { get; init; }
+    public required string VariableName { get; init; }
+    public required List<ParseParameterRecord> Parameters { get; init; }
+    public required ITypeSymbol? QueryTypeSymbol { get; init; }
+    public required List<ParseQueryRecord> QueryRecords { get; init; }
+
+    /// <summary>
+    /// get string for string.Format. e.g. /sample/{0}/{1}
+    /// </summary>
+    public string PathFormatterBase
+    {
+        get
+        {
+            // replace e.g. {val1}/{val2} -> {0}/{1}
+            var count = 0;
+            return Regex.Replace(PathRawValue, @"{[^}]+}", (_) => $"{{{count++}}}");
+        }
+    }
 }
