@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Reflection.Metadata;
 using BlazorPathHelper.CodeBuilders;
 using BlazorPathHelper.Models;
 using BlazorPathHelper.Utils;
