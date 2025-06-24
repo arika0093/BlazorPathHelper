@@ -20,7 +20,8 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          # use the old version to avoid issues with the new one
+          dotnet-version: '8.0.303'
           cache: true
           cache-dependency-path: '**/packages.lock.json'
 
