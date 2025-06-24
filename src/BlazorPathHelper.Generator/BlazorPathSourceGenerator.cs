@@ -75,7 +75,6 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
         foreach (var s in structures)
         {
             no++;
-            var exportNamespace = s.Namespace is not null ? $"" : "";
             var builderCodes = s.PagePaths.SelectMany(page =>
             {
                 var builder = new ParseRecordToPathHelper(
@@ -84,7 +83,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                         IsIgnore = false,
                         PathRawValue = page,
                         FunctionName = "UrlBuild",
-                        Parameters = ParseParameterRecordFactory.CreateFromPath(page).ToList(),
+                        Parameters = [.. ParseParameterRecordFactory.CreateFromPath(page)],
                         QueryTypeSymbol = null,
                         QueryRecords = [],
                     }
