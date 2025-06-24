@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<button @onclick="JumpToSample1">Jump to Sample1</button>
+<br/>
+<button @onclick="JumpToSample1WithId">Jump to Sample1 with Id</button>
+<br />
+<button @onclick="JumpToSample1WithValue">Jump to Sample1 with Value</button>
+<br />
+
+@inject NavigationManager NavigationManager
+@code {
+    private void JumpToSample1()
+    {
+        NavigationManager.NavigateTo(Sample1.UrlBuild());
+    }
+    private void JumpToSample1WithId()
+    {
+        var random = Random.Shared.Next(1, 1000);
+        NavigationManager.NavigateTo(Sample1.UrlBuild(Id: random));
+    }
+    private void JumpToSample1WithValue()
+    {
+        var random = Random.Shared.Next(100000, 200000);
+        NavigationManager.NavigateTo(Sample1.UrlBuild(Value: random.ToString("0xX")));
+    }
+}

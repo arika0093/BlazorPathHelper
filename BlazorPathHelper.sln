@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C7E9EAEA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPathHelper.Migration", "src\BlazorPathHelper.Migration\BlazorPathHelper.Migration.csproj", "{35E0994A-A511-40EC-A3A5-1A46090AAF8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.SimpleBuilder", "examples\Example.SimpleBuilder\Example.SimpleBuilder.csproj", "{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{35E0994A-A511-40EC-A3A5-1A46090AAF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E0994A-A511-40EC-A3A5-1A46090AAF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E0994A-A511-40EC-A3A5-1A46090AAF8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{EACA2125-D882-4931-B343-CFF229422853} = {4C0B733E-530E-4249-86A9-5846734837B6}
 		{1E02AE67-8B38-4F72-91AF-F9D22CFE5961} = {4C0B733E-530E-4249-86A9-5846734837B6}
 		{35E0994A-A511-40EC-A3A5-1A46090AAF8C} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{61FB11C3-24A2-49E1-AF1C-3A6CE4515B9A} = {4C0B733E-530E-4249-86A9-5846734837B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {36AE79DD-7720-450D-B7DC-4E65CA5F39F2}

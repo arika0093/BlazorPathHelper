@@ -1,0 +1,15 @@
+﻿@page "/sample1"
+@page "/sample1/{id:int?}"
+@attribute [Route("/sample1/{value?}")]
+@attribute [Route("/sample1/{id:int?}/{value?}")]
+
+Id is @(Id?.ToString() ?? "null"). <br/>
+Value is @(Value ?? "null").
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    [Parameter]
+    public string? Value { get; set; }
+}
