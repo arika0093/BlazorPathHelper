@@ -23,6 +23,6 @@
     private void JumpToSample1WithValue()
     {
         var random = Random.Shared.Next(100000, 200000);
-        NavigationManager.NavigateTo(Sample1.UrlBuild(Value: random.ToString("0xX")));
+        NavigationManager.NavigateTo(Sample1.UrlBuild(Value: random.ToString("X")));
     }
 }
