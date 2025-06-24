@@ -55,7 +55,6 @@ internal record ParseParameterRecord
     /// argument definition for builder method.
     /// e.g. {value1} -> string.Format("{0}", value1)
     /// </summary>
-    /// <see cref="BlazorPathHelperUtility">ToStringForUrl</see>
     public string VariableString => $"ToStringForUrl({VariableName})";
 
     private string NullChar => IsNullable ? "?" : "";

@@ -1,25 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AntDesign.Charts" Version="0.*" />
-    <PackageReference Include="AntDesign.Extensions.Localization" Version="1.*" />
-    <PackageReference Include="AntDesign.ProLayout" Version="1.*" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.17" />
     <PackageReference
       Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer"
-      Version="8.*"
+      Version="8.0.17"
       PrivateAssets="all"
     />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.*" />
-    <PackageReference
-      Include="Microsoft.Extensions.Options.ConfigurationExtensions"
-      Version="9.*"
-    />
-    <PackageReference Include="System.Net.Http.Json" Version="9.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\BlazorPathHelper.Core\BlazorPathHelper.Core.csproj">

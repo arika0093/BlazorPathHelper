@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using BlazorPathHelper.Models;
+using Microsoft.CodeAnalysis;
 
 namespace BlazorPathHelper.CodeBuilders;
 
-internal class ParseRecordToPathHelper(ParseRecord record)
+internal class ParseRecordToPathHelper(ParseRecordForPathHelper record)
 {
     private const string QueryVarName = "__query";
 
@@ -35,14 +37,14 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     private IEnumerable<string> BuildPathHelperWithoutArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}() => \"{record.PathRawValue}\";";
+        yield return $"public static string {record.FunctionName}() => \"{record.PathRawValue}\";";
     }
 
     // e.g. public static string Sample(int val1, int val2) => string.Format("/sample/{0}/{1}", val1, val2);
     private IEnumerable<string> BuildPathHelperWithArguments()
     {
         yield return $"/// <summary>Build Path String: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs()})";
+        yield return $"public static string {record.FunctionName}({GetBuilderArgs()})";
         yield return $"    => string.Format(\"{record.PathFormatterBase}\", {GetBuilderVals()});";
     }
 
@@ -70,7 +72,7 @@ internal class ParseRecordToPathHelper(ParseRecord record)
         string[] queryValue = [$"BuildQuery([{string.Join(",", eachQueryVals)}])"];
 
         yield return $"/// <summary>Build Path String with Query: {record.PathRawValue} </summary>";
-        yield return $"public static string {record.VariableName}({GetBuilderArgs(queryArg)})";
+        yield return $"public static string {record.FunctionName}({GetBuilderArgs(queryArg)})";
         yield return $"    => string.Format(\"{record.PathFormatterBase + memberQueryString}\", {GetBuilderVals(queryValue)});";
     }
 
@@ -81,4 +83,30 @@ internal class ParseRecordToPathHelper(ParseRecord record)
     // e.g. "val1, val2"
     private string GetBuilderArgs(string[]? optionals = null) =>
         string.Join(", ", record.Parameters.Select(a => a.ArgDefinition).Concat(optionals ?? []));
+}
+
+internal record ParseRecordForPathHelper
+{
+    public required bool IsIgnore { get; init; }
+    public required string PathRawValue { get; init; }
+    public required string FunctionName { get; init; }
+    public required List<ParseParameterRecord> Parameters { get; init; }
+    public required ITypeSymbol? QueryTypeSymbol { get; init; }
+    public required List<ParseQueryRecord> QueryRecords { get; init; }
+
+    /// <summary>
+    /// get string for string.Format. e.g. /sample/{0}/{1}
+    /// </summary>
+    public string PathFormatterBase
+    {
+        get
+        {
+            // replace e.g. {val1}/{val2} -> {0}/{1}
+            var count = 0;
+            return Regex.Replace(PathRawValue, @"{[^}]+}", (_) => $"{{{count++}}}");
+        }
+    }
+
+    public bool IsExistQuery => QueryRecords.Count > 0;
+    public bool IsRequireArgs => Parameters.Count > 0;
 }

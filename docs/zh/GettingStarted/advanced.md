@@ -1,16 +1,9 @@
-# 尝试使用
+# 高级使用指南
 ## 引言
 在Blazor项目中安装[BlazorPathHelper](https://www.nuget.org/packages/BlazorPathHelper/)。
 
 ```bash title="安装BlazorPathHelper"
 dotnet add package BlazorPathHelper
-```
-
-或者，也可以执行自动设置。有关详细信息，请参阅[此指南](./AutoInstall.md)。
-
-```bash
-dotnet tool install --global BlazorPathHelper.Migration --prerelease
-bph-migration
 ```
 
 ## URL生成器
