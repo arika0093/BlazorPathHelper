@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -51,6 +52,24 @@ internal static class ParseRazorStructureFactory
                 var nsRegex = new Regex(@"@namespace\s+(?<namespace>[\w\.]+)");
                 var nsMatch = nsRegex.Match(source?.ToString() ?? "");
                 var ns = nsMatch.Success ? nsMatch.Groups["namespace"].Value : relativeNs;
+                // get @page or Route["..."] from source use regex
+                // see: https://regex101.com/r/8t229K/2
+                List<string> pagePaths = [];
+                var pageRegex = new Regex(@"@page\s+""(.+)""|@attribute\s+\[.*Route(?:Attribute)?\(""(.+)""\)\]");
+                var pageMatch = pageRegex.Matches(source?.ToString() ?? "");
+                if(pageMatch.Count > 0)
+                {
+                    foreach (Match match in pageMatch)
+                    {
+                        // get page path from match
+                        var pagePath = match.Groups[1].Success ? match.Groups[1].Value : match.Groups[2].Value;
+                        // add to list
+                        if (!string.IsNullOrWhiteSpace(pagePath))
+                        {
+                            pagePaths.Add(pagePath);
+                        }
+                    }
+                }
 
                 return new ParseRazorStructure()
                 {
@@ -58,6 +77,7 @@ internal static class ParseRazorStructureFactory
                     DefaultNamespace = p.ProjectNamespace,
                     FullPath = filePath,
                     PageClassName = fileName,
+                    PagePaths = pagePaths,
                     Namespace = ns,
                 };
             })

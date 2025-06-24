@@ -1,6 +1,8 @@
 ﻿
 // ReSharper disable StringLiteralTypo
 
+using System.Collections.Generic;
+
 namespace BlazorPathHelper.Models;
 
 /// <summary>
@@ -32,6 +34,11 @@ internal record ParseRazorStructure
     /// class name of razor file.
     /// </summary>
     public required string PageClassName { get; init; }
+
+    /// <summary>
+    /// list of page paths that this razor file be defined.
+    /// </summary>
+    public required List<string> PagePaths { get; init; } = [];
 
     /// <summary>
     /// full class name
