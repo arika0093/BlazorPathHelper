@@ -95,6 +95,4 @@ internal class NamespaceAmbiguousException(string baseClass, string[] replaceStr
     : Exception(
         $"You must replace '{baseClass}' -> " +
         $"{string.Join(" or ", replaceStrings.Select(r => $"'{r}'"))}"
-    )
-{
-}
+    );
