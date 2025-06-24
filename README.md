@@ -5,7 +5,7 @@
 
 `BlazorPathHelper` is a library that assists in managing URL paths within Blazor projects.
 
-![sample](./docs/assets/sample.gif)
+![sample](./docs/assets/sample2.gif)
 
 ## Main Features
 This library **automatically** generates the following contents.

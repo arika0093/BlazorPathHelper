@@ -7,4 +7,4 @@
     文档提供以下语言版本：
     [English](../index.html) | [日本語](../ja/index.html) | [简体中文](../zh/index.html)
 
-![示例](../assets/sample.gif)
+![示例](../assets/sample2.gif)
