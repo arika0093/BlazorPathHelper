@@ -105,7 +105,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
 
                 public partial class {{s.PageClassName}}
                 {
-                    {{string.Join($"{NL}        ", builderCodes)}}
+                    {{string.Join($"{NL}    ", builderCodes)}}
                 }
                 """;
             context.AddSource($"BPH_{s.PageClassName}_{no:D4}_RazorStatic.g.cs", code);
@@ -159,7 +159,7 @@ public class BlazorPathHelperSourceGenerator : IIncrementalGenerator
                     /// </summary>
                     public static partial class Helper
                     {
-                        {{string.Join($"{NL}    ", builderCodes)}}
+                        {{string.Join($"{NL}        ", builderCodes)}}
                     }
                 }
                 """;
